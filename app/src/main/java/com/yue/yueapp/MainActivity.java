@@ -1,8 +1,13 @@
 package com.yue.yueapp;
 
+import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,9 +17,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import com.yue.yueapp.Fragment.CustomViewFragment;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private FrameLayout frameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +34,17 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        frameLayout = (FrameLayout) findViewById(R.id.frame_main);
+
+        CustomViewFragment customViewFragment = new CustomViewFragment();
+
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_main, customViewFragment);
+        fragmentTransaction.commit();
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -33,6 +56,9 @@ public class MainActivity extends AppCompatActivity
         });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        setColorForDrawerLayout(this, drawer, 0x000000);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -98,4 +124,85 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+    /**
+     * 为DrawerLayout 布局设置状态栏变色
+     *
+     * @param activity     需要设置的activity
+     * @param drawerLayout DrawerLayout
+     * @param color        状态栏颜色值
+     */
+    public static void setColorForDrawerLayout(Activity activity, DrawerLayout drawerLayout, int color) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            // 生成一个状态栏大小的矩形
+            View statusBarView = createStatusView(activity, color);
+            // 添加 statusBarView 到布局中
+            ViewGroup contentLayout = (ViewGroup) drawerLayout.getChildAt(0);
+            contentLayout.addView(statusBarView, 0);
+            // 内容布局不是 LinearLayout 时,设置padding top
+            if (!(contentLayout instanceof LinearLayout) && contentLayout.getChildAt(1) != null) {
+                contentLayout.getChildAt(1).setPadding(0, getStatusBarHeight(activity), 0, 0);
+            }
+            // 设置属性
+            ViewGroup drawer = (ViewGroup) drawerLayout.getChildAt(1);
+            drawerLayout.setFitsSystemWindows(false);
+            contentLayout.setFitsSystemWindows(false);
+            contentLayout.setClipToPadding(true);
+            drawer.setFitsSystemWindows(false);
+        }
+    }
+
+    private static int getStatusBarHeight(Activity activity) {
+        /**
+         * 获取状态栏高度——方法2
+         * */
+        int statusBarHeight2 = -1;
+        try {
+            Class<?> clazz = Class.forName("com.android.internal.R$dimen");
+            Object object = clazz.newInstance();
+            int height = Integer.parseInt(clazz.getField("status_bar_height")
+                    .get(object).toString());
+            statusBarHeight2 = activity.getResources().getDimensionPixelSize(height);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return statusBarHeight2;
+    }
+
+    /**
+     * 状态栏顶起来的方式
+     */
+    private void setRootView() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            // 设置根布局的参数
+            ViewGroup rootView = (ViewGroup) ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
+            rootView.setFitsSystemWindows(true);
+            rootView.setClipToPadding(true);
+        }
+    }
+
+    /**
+     * 生成一个和状态栏大小相同的矩形条
+     *
+     * @param activity 需要设置的activity
+     * @param color    状态栏颜色值
+     * @return 状态栏矩形条
+     */
+    private static View createStatusView(Activity activity, int color) {
+        // 获得状态栏高度
+        int resourceId = activity.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        int statusBarHeight = activity.getResources().getDimensionPixelSize(resourceId);
+
+        // 绘制一个和状态栏一样高的矩形
+        View statusView = new View(activity);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                statusBarHeight);
+        statusView.setLayoutParams(params);
+        statusView.setBackgroundColor(color);
+        return statusView;
+    }
+
+
 }
