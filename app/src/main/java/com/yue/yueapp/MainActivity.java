@@ -23,10 +23,13 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.yue.yueapp.Fragment.CustomViewFragment;
+import com.yue.yueapp.Fragment.PathUseFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FrameLayout frameLayout;
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +40,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         frameLayout = (FrameLayout) findViewById(R.id.frame_main);
 
-        CustomViewFragment customViewFragment = new CustomViewFragment();
+//        CustomViewFragment customViewFragment = new CustomViewFragment();
+        PathUseFragment customViewFragment = new PathUseFragment();
 
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_main, customViewFragment);
         fragmentTransaction.commit();
 
@@ -104,12 +108,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-
+            PathUseFragment pathUseFragment = new PathUseFragment();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frame_main, pathUseFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
@@ -120,8 +131,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
 
