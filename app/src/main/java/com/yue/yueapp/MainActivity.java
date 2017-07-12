@@ -1,6 +1,7 @@
 package com.yue.yueapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -113,15 +114,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_camera) {//自定义试图
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+            CustomViewFragment customViewFragment = new CustomViewFragment();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frame_main, customViewFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        } else if (id == R.id.nav_gallery) {//pathView的使用，画心
             PathUseFragment pathUseFragment = new PathUseFragment();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frame_main, pathUseFragment);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_slideshow) {
+            Bundle bundle = new Bundle();
+            bundle.putString("kkkk", "hello");
+            Intent intent = new Intent(this, Main2Activity.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
 
         } else if (id == R.id.nav_manage) {
 

@@ -12,7 +12,7 @@ import android.view.View;
 
 /**
  * Created by Administrator on 2017/6/29.
- * 贝塞尔曲线的使用
+ * 贝塞尔曲线的使用,画的是一个❤
  */
 
 public class BezierLoveView extends View {
