@@ -23,6 +23,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import com.yue.yueapp.Fragment.Advanced1Fragment;
 import com.yue.yueapp.Fragment.AdvancedFragment;
 import com.yue.yueapp.Fragment.CustomViewFragment;
 import com.yue.yueapp.Fragment.PathUseFragment;
@@ -43,7 +44,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         frameLayout = (FrameLayout) findViewById(R.id.frame_main);
 
 
-        AdvancedFragment advancedFragment = new AdvancedFragment();
+        //就是为了测试刚刚写的页面
+        Advanced1Fragment advancedFragment = new Advanced1Fragment();
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_main, advancedFragment);
