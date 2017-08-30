@@ -7,4 +7,7 @@
     <string name="action_settings">Settings</string>
     <string name="CustomView">自定义视图</string>
     <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="name">踏着浪的风儿</string>
+
 </resources>
