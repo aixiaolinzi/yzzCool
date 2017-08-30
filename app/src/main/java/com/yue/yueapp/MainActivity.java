@@ -23,6 +23,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import com.yue.yueapp.Fragment.AdvancedFragment;
 import com.yue.yueapp.Fragment.CustomViewFragment;
 import com.yue.yueapp.Fragment.PathUseFragment;
 
@@ -41,13 +42,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         frameLayout = (FrameLayout) findViewById(R.id.frame_main);
 
-//        CustomViewFragment customViewFragment = new CustomViewFragment();
-        PathUseFragment customViewFragment = new PathUseFragment();
 
-
+        AdvancedFragment advancedFragment = new AdvancedFragment();
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_main, customViewFragment);
+        fragmentTransaction.replace(R.id.frame_main, advancedFragment);
         fragmentTransaction.commit();
 
 
@@ -114,12 +113,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {//自定义试图
-            // Handle the camera action
-            CustomViewFragment customViewFragment = new CustomViewFragment();
+        if (id == R.id.nav_camera) {//扔物线的实例
+            AdvancedFragment advancedFragment = new AdvancedFragment();
+            fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frame_main, customViewFragment);
-            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.replace(R.id.frame_main, advancedFragment);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_gallery) {//pathView的使用，画心
             PathUseFragment pathUseFragment = new PathUseFragment();
@@ -134,8 +132,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             intent.putExtras(bundle);
             startActivity(intent);
 
-        } else if (id == R.id.nav_manage) {
-
+        } else if (id == R.id.nav_manage) {//自定义试图
+            // Handle the camera action
+            CustomViewFragment customViewFragment = new CustomViewFragment();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frame_main, customViewFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

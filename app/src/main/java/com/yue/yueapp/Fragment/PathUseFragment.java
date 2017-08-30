@@ -25,7 +25,7 @@ import java.util.function.Predicate;
  * Created by Administrator on 2017/6/28.
  */
 
-public class PathUseFragment extends Fragment {
+public class PathUseFragment extends BaseFragment {
     private RadioButton radioButtonLeft, radioButtonRight;
     private RadioGroup radioGroup;
     private BezierLoveView bezierView;

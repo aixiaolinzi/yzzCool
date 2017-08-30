@@ -14,8 +14,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="99dp"
-        android:layout_height="72dp"
+        android:layout_width="61dp"
+        android:layout_height="58dp"
         app:srcCompat="@drawable/carp" />
 
     <TextView

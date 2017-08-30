@@ -27,9 +27,10 @@ import java.util.List;
 
 /**
  * Created by fengfan on 2017/5/24.
+ * 最基本的fragment
  */
 
-public class CustomViewFragment extends Fragment {
+public class CustomViewFragment extends BaseFragment {
     Context mContext;
 
     CircularView circularView;
