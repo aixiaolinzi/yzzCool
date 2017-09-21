@@ -36,8 +36,8 @@ public class Advanced1Fragment extends BaseFragment {
         View view = inflater.inflate(R.layout.custom_view_advanced1, container, false);
         viewPager = (ViewPager) view.findViewById(R.id.vp_advanced);
         ArrayList<View> views = new ArrayList<>();
-        views.add(inflater.inflate(R.layout.advanced1_custom, null, false));
         views.add(inflater.inflate(R.layout.advanced2_custom, null, false));
+        views.add(inflater.inflate(R.layout.advanced1_custom, null, false));
         viewPager.setAdapter(new MyPagerAdapter(views));
         return view;
     }
