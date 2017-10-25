@@ -28,23 +28,27 @@
     <!--android:layout_height="match_parent" />-->
 
 
-    <!--绘制顺序的问题-->
-    <com.yue.uilibrary.paowuxian.Custom501EditText
+    <!--&lt;!&ndash;绘制顺序的问题&ndash;&gt;-->
+    <!--<com.yue.uilibrary.paowuxian.Custom501EditText-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_weight="1"-->
+    <!--android:hint="画圈圈" />-->
+
+    <!--<com.yue.uilibrary.paowuxian.Custom501LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_weight="1">-->
+
+    <!--<ImageView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:src="@drawable/carp" />-->
+    <!--</com.yue.uilibrary.paowuxian.Custom501LinearLayout>-->
+
+
+    <com.yue.uilibrary.paowuxian.Custom601View
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:hint="画圈圈" />
-
-    <com.yue.uilibrary.paowuxian.Custom501LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/carp" />
-    </com.yue.uilibrary.paowuxian.Custom501LinearLayout>
-
+        android:layout_height="match_parent" />
 
 </LinearLayout>

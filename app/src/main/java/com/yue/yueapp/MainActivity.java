@@ -2,6 +2,7 @@ package com.yue.yueapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Matrix;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -27,12 +28,16 @@ import com.yue.yueapp.Fragment.Advanced1Fragment;
 import com.yue.yueapp.Fragment.AdvancedFragment;
 import com.yue.yueapp.Fragment.CustomViewFragment;
 import com.yue.yueapp.Fragment.PathUseFragment;
+import com.yue.yueapp.utils.Logger;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FrameLayout frameLayout;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
+    //测试ThreadLocal的使用。
+    private ThreadLocal<Boolean> mBooleanThreadLocal = new ThreadLocal<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +77,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        Logger.e("你的名字**");
+
+        ThreadLocal<String> mStringThreadLocal = new ThreadLocal<>();
+        mStringThreadLocal.set("developer");
+        String s = mStringThreadLocal.get();
+        Logger.e("得到的值" + s);
+
+
+        mBooleanThreadLocal.set(true);
+        Logger.e("此处得到的值++" + mBooleanThreadLocal.get());
+        new Thread("new1") {
+            @Override
+            public void run() {
+                super.run();
+                mBooleanThreadLocal.set(false);
+                Logger.e("在第一个线程里面的使用++" + mBooleanThreadLocal.get());
+            }
+        }.start();
+
+
+        new Thread("new 2") {
+            @Override
+            public void run() {
+                super.run();
+                Logger.e("第二个线程的使用++" + mBooleanThreadLocal.get());
+            }
+        }.start();
+
+        //同一个ThreadLocal里面的get()方法，得到不同的值。
+        // 不同线程访问同一个 ThrealLocal 的 get() 方法，
+        // ThrealLocal 内部都会从各自的线程中取出一个数组，
+        // 然后再从数组中根据当前 ThrealLocal 的索引去查找不同的 value 值。
+
+
+
+
     }
 
     @Override
