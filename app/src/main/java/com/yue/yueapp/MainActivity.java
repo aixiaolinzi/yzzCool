@@ -1,6 +1,7 @@
 package com.yue.yueapp;
 
 import android.app.Activity;
+import android.app.usage.UsageEvents;
 import android.content.Intent;
 import android.graphics.Matrix;
 import android.os.Build;
@@ -30,6 +31,8 @@ import com.yue.yueapp.Fragment.CustomViewFragment;
 import com.yue.yueapp.Fragment.PathUseFragment;
 import com.yue.yueapp.utils.Logger;
 
+import org.greenrobot.eventbus.EventBus;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FrameLayout frameLayout;
@@ -38,6 +41,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //测试ThreadLocal的使用。
     private ThreadLocal<Boolean> mBooleanThreadLocal = new ThreadLocal<>();
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
