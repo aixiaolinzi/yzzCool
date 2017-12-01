@@ -49,11 +49,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.inflateMenu(R.menu.menu_activity_main);
         setSupportActionBar(toolbar);
 
+
+
         frameLayout = (FrameLayout) findViewById(R.id.frame_main);
-
-
         //就是为了测试刚刚写的页面
         Advanced1Fragment advancedFragment = new Advanced1Fragment();
         fragmentManager = getSupportFragmentManager();
@@ -62,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         setColorForDrawerLayout(this, drawer, 0x000000);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -72,12 +72,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        Logger.e("你的名字**");
 
-        ThreadLocal<String> mStringThreadLocal = new ThreadLocal<>();
-        mStringThreadLocal.set("developer");
-        String s = mStringThreadLocal.get();
-        Logger.e("得到的值" + s);
+
 
     }
 
@@ -95,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_activity_main, menu);
         return true;
     }
 
