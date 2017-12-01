@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yue.yueapp">
 
-    <!--android:hardwareAccelerated="false" 硬件加速的问题-->
+    <!-- android:hardwareAccelerated="false" 硬件加速的问题 -->
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="false"
@@ -24,6 +24,10 @@
         <activity
             android:name=".Main2Activity"
             android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".search.SearchActivity"
+            android:label="@string/title_activity_search"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

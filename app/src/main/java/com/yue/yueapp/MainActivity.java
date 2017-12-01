@@ -29,6 +29,7 @@ import com.yue.yueapp.Fragment.Advanced1Fragment;
 import com.yue.yueapp.Fragment.AdvancedFragment;
 import com.yue.yueapp.Fragment.CustomViewFragment;
 import com.yue.yueapp.Fragment.PathUseFragment;
+import com.yue.yueapp.search.SearchActivity;
 import com.yue.yueapp.utils.Logger;
 
 
@@ -90,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
         getMenuInflater().inflate(R.menu.menu_activity_main, menu);
         return true;
     }
@@ -103,8 +103,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (item.getItemId() == R.id.action_search) {
+            startActivity(new Intent(MainActivity.this, SearchActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
