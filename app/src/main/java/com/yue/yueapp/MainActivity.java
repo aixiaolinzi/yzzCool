@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        setColorForDrawerLayout(this, drawer, 0x000000);
+
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -156,50 +156,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    /**
-     * 为DrawerLayout 布局设置状态栏变色
-     *
-     * @param activity     需要设置的activity
-     * @param drawerLayout DrawerLayout
-     * @param color        状态栏颜色值
-     */
-    public static void setColorForDrawerLayout(Activity activity, DrawerLayout drawerLayout, int color) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            // 生成一个状态栏大小的矩形
-            View statusBarView = createStatusView(activity, color);
-            // 添加 statusBarView 到布局中
-            ViewGroup contentLayout = (ViewGroup) drawerLayout.getChildAt(0);
-            contentLayout.addView(statusBarView, 0);
-            // 内容布局不是 LinearLayout 时,设置padding top
-            if (!(contentLayout instanceof LinearLayout) && contentLayout.getChildAt(1) != null) {
-                contentLayout.getChildAt(1).setPadding(0, getStatusBarHeight(activity), 0, 0);
-            }
-            // 设置属性
-            ViewGroup drawer = (ViewGroup) drawerLayout.getChildAt(1);
-            drawerLayout.setFitsSystemWindows(false);
-            contentLayout.setFitsSystemWindows(false);
-            contentLayout.setClipToPadding(true);
-            drawer.setFitsSystemWindows(false);
-        }
-    }
 
-    private static int getStatusBarHeight(Activity activity) {
-        /**
-         * 获取状态栏高度——方法2
-         * */
-        int statusBarHeight2 = -1;
-        try {
-            Class<?> clazz = Class.forName("com.android.internal.R$dimen");
-            Object object = clazz.newInstance();
-            int height = Integer.parseInt(clazz.getField("status_bar_height")
-                    .get(object).toString());
-            statusBarHeight2 = activity.getResources().getDimensionPixelSize(height);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return statusBarHeight2;
-    }
 
     /**
      * 生成一个和状态栏大小相同的矩形条
