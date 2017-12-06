@@ -202,18 +202,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
-     * 状态栏顶起来的方式
-     */
-    private void setRootView() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            // 设置根布局的参数
-            ViewGroup rootView = (ViewGroup) ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
-            rootView.setFitsSystemWindows(true);
-            rootView.setClipToPadding(true);
-        }
-    }
-
-    /**
      * 生成一个和状态栏大小相同的矩形条
      *
      * @param activity 需要设置的activity

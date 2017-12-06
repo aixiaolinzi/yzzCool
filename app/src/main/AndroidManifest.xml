@@ -28,6 +28,10 @@
         <activity
             android:name=".search.SearchActivity"
             android:label="@string/title_activity_search"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Main3Activity"
+            android:label="@string/title_activity_main3"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
