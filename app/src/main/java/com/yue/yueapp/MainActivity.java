@@ -11,6 +11,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar.inflateMenu(R.menu.menu_activity_main);
         setSupportActionBar(toolbar);
 
+        startActivity(new Intent(this,Main3Activity.class));
 
 
         frameLayout = (FrameLayout) findViewById(R.id.frame_main);
@@ -73,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
 
 
     }
