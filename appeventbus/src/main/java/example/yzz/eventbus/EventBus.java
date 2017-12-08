@@ -48,7 +48,10 @@ public class EventBus {
     private static final EventBusBuilder DEFAULT_BUILDER = new EventBusBuilder();
     private static final Map<Class<?>, List<Class<?>>> eventTypesCache = new HashMap<>();
 
+    // key 是 Event 参数的类，value 存放的是 Subscription 的集合列表
+    // Subscription包含subscriber 订阅者（反射执行对象）和SubscriberMethod 注解方法的所有属性参数值
     private final Map<Class<?>, CopyOnWriteArrayList<Subscription>> subscriptionsByEventType;
+    // key 是所有的订阅者，value 是所有订阅者里面方法的参数的 class，eventType
     private final Map<Object, List<Class<?>>> typesBySubscriber;
     private final Map<Class<?>, Object> stickyEvents;
 
@@ -142,7 +145,12 @@ public class EventBus {
      * ThreadMode} and priority.
      */
     public void register(Object subscriber) {
+        // 首先获得class对象
         Class<?> subscriberClass = subscriber.getClass();
+        // 通过 subscriberMethodFinder 来找到订阅者订阅了哪些事件.返回一个 SubscriberMethod 对象的 List,
+        // SubscriberMethod里包含了这个方法的 Method 对象,以及将来响应订阅是在哪个线程的 ThreadMode ,
+        // 以及订阅的事件类型 eventType ,以及订阅的优先级 priority ,
+        // 以及是否接收粘性 sticky 事件的 boolean 值，其实就是解析这个类上的所有 Subscriber 注解方法属性。
         List<SubscriberMethod> subscriberMethods = subscriberMethodFinder.findSubscriberMethods(subscriberClass);
         synchronized (this) {
             for (SubscriberMethod subscriberMethod : subscriberMethods) {
@@ -176,6 +184,7 @@ public class EventBus {
         //从subscriptionsByEventType里检查是否已经添加过该Subscription,如果添加过就抛出异常
         CopyOnWriteArrayList<Subscription> subscriptions = subscriptionsByEventType.get(eventType);
         if (subscriptions == null) {
+            //线程安全的ArrayList
             subscriptions = new CopyOnWriteArrayList<>();
             subscriptionsByEventType.put(eventType, subscriptions);
         } else {
@@ -291,9 +300,11 @@ public class EventBus {
         PostingThreadState postingState = currentPostingThreadState.get();
         //当前线程的事件队列
         List<Object> eventQueue = postingState.eventQueue;
+        //把 post 的事件添加到事件队列
         eventQueue.add(event);
-
+        //如果没有处在事件发布状态，那么开始发送事件并一直保持发布状态
         if (!postingState.isPosting) {
+            // 是否是主线程
             postingState.isMainThread = isMainThread();
             postingState.isPosting = true;
             if (postingState.canceled) {
@@ -432,7 +443,7 @@ public class EventBus {
             //post单个
             subscriptionFound = postSingleEventForEventType(event, postingState, eventClass);
         }
-        //如果没有发现，如果发现 就不再处理。
+        //如果没有发现，如果发现 就不再处理。没有订阅者
         if (!subscriptionFound) {
             if (logNoSubscriberMessages) {
                 logger.log(Level.FINE, "No subscribers registered for event " + eventClass);

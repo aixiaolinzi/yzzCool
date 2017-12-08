@@ -58,6 +58,7 @@ class SubscriberMethodFinder {
     // 一个注解方法对应一个 SubscriberMethod 对象，
     // 包括 threadMode，priority，sticky，eventType，methodString。
     List<SubscriberMethod> findSubscriberMethods(Class<?> subscriberClass) {
+        // 先从缓存里面读取，订阅者的 Class
         List<SubscriberMethod> subscriberMethods = METHOD_CACHE.get(subscriberClass);
         if (subscriberMethods != null) {
             return subscriberMethods;
@@ -151,7 +152,7 @@ class SubscriberMethodFinder {
         FindState findState = prepareFindState();
         findState.initForSubscriber(subscriberClass);
         while (findState.clazz != null) {
-            //通过反射来获得订阅方法信息
+            //寻找某个类中的所有事件响应方法，通过反射来获得订阅方法信息
             findUsingReflectionInSingleClass(findState);
             //查找父类的订阅方法
             findState.moveToSuperclass();
@@ -172,7 +173,9 @@ class SubscriberMethodFinder {
             findState.skipSuperClasses = true;
         }
         for (Method method : methods) {
+            // 获取方法访问修饰符
             int modifiers = method.getModifiers();
+            //  找到所有声明为 public 的方法
             if ((modifiers & Modifier.PUBLIC) != 0 && (modifiers & MODIFIERS_IGNORE) == 0) {
                 //返回类对象参数，就是方里面有几个参数
                 Class<?>[] parameterTypes = method.getParameterTypes();
@@ -181,6 +184,7 @@ class SubscriberMethodFinder {
                     //得到注解为Subscribe的方法
                     Subscribe subscribeAnnotation = method.getAnnotation(Subscribe.class);
                     if (subscribeAnnotation != null) {
+                        // 获取事件的 Class ，也就是方法参数的 Class
                         Class<?> eventType = parameterTypes[0];
                         //校验是否添加这个方法
                         if (findState.checkAdd(method, eventType)) {
