@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar.inflateMenu(R.menu.menu_activity_main);
         setSupportActionBar(toolbar);
 
-        startActivity(new Intent(this,Main3Activity.class));
 
 
         frameLayout = (FrameLayout) findViewById(R.id.frame_main);
