@@ -30,8 +30,15 @@ import com.yue.yueapp.Fragment.Advanced1Fragment;
 import com.yue.yueapp.Fragment.AdvancedFragment;
 import com.yue.yueapp.Fragment.CustomViewFragment;
 import com.yue.yueapp.Fragment.PathUseFragment;
+import com.yue.yueapp.api.IMobileSearchApi;
+import com.yue.yueapp.bean.search.SearchRecommentBean;
+import com.yue.yueapp.retrofitHttp.RetrofitFactory;
 import com.yue.yueapp.search.SearchActivity;
 import com.yue.yueapp.utils.Logger;
+
+import io.reactivex.Scheduler;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -53,7 +60,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.inflateMenu(R.menu.menu_activity_main);
         setSupportActionBar(toolbar);
-
 
 
         frameLayout = (FrameLayout) findViewById(R.id.frame_main);
@@ -154,8 +160,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         return true;
     }
-
-
 
 
     /**

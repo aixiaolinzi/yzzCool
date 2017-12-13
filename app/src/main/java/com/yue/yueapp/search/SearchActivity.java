@@ -63,6 +63,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         initView();
+        getSearchHotWord();
     }
 
 
@@ -138,7 +139,6 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
 
 
     private void getSearchHotWord() {
-
         RetrofitFactory.getRetrofit().create(IMobileSearchApi.class).getSearchRecomment()
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
@@ -155,7 +155,6 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                         return hotList;
                     }
                 })
-
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<String>>() {
                     @Override
