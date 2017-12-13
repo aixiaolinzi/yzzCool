@@ -1,17 +1,10 @@
 package com.yue.yueapp;
 
 import android.app.Activity;
-import android.app.usage.UsageEvents;
 import android.content.Intent;
-import android.graphics.Matrix;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,7 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -30,15 +22,7 @@ import com.yue.yueapp.Fragment.Advanced1Fragment;
 import com.yue.yueapp.Fragment.AdvancedFragment;
 import com.yue.yueapp.Fragment.CustomViewFragment;
 import com.yue.yueapp.Fragment.PathUseFragment;
-import com.yue.yueapp.api.IMobileSearchApi;
-import com.yue.yueapp.bean.search.SearchRecommentBean;
-import com.yue.yueapp.retrofitHttp.RetrofitFactory;
-import com.yue.yueapp.search.SearchActivity;
-import com.yue.yueapp.utils.Logger;
-
-import io.reactivex.Scheduler;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
+import com.yue.yueapp.module.search.SearchActivity;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

@@ -1,14 +1,22 @@
-package com.yue.yueapp.search;
+package com.yue.yueapp.module.search;
 
+import android.app.SearchManager;
+import android.app.SearchableInfo;
+import android.content.ComponentName;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,15 +27,22 @@ import android.widget.TextView;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayout;
+import com.jakewharton.rxbinding2.support.v7.widget.RxSearchView;
+import com.jakewharton.rxbinding2.support.v7.widget.SearchViewQueryTextEvent;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.yue.yueapp.Constant;
 import com.yue.yueapp.ErrorAction;
 import com.yue.yueapp.R;
+import com.yue.yueapp.adapter.base.BasePagerAdapter;
 import com.yue.yueapp.adapter.search.SearchHistoryAdapter;
 import com.yue.yueapp.adapter.search.SearchSuggestionAdapter;
 import com.yue.yueapp.api.IMobileSearchApi;
 import com.yue.yueapp.base.BaseActivity;
+import com.yue.yueapp.bean.search.SearchHistoryBean;
 import com.yue.yueapp.bean.search.SearchRecommentBean;
+import com.yue.yueapp.bean.search.SearchSuggestionBean;
+import com.yue.yueapp.database.dao.SearchHistoryDao;
+import com.yue.yueapp.module.search.result.SearchResultFragment;
 import com.yue.yueapp.retrofitHttp.RetrofitFactory;
 import com.yue.yueapp.utils.SettingUtil;
 
@@ -35,6 +50,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
@@ -53,7 +71,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     private ListView historyList;
     private SearchHistoryAdapter historyAdapter;
     private SearchSuggestionAdapter suggestionAdapter;
-    //    private SearchHistoryDao dao = new SearchHistoryDao();
+    private SearchHistoryDao dao = new SearchHistoryDao();
     private FlexboxLayout flexboxLayout;
     private LinearLayout hotWordLayout;
 
@@ -121,6 +139,42 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         });
     }
 
+    private void initSearchLayout(String query) {
+        hotWordLayout.setVisibility(View.GONE);
+        resultLayout.setVisibility(View.VISIBLE);
+        suggestionList.setVisibility(View.GONE);
+        List<Fragment> fragmentList = new ArrayList<>();
+        for (int i = 1; i < titles.length + 1; i++) {
+            fragmentList.add(SearchResultFragment.newInstance(query, i + ""));
+        }
+        BasePagerAdapter pagerAdapter = new BasePagerAdapter(getSupportFragmentManager(), fragmentList, titles);
+        viewPager.setAdapter(pagerAdapter);
+        viewPager.setOffscreenPageLimit(fragmentList.size());
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 0) {
+                    if (slidrInterface != null) {
+                        slidrInterface.unlock();
+                    }
+                } else {
+                    if (slidrInterface != null) {
+                        slidrInterface.lock();
+                    }
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -137,6 +191,25 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_search, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        searchView = (SearchView) MenuItemCompat.getActionView(item);
+        // 关联检索配置与 SearchActivity
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchableInfo searchableInfo = searchManager.getSearchableInfo(
+                new ComponentName(getApplicationContext(), SearchActivity.class));
+        searchView.setSearchableInfo(searchableInfo);
+        searchView.onActionViewExpanded();
+//        // 设置搜索文字样式
+//        EditText searchEditText = (EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+//        searchEditText.setTextColor(getResources().getColor(R.color.textColorPrimary));
+//        searchEditText.setHintTextColor(getResources().getColor(R.color.textColorPrimary));
+//        searchEditText.setBackgroundColor(Color.WHITE);
+        setOnQuenyTextChangeListener();
+        return super.onCreateOptionsMenu(menu);
+    }
 
     private void getSearchHotWord() {
         RetrofitFactory.getRetrofit().create(IMobileSearchApi.class).getSearchRecomment()
@@ -181,4 +254,85 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                     }
                 }, ErrorAction.error());
     }
+
+    private void getSearchHistory() {
+        Observable
+                .create(new ObservableOnSubscribe<List<SearchHistoryBean>>() {
+                    @Override
+                    public void subscribe(@io.reactivex.annotations.NonNull ObservableEmitter<List<SearchHistoryBean>> e) throws Exception {
+                        List<SearchHistoryBean> list = dao.queryAll();
+                        e.onNext(list);
+                    }
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<List<SearchHistoryBean>>() {
+                    @Override
+                    public void accept(@io.reactivex.annotations.NonNull final List<SearchHistoryBean> list) throws Exception {
+                        historyAdapter.updateDataSource(list);
+                    }
+                }, ErrorAction.error());
+    }
+
+    private void getSearchSuggest(String keyWord) {
+        RetrofitFactory.getRetrofit().create(IMobileSearchApi.class)
+                .getSearchSuggestion(keyWord.trim())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<SearchSuggestionBean>() {
+                    @Override
+                    public void accept(@io.reactivex.annotations.NonNull SearchSuggestionBean bean) throws Exception {
+                        suggestionAdapter.updateDataSource(bean.getData());
+                    }
+                }, ErrorAction.error());
+    }
+
+
+    private void setOnQuenyTextChangeListener() {
+        RxSearchView.queryTextChangeEvents(searchView)
+                .throttleLast(100, TimeUnit.MILLISECONDS)
+                .debounce(300, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<SearchViewQueryTextEvent>() {
+                    @Override
+                    public void accept(@io.reactivex.annotations.NonNull SearchViewQueryTextEvent searchViewQueryTextEvent) throws Exception {
+                        final String keyWord = searchViewQueryTextEvent.queryText() + "";
+                        Log.d(TAG, "accept: " + keyWord);
+                        if (searchViewQueryTextEvent.isSubmitted()) {
+                            searchView.clearFocus();
+                            initSearchLayout(keyWord);
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (dao.queryisExist(keyWord)) {
+                                        dao.update(keyWord);
+                                    } else {
+                                        dao.add(keyWord);
+                                    }
+                                }
+                            }).start();
+                            return;
+                        }
+                        if (!TextUtils.isEmpty(keyWord)) {
+                            getSearchSuggest(keyWord);
+                            hotWordLayout.setVisibility(View.GONE);
+                            resultLayout.setVisibility(View.GONE);
+                            suggestionList.setVisibility(View.VISIBLE);
+                        } else {
+                            getSearchHistory();
+                            if (hotWordLayout.getVisibility() != View.VISIBLE) {
+                                hotWordLayout.setVisibility(View.VISIBLE);
+                            }
+                            if (resultLayout.getVisibility() != View.GONE) {
+                                resultLayout.setVisibility(View.GONE);
+                            }
+                            if (suggestionList.getVisibility() != View.GONE) {
+                                suggestionList.setVisibility(View.GONE);
+                            }
+                        }
+                    }
+                }, ErrorAction.error());
+    }
+
+
 }
