@@ -55,11 +55,18 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-
+    //rxjava
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    // Because RxAndroid releases are few and far between, it is recommended you also
+    // explicitly depend on RxJava's latest version for bug fixes and new features.
+    compile 'io.reactivex.rxjava2:rxjava:2.1.7'
+    // RxBinding
+    compile 'com.jakewharton.rxbinding2:rxbinding-appcompat-v7:2.0.0'
 
     // okhttp 3
     compile 'com.squareup.okhttp3:okhttp:3.9.0'
     compile  'com.squareup.okhttp3:logging-interceptor:3.9.0'
+
 
     // 持久化 Cookie
     compile 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
