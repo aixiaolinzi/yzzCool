@@ -33,32 +33,32 @@
             app:indexBar_background="#08000000"
             app:indexBar_layout_width="24dp"
             app:indexBar_textColor="@android:color/black"
-            app:indexBar_textSpace="8dp"/>
+            app:indexBar_textSpace="8dp" />
 
         <fragment
             android:id="@+id/search_fragment"
             class="example.yzz.indexablerecyclerview.city.SearchFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
         <FrameLayout
             android:id="@+id/progress"
             android:layout_width="match_parent"
-            android:background="@android:color/white"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@android:color/white">
 
             <ProgressBar
                 android:layout_width="56dp"
                 android:layout_height="56dp"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center" />
         </FrameLayout>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="更新数据"
-            android:onClick="update"/>
+            android:onClick="update"
+            android:text="更新数据" />
 
     </FrameLayout>
 </LinearLayout>

@@ -14,6 +14,7 @@ import example.yzz.indexablerecyclerview.index.database.IndexBarDataObserver;
 
 /**
  * Created by YoKey on 16/10/16.
+ * 适配器
  */
 
 abstract class AbstractHeaderFooterAdapter<T> {
