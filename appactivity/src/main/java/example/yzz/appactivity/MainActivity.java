@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     LocalService mService;
 
 
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -48,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     };
     private Messenger messenger;
-    private IMyAidlInterface iMyAidlInterface;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    public void sayHello( ) {
+    public void sayHello() {
         // Create and send a message to the service, using a supported 'what' value
         Message msg = Message.obtain(null, 1, 0, 0);
         try {
@@ -117,19 +116,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-    private ServiceConnection serviceConnection=new ServiceConnection() {
+    private IMyAidlInterface iMyAidlInterface;
+    private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             iMyAidlInterface = IMyAidlInterface.Stub.asInterface(service);
-
-            try {
-                iMyAidlInterface.getDate();
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-
-
         }
 
         @Override
