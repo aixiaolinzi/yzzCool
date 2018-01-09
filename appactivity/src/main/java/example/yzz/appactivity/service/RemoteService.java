@@ -25,6 +25,11 @@ public class RemoteService extends Service {
         public int getDate() throws RemoteException {
             return 0;
         }
+
+        @Override
+        public int add(int a, int b) throws RemoteException {
+            return a+b;
+        }
     };
 
 

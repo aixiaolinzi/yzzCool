@@ -12,4 +12,6 @@ interface IMyAidlInterface {
             double aDouble, String aString);
 
     int getDate();
+
+    int add(int a,int b);
 }
