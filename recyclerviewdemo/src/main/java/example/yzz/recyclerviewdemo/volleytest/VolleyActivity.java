@@ -1,7 +1,6 @@
-package example.yzz.recyclerviewdemo;
+package example.yzz.recyclerviewdemo.volleytest;
 
 import android.graphics.Bitmap;
-import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +18,8 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+
+import example.yzz.recyclerviewdemo.R;
 
 public class VolleyActivity extends AppCompatActivity {
 
