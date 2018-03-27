@@ -9,6 +9,7 @@ import android.view.View;
 
 import java.util.Arrays;
 
+import example.yzz.indexablerecyclerview.baseUse.RecyclerActivity;
 import example.yzz.indexablerecyclerview.city.PickCityActivity;
 import example.yzz.indexablerecyclerview.contact.PickContactActivity;
 
@@ -28,6 +29,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, PickContactActivity.class));
+            }
+        });
+        findViewById(R.id.btn_recycler_view).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, RecyclerActivity.class));
             }
         });
 

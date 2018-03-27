@@ -121,6 +121,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             iMyAidlInterface = IMyAidlInterface.Stub.asInterface(service);
+            try {
+                int add = iMyAidlInterface.add(1, 2);
+
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+
         }
 
         @Override

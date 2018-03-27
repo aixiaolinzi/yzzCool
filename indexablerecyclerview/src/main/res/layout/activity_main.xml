@@ -35,6 +35,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="选择联系人Demo" />
+
+        <Button
+            android:id="@+id/btn_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="进入RecyclerView页面" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
