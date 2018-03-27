@@ -33,4 +33,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     //国人修复的volley
     compile 'com.mcxiaoke.volley:library:1.0.19'
+    //引入gson
+    compile 'com.google.code.gson:gson:2.8.2'
 }
