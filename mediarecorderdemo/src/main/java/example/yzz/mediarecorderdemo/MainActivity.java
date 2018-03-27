@@ -13,6 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -31,15 +32,14 @@ import example.yzz.mediarecorderdemo.base.BaseActivity;
 import example.yzz.mediarecorderdemo.base.Constant;
 
 public class MainActivity extends BaseActivity {
-
     private Button start_tv;
     private ListView listView;
     //线程操作
     private ExecutorService mExecutorService;
     //录音API
     private MediaRecorder mMediaRecorder;
-    //录音开始时间与结束时间
-    private long startTime, endTime;
+    //录音点击时间，开始时间与结束时间
+    private long clickTime, startTime, endTime;
     //录音所保存的文件
     private File mAudioFile;
     //文件列表数据
@@ -52,6 +52,9 @@ public class MainActivity extends BaseActivity {
     private volatile boolean isPlaying;
     //播放音频文件API
     private MediaPlayer mediaPlayer;
+    private String TAG = "MediaRecorder录音";
+
+
     //使用Handler更新UI线程
     private Handler mHandler = new Handler() {
         @Override
@@ -144,7 +147,7 @@ public class MainActivity extends BaseActivity {
      */
     private void startRecord() {
         start_tv.setText(R.string.stop_by_up);
-        start_tv.setBackgroundResource(R.drawable.bg_gray_round);
+        start_tv.setBackgroundResource(R.drawable.bg_white_round);
         //异步任务执行录音操作
         mExecutorService.submit(new Runnable() {
             @Override
@@ -173,6 +176,7 @@ public class MainActivity extends BaseActivity {
      * @time 2017/2/9 9:34
      */
     private void recordOperation() {
+        clickTime = System.currentTimeMillis();
         //创建MediaRecorder对象
         mMediaRecorder = new MediaRecorder();
         //创建录音文件,.m4a为MPEG-4音频标准的文件的扩展名
@@ -200,6 +204,7 @@ public class MainActivity extends BaseActivity {
             mMediaRecorder.start();
             //记录开始录音时间
             startTime = System.currentTimeMillis();
+            Log.e(TAG, "开始录音+" + startTime);
         } catch (Exception e) {
             e.printStackTrace();
             recordFail();
@@ -214,20 +219,29 @@ public class MainActivity extends BaseActivity {
      */
     private void stopRecord() {
         start_tv.setText(R.string.speak_by_press);
-        start_tv.setBackgroundResource(R.drawable.bg_white_round);
+        start_tv.setBackgroundResource(R.drawable.bg_gray_round);
         if (mMediaRecorder != null) {
             //停止录音
             try {
                 mMediaRecorder.stop();
             } catch (IllegalStateException e) {
                 e.printStackTrace();
+                Log.e(TAG, "error+" + e.toString());
+            } catch (RuntimeException e) {
+                Log.e(TAG, "error+" + e.toString());
             }
+        }
+        if (System.currentTimeMillis() - clickTime < 1000) {
+            mHandler.sendEmptyMessage(Constant.RECORD_TOO_SHORT);
+            releaseRecorder();
+            return;
         }
         //记录停止时间
         endTime = System.currentTimeMillis();
         //录音时间处理，比如只有大于2秒的录音才算成功
         int time = (int) ((endTime - startTime) / 1000);
-        if (time >= 3) {
+        Log.e(TAG, "结束时间+" + endTime);
+        if (time >= 2) {
             //录音成功,添加数据
             FileBean bean = new FileBean();
             bean.setFile(mAudioFile);
