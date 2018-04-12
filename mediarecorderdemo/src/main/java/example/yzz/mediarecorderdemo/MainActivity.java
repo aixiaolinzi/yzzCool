@@ -31,6 +31,8 @@ import java.util.concurrent.Executors;
 import example.yzz.mediarecorderdemo.base.BaseActivity;
 import example.yzz.mediarecorderdemo.base.Constant;
 
+import static android.os.Build.VERSION_CODES.BASE;
+
 public class MainActivity extends BaseActivity {
     private Button start_tv;
     private ListView listView;
@@ -39,7 +41,7 @@ public class MainActivity extends BaseActivity {
     //录音API
     private MediaRecorder mMediaRecorder;
     //录音点击时间，开始时间与结束时间
-    private long clickTime, startTime, endTime;
+    private long clickTime, startTime, endTime, clickButtonTime;
     //录音所保存的文件
     private File mAudioFile;
     //文件列表数据
@@ -74,8 +76,6 @@ public class MainActivity extends BaseActivity {
                     break;
                 //录音时间太短
                 case Constant.RECORD_TOO_SHORT:
-                    if (mAudioFile.exists())
-                        mAudioFile.delete();
                     showToastMsg(getString(R.string.time_too_short));
                     break;
                 case Constant.PLAY_COMPLETION:
@@ -112,6 +112,10 @@ public class MainActivity extends BaseActivity {
                 switch (motionEvent.getAction()) {
                     //按下操作
                     case MotionEvent.ACTION_DOWN:
+                        if (System.currentTimeMillis() - clickButtonTime < 1000) {
+                            return true;
+                        }
+                        clickButtonTime = System.currentTimeMillis();
                         //安卓6.0以上录音相应权限处理
                         if (Build.VERSION.SDK_INT > 22) {
                             permissionForM();
@@ -205,9 +209,35 @@ public class MainActivity extends BaseActivity {
             //记录开始录音时间
             startTime = System.currentTimeMillis();
             Log.e(TAG, "开始录音+" + startTime);
+            updateMicStatus();
         } catch (Exception e) {
             e.printStackTrace();
             recordFail();
+        }
+    }
+
+
+    Runnable mUpdateMicStatusTimer = new Runnable() {
+        @Override
+        public void run() {
+            updateMicStatus();
+        }
+    };
+
+    /**
+     * 录音的幅度
+     */
+    private void updateMicStatus() {
+
+        if (mMediaRecorder != null) {
+            double ratio = (double) mMediaRecorder.getMaxAmplitude() / BASE;
+            double db = 0;// 分贝
+            if (ratio > 1) {
+                db = 20 * Math.log10(ratio);
+                Log.e(TAG, "幅度+ " + db);
+            }
+
+            mHandler.postDelayed(mUpdateMicStatusTimer, 100);
         }
     }
 
