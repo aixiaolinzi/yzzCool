@@ -1,9 +1,11 @@
 package example.yzz.recyclerviewdemo.okhttptest;
 
 import android.nfc.Tag;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,10 +14,12 @@ import example.yzz.recyclerviewdemo.R;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okio.BufferedSink;
 
 public class HttpActivity extends AppCompatActivity {
 
@@ -78,6 +82,8 @@ public class HttpActivity extends AppCompatActivity {
 
                     }
                 });
+
+
 
 
                 RequestBody formBody = new FormBody.Builder()

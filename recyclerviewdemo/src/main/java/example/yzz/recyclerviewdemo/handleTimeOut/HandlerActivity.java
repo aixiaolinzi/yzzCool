@@ -29,12 +29,6 @@ public class HandlerActivity extends AppCompatActivity {
 
     private final MyHandler mHandler = new MyHandler(this);
 
-    private static final Runnable sRunnable = new Runnable() {
-        @Override
-        public void run() {
-      /* ... */
-        }
-    };
 
 
     @Override
