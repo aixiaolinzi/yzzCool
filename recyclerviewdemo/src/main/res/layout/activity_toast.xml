@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="example.yzz.recyclerviewdemo.toasttest.ToastActivity">
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:onClick="btn_1"
+        android:text="默认的Toast"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_editor_absoluteY="32dp" />
+
+    <Button
+        android:id="@+id/btn_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:onClick="btn_2"
+        android:text="自定义1"
+        app:layout_constraintHorizontal_bias="0.094"
+        app:layout_constraintLeft_toRightOf="@+id/button10"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="32dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:onClick="btn_3"
+        android:text="自定义2"
+        app:layout_constraintLeft_toRightOf="@+id/btn_2"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="32dp" />
+
+</android.support.constraint.ConstraintLayout>

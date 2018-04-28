@@ -17,19 +17,21 @@
         <activity
             android:name=".webviewdemo.WebViewActivity"
             android:label="@string/title_activity_web_view"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".handleTimeOut.HandlerActivity" />
         <activity
             android:name=".socket.SocketTestActivity"
             android:label="@string/title_activity_socket_test"
             android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity android:name=".toasttest.ToastActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 
