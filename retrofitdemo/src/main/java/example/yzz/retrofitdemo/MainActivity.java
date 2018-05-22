@@ -2,6 +2,7 @@ package example.yzz.retrofitdemo;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import example.yzz.retrofitdemo.bean.LoginBean;
 import example.yzz.retrofitdemo.bean.TonkenBean;
@@ -35,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+        Toast.makeText(this, "测试提交", Toast.LENGTH_SHORT).show();
+
 
     }
 }
