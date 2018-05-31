@@ -1,5 +1,6 @@
 package example.yzz.retrofitdemo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -39,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         Toast.makeText(this, "测试提交", Toast.LENGTH_SHORT).show();
-
 
     }
 }
