@@ -15,7 +15,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 
-import com.wang.avi.indicators.BallPulseIndicator;
+import example.yzz.appeventbus.R;
+import example.yzz.loadingcator.indicators.BallPulseIndicator;
+
 
 public class AVLoadingIndicatorView extends View {
 

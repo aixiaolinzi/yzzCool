@@ -5,7 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.wang.avi.AVLoadingIndicatorView;
+import example.yzz.appeventbus.R;
+import example.yzz.loadingcator.AVLoadingIndicatorView;
+
 
 /**
  * Created by Jack Wang on 2016/8/5.

@@ -6,9 +6,11 @@ import android.graphics.RectF;
 import android.view.animation.LinearInterpolator;
 
 import android.animation.ValueAnimator;
-import com.wang.avi.Indicator;
+
 
 import java.util.ArrayList;
+
+import example.yzz.loadingcator.Indicator;
 
 /**
  * Created by Jack on 2015/10/18.

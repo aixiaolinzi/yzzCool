@@ -8,9 +8,10 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.view.animation.LinearInterpolator;
 
-import com.wang.avi.Indicator;
 
 import java.util.ArrayList;
+
+import example.yzz.loadingcator.Indicator;
 
 /**
  * Created by Jack on 2015/10/20.

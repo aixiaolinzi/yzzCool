@@ -1,13 +1,14 @@
 package example.yzz.loadingcator.indicators;
 
+import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
-import android.animation.ValueAnimator;
-import com.wang.avi.Indicator;
 
 import java.util.ArrayList;
+
+import example.yzz.loadingcator.Indicator;
 
 /**
  * Created by Jack on 2015/10/19.
