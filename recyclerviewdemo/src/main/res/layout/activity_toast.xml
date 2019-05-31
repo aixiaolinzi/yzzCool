@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="example.yzz.recyclerviewdemo.toasttest.ToastActivity">
 
     <Button
@@ -14,6 +15,7 @@
         android:onClick="btn_1"
         android:text="默认的Toast"
         android:textAllCaps="false"
+        android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="parent"
         tools:layout_editor_absoluteY="32dp" />
 
@@ -25,6 +27,7 @@
         android:layout_marginRight="8dp"
         android:onClick="btn_2"
         android:text="自定义1"
+        android:visibility="gone"
         app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintLeft_toRightOf="@+id/button10"
         app:layout_constraintRight_toRightOf="parent"
@@ -37,8 +40,300 @@
         android:layout_marginRight="8dp"
         android:onClick="btn_3"
         android:text="自定义2"
+        android:visibility="gone"
         app:layout_constraintLeft_toRightOf="@+id/btn_2"
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_editor_absoluteY="32dp" />
 
-</android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="下划线 "
+        android:textSize="12dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="下划线2 "
+        android:textSize="12dp"
+        android:visibility="gone" />
+
+
+    <TextView
+        android:id="@+id/tv_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="抗锯齿 "
+        android:textSize="12dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="中划线 "
+        android:textSize="12dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_text4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="设置中划现并加清晰 "
+        android:textSize="12dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_text5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="字体加粗 "
+        android:textSize="12dp"
+        android:visibility="gone" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="实线" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/shape_line_solid" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="虚线" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/shape_line_dashed"
+        android:rotation="4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="实线" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/shape_line_solid" />
+
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/shape_rect_solid_round"
+        android:gravity="center"
+        android:text="圆角实线矩形-边框-填充"
+        android:textColor="#ffffff"
+        android:textSize="13dp" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/shape_rect_dashed_solid_round"
+        android:gravity="center"
+        android:text="圆角虚线矩形-边框-填充"
+        android:textColor="#ffffff"
+        android:textSize="13dp" />
+
+
+    <TextView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/shape_rect_round"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textColor="#ffffff"
+        android:textSize="13dp" />
+
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:visibility="gone">
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="30dp"
+        android:text="横向渐变"
+        android:textColor="#ff0000"
+        android:gravity="center"
+        android:textSize="10dp"
+        android:background="@drawable/rect_gradient_linear_horizon"/>
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="30dp"
+        android:text="竖向渐变"
+        android:textColor="#ff0000"
+        android:textSize="10dp"
+        android:gravity="center"
+        android:background="@drawable/rect_gradient_linear_vertical"/>
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="30dp"
+        android:text="对角线渐变"
+        android:textColor="#ff0000"
+        android:textSize="10dp"
+        android:gravity="center"
+        android:background="@drawable/rect_gradient_linear_diagonal"/>
+</LinearLayout>
+
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="30dp"
+            android:text="放射性渐变"
+            android:textColor="#ff0000"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:background="@drawable/rect_gradient_radial"/>
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="30dp"
+            android:text="扫描式渐变"
+            android:textColor="#ff0000"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:background="@drawable/rect_gradient_sweep"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="30dp"
+            android:text="圆"
+            android:textColor="#ffffff"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:background="@drawable/rect_circle"/>
+
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_margin="30dp"
+            android:text="椭圆"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:background="@drawable/rect_circle"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="30dp"
+            android:text="圆"
+            android:textColor="#ffffff"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:background="@drawable/shape_ring_fill"/>
+
+
+        <TextView
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:layout_margin="30dp"
+            android:text="椭圆"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:background="@drawable/shape_ring_border"/>
+
+
+        <TextView
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:layout_margin="30dp"
+            android:text="椭圆"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:background="@drawable/shape_ring_fill_border"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="圆"
+            android:textColor="#ffffff"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:background="@drawable/shape_ring_gradient_linear"/>
+
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="椭圆"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:background="@drawable/shape_ring_gradient_radial"/>
+
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="30dp"
+            android:text="椭圆"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:background="@drawable/shape_ring_gradient_sweep"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
