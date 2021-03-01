@@ -1,6 +1,7 @@
 package com.yue.yueapp.Fragment;
 
-import android.support.v4.app.Fragment;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by yzz on 2017/8/30.

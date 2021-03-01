@@ -6,11 +6,13 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.widget.EditText;
 
+import androidx.appcompat.widget.AppCompatEditText;
+
 /**
  * Created by yzz on 2017/9/20.
  */
 
-public class Custom501EditText extends android.support.v7.widget.AppCompatEditText {
+public class Custom501EditText extends AppCompatEditText {
     public Custom501EditText(Context context, AttributeSet attrs) {
         super(context, attrs);
     }

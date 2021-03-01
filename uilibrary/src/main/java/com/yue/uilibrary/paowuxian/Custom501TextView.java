@@ -4,14 +4,16 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
 
 /**
  * Created by yzz on 2017/9/20.
  */
 
-public class Custom501TextView extends android.support.v7.widget.AppCompatTextView {
+public class Custom501TextView extends AppCompatTextView {
     public Custom501TextView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }

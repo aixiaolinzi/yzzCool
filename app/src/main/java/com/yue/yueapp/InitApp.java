@@ -1,9 +1,10 @@
 package com.yue.yueapp;
 
+import android.app.Application;
 import android.content.Context;
-import android.support.multidex.MultiDexApplication;
-import android.support.v7.app.AppCompatDelegate;
 
+
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.yue.yueapp.utils.SettingUtil;
 
@@ -13,7 +14,7 @@ import java.util.Calendar;
  * Created by Meiji on 2016/12/12.
  */
 
-public class InitApp extends MultiDexApplication {
+public class InitApp extends Application {
 
     public static Context AppContext;
 

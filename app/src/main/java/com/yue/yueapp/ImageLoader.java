@@ -18,7 +18,7 @@ public class ImageLoader {
         if (SettingUtil.getInstance().getIsNoPhotoMode() && NetWorkUtil.isMobileConnected(context)) {
             view.setImageResource(defaultResId);
         } else {
-            Glide.with(context).load(url).crossFade().centerCrop().into(view);
+            Glide.with(context).load(url).centerCrop().into(view);
         }
     }
 
@@ -29,7 +29,7 @@ public class ImageLoader {
         if (SettingUtil.getInstance().getIsNoPhotoMode() && NetWorkUtil.isMobileConnected(context)) {
             view.setImageResource(defaultResId);
         } else {
-            Glide.with(context).load(url).crossFade().centerCrop().error(errorResId).into(view);
+            Glide.with(context).load(url).centerCrop().error(errorResId).into(view);
         }
     }
 
@@ -37,6 +37,6 @@ public class ImageLoader {
      * 带监听处理
      */
     public static void loadCenterCrop(Context context, String url, ImageView view, RequestListener listener) {
-        Glide.with(context).load(url).crossFade().centerCrop().listener(listener).into(view);
+        Glide.with(context).load(url).centerCrop().listener(listener).into(view);
     }
 }

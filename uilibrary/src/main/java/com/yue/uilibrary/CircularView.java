@@ -7,9 +7,10 @@ import android.graphics.DrawFilter;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Path;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by fengfan on 2017/5/24.

@@ -1,10 +1,7 @@
 package com.yue.yueapp.Fragment;
 
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringDef;
-import android.support.v4.app.Fragment;
+
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import androidx.annotation.IdRes;
+import androidx.annotation.Nullable;
 
 import com.yue.uilibrary.BezierLoveView;
 import com.yue.uilibrary.PathBezierView;

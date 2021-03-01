@@ -1,8 +1,7 @@
 package com.yue.yueapp.adapter;
 
-import android.support.v7.util.DiffUtil;
-import android.support.v7.widget.RecyclerView;
-
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.yue.yueapp.bean.joke.JokeCommentBean;
 import com.yue.yueapp.bean.joke.JokeContentBean;

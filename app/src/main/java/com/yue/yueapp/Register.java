@@ -1,7 +1,7 @@
 package com.yue.yueapp;
 
-import android.support.annotation.NonNull;
 
+import androidx.annotation.NonNull;
 
 import com.yue.yueapp.bean.LoadingBean;
 import com.yue.yueapp.bean.LoadingEndBean;

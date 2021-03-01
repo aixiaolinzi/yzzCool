@@ -1,11 +1,8 @@
 package com.yue.yueapp.retrofitHttp;
 
-import android.support.annotation.NonNull;
 
-import com.franmontiel.persistentcookiejar.ClearableCookieJar;
-import com.franmontiel.persistentcookiejar.PersistentCookieJar;
-import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
-import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
+import androidx.annotation.NonNull;
+
 import com.yue.yueapp.BuildConfig;
 import com.yue.yueapp.InitApp;
 import com.yue.yueapp.SdkManager;
@@ -78,12 +75,7 @@ public class RetrofitFactory {
                 Cache cache = new Cache(new File(InitApp.AppContext.getCacheDir(), "HttpCache"),
                         1024 * 1024 * 50);
 
-                // Cookie 持久化
-                ClearableCookieJar cookieJar =
-                        new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(InitApp.AppContext));
-
                 OkHttpClient.Builder builder = new OkHttpClient.Builder()
-                        .cookieJar(cookieJar)
                         .cache(cache)
                         .addInterceptor(cacheControlInterceptor)
                         .connectTimeout(10, TimeUnit.SECONDS)

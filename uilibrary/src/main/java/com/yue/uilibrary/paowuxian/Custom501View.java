@@ -6,6 +6,8 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.widget.EditText;
 
+import androidx.appcompat.widget.AppCompatEditText;
+
 /**
  * Created by yzz on 2017/9/20.
  * <p>
@@ -16,7 +18,7 @@ import android.widget.EditText;
  * 主讲绘制顺序
  */
 
-public class Custom501View extends android.support.v7.widget.AppCompatEditText {
+public class Custom501View extends AppCompatEditText {
     public Custom501View(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
