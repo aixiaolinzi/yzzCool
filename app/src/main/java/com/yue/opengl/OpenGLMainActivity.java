@@ -1,4 +1,4 @@
-package com.yue.yueapp;
+package com.yue.opengl;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,20 +12,23 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.yue.yueapp.R;
 
 import java.lang.ref.WeakReference;
-import java.util.logging.Logger;
+
 
 /**
- * 就是为了传值做测试
+ *Time: 2021/3/1
+ *Author:yzzCool
+ *Description:  OpenGL的主布局
  */
-public class Main2Activity extends AppCompatActivity {
+public class OpenGLMainActivity extends AppCompatActivity {
 
     private static class MyHandler extends Handler {
-        private final WeakReference<Main2Activity> activityWeakReference;
+        private final WeakReference<OpenGLMainActivity> activityWeakReference;
 
-        private MyHandler(Main2Activity activity) {
-            activityWeakReference = new WeakReference<Main2Activity>(activity);
+        private MyHandler(OpenGLMainActivity activity) {
+            activityWeakReference = new WeakReference<OpenGLMainActivity>(activity);
         }
 
         @Override

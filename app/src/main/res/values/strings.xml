@@ -3,9 +3,9 @@
     <string name="name">踏着浪的风儿</string>
 
     <string name="action_settings">Settings</string>
-    <string name="CustomView">自定义视图</string>
     <string name="CustomView2">扔物线教程</string>
-    <string name="title_activity_main2">Main2Activity</string>
+    <string name="CustomView">OpenGL教程</string>
+    <string name="title_activity_main_open_gl">OpenGLMainActivity</string>
 
 
     <!-- Example General com.meiji.toutiao.settings -->

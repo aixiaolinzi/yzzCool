@@ -27,8 +27,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Main2Activity"
-            android:label="@string/title_activity_main2"
+            android:name="com.yue.opengl.OpenGLMainActivity"
+            android:label="@string/title_activity_main_open_gl"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".module.search.SearchActivity"

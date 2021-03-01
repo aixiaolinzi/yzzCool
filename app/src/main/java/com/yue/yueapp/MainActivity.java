@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
+import com.yue.opengl.OpenGLMainActivity;
 import com.yue.yueapp.Fragment.Advanced1Fragment;
 import com.yue.yueapp.Fragment.AdvancedFragment;
 import com.yue.yueapp.Fragment.CustomViewFragment;
@@ -125,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_slideshow) {
             Bundle bundle = new Bundle();
             bundle.putString("kkkk", "hello");
-            Intent intent = new Intent(this, Main2Activity.class);
+            Intent intent = new Intent(this, OpenGLMainActivity.class);
             intent.putExtras(bundle);
             startActivity(intent);
 
