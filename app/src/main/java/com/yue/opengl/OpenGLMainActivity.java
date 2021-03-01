@@ -1,5 +1,6 @@
 package com.yue.opengl;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,6 +13,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.yue.opengl.deep1.Deep1Activity;
+import com.yue.opengl.deep2.Deep2Activity;
 import com.yue.yueapp.R;
 
 import java.lang.ref.WeakReference;
@@ -49,18 +52,23 @@ public class OpenGLMainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        String mm = getIntent().getStringExtra("kkkk");
-        Log.e("TAG", "得到值+" + mm);
 
         myHandler.sendEmptyMessageAtTime(2, 5000);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
+
+
     }
+
+
+
+    public void deep1(View view) {
+        startActivity(new Intent(this, Deep1Activity.class));
+    }
+
+
+    public void deep2(View view) {
+        startActivity(new Intent(this, Deep2Activity.class));
+    }
+
 
 }
