@@ -24,8 +24,8 @@ public class Constant {
 
     public static final int[] ICONS_DRAWABLES = new int[]{
             R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher_round,
-            R.mipmap.ic_launcher_round};
+            R.mipmap.ic_launcher,
+            R.mipmap.ic_launcher};
 
     public static final String[] ICONS_TYPE = new String[]{"circle", "rect", "square"};
 
