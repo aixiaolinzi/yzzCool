@@ -1,11 +1,11 @@
 package example.yzz.recyclerviewdemo.okhttptest;
 
-import android.nfc.Tag;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ListView;
+
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
 import java.io.InputStream;

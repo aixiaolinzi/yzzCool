@@ -2,15 +2,15 @@ package example.yzz.recyclerviewdemo.toasttest;
 
 import android.content.DialogInterface;
 import android.graphics.Paint;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatDialogFragment;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import example.yzz.recyclerviewdemo.R;
 

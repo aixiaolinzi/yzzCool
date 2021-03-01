@@ -4,15 +4,16 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import android.animation.ValueAnimator;
-import com.wang.avi.Indicator;
 
 import java.util.ArrayList;
+
+import example.yzz.loadingcator.Indicator;
 
 /**
  * Created by Jack Wang on 2016/8/5.
  */
 
-public class MyCustomIndicator extends Indicator{
+public class MyCustomIndicator extends Indicator {
 
 
     public static final float SCALE=1.0f;

@@ -1,8 +1,10 @@
 package example.yzz.appeventbus;
 
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import example.yzz.eventbus.EventBus;
 import example.yzz.eventbus.Subscribe;
