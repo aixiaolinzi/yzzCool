@@ -5,7 +5,6 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +15,10 @@ import androidx.annotation.Nullable;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.yue.uilibrary.paowuxian.Custom601View;
 import com.yue.uilibrary.paowuxian.Custom602View;
 import com.yue.uilibrary.paowuxian.Custom603View;
 import com.yue.yueapp.R;
-import com.yue.yueapp.utils.Logger;
+import com.yue.yueapp.utils.LoggerUtils;
 
 import java.util.ArrayList;
 
@@ -182,7 +180,7 @@ public class Advanced1Fragment extends BaseFragment {
 
         @Override
         public int getCount() {
-            Logger.e("长度++" + viewLists.size());
+            LoggerUtils.e("长度++" + viewLists.size());
             return viewLists.size();
         }
 

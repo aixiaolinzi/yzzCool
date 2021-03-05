@@ -112,7 +112,7 @@ public class Custom2View extends View {
         // tileX：横向的 TileMode
         // tileY：纵向的 TileMode。
 
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.panjunnn);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.matrix);
         Shader shader3 = new BitmapShader(bitmap, Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
         paint.setShader(shader3);
 

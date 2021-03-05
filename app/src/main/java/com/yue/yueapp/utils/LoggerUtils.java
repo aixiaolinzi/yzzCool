@@ -14,7 +14,7 @@ import java.util.Locale;
  * log类
  */
 
-public class Logger {
+public class LoggerUtils {
 
     private static final String TAG = Constants.LOG_TAG;
 
@@ -24,7 +24,7 @@ public class Logger {
 
     static final boolean isDebug = Constants.IS_DEBUG;
 
-    private Logger() {
+    private LoggerUtils() {
         /* Protect from instantiations */
     }
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.yue.yueapp.com.yue.opengl.Main2Activity">
+    tools:context="com.yue.opengl.OpenGLMainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -32,6 +32,13 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             tools:context=".MainActivity">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:onClick="matrix1"
+                android:text="Android Matrix 小整理" />
 
             <TextView
                 android:layout_width="wrap_content"

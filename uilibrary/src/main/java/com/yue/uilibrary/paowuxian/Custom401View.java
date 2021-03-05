@@ -33,7 +33,7 @@ public class Custom401View extends View {
         super.onDraw(canvas);
         Paint paint = new Paint();
 
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.panjunnn);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.matrix);
         //166*250
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();

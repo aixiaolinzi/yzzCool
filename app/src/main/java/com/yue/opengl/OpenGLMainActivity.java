@@ -15,6 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.yue.opengl.deep1.Deep1Activity;
 import com.yue.opengl.deep2.Deep2Activity;
+import com.yue.opengl.matrix.Matrix1Activity;
 import com.yue.yueapp.R;
 
 import java.lang.ref.WeakReference;
@@ -26,6 +27,7 @@ import java.lang.ref.WeakReference;
  *Description:  OpenGL的主布局
  */
 public class OpenGLMainActivity extends AppCompatActivity {
+
 
     private static class MyHandler extends Handler {
         private final WeakReference<OpenGLMainActivity> activityWeakReference;
@@ -48,7 +50,7 @@ public class OpenGLMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_main_open_gl);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -59,6 +61,12 @@ public class OpenGLMainActivity extends AppCompatActivity {
 
     }
 
+
+
+    public void matrix1(View view) {
+        //Android Matrix 小整理
+        startActivity(new Intent(this, Matrix1Activity.class));
+    }
 
 
     public void deep1(View view) {

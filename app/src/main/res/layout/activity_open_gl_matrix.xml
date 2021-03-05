@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yue.opengl.matrix.Matrix1Activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+
+        <com.yue.opengl.view.MatrixLearnView
+            android:id="@+id/matrix_learn_view"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:onClick="matrix1"
+            android:text="显示原始图片" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:onClick="matrix2"
+            android:text="缩放（Scale 0.5）" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:onClick="matrix3"
+            android:text="位移（Translate）" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:onClick="matrix4"
+            android:text="错切（Skew）" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:onClick="matrix5"
+            android:text="旋转（Rotate）"
+            tools:ignore="OnClick" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:onClick="matrix6"
+            android:text="串连接（Concat）的使用"
+            tools:ignore="OnClick" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:onClick="matrix7"
+            android:text="正弦余弦的使用"
+            tools:ignore="OnClick" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
