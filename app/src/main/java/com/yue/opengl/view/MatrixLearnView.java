@@ -113,7 +113,7 @@ public class MatrixLearnView extends View {
 
     //setSinCos
     public void showSetSinCos() {
-        matrix.setSinCos(3f, 1);
+        matrix.setSinCos(0.5f, 0.8660254f);
         getMatrixValues();//showSetScale
     }
 
