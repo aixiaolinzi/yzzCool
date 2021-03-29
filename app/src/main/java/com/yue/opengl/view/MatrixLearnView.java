@@ -88,7 +88,7 @@ public class MatrixLearnView extends View {
 
     //setSkew
     public void showSetSkew() {
-        matrix.setSkew(1f, 0f);
+        matrix.setSkew(0f, 1f);
         getMatrixValues();//showSetScale
     }
 

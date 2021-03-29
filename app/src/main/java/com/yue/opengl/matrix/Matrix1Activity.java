@@ -64,4 +64,15 @@ public class Matrix1Activity extends AppCompatActivity {
         //正弦余弦的使用
         matrix_learn_view.showSetSinCos();
     }
+
+
+    public void matrix8(View view) {
+        //前乘（pre）的使用
+    }
+
+
+    public void matrix9(View view) {
+        //后乘（post）的使用
+
+    }
 }

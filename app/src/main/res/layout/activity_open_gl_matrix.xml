@@ -63,6 +63,21 @@
             android:onClick="matrix7"
             android:text="正弦余弦的使用"
             tools:ignore="OnClick" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:onClick="matrix8"
+            android:text="前乘（pre）的使用"
+            tools:ignore="OnClick" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:onClick="matrix9"
+            android:text="后乘（post）的使用"
+            tools:ignore="OnClick" />
+
     </LinearLayout>
 
 
