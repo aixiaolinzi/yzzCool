@@ -9,6 +9,13 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+
+        //引用CMake
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
     }
     buildTypes {
         release {
@@ -16,6 +23,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    //引用CMake
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.10.2"
+        }
+    }
+
 
     //下面这两句在创建项目时不会自动生成，必需加上，是为了引用Java8的。
     compileOptions {
