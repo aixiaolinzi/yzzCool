@@ -5,8 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-
-    <!-- android:hardwareAccelerated="false" 硬件加速的问题 -->
     <application
         android:name=".InitApp"
         android:allowBackup="true"
@@ -15,13 +13,13 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-
         <activity
             android:name=".module.search.SearchActivity"
             android:label="@string/title_activity_search"
@@ -32,24 +30,34 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-
-
-
         <activity
             android:name="com.yue.opengl.OpenGLMainActivity"
             android:label="@string/title_activity_main_open_gl"
-            android:theme="@style/AppTheme.NoActionBar" >
-            <!--    OpenGL相关的主页面        -->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/AppTheme.NoActionBar">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!-- OpenGL相关的主页面 -->
 
         </activity>
         <activity android:name="com.yue.opengl.deep1.Deep1Activity" />
         <activity android:name="com.yue.opengl.deep2.Deep2Activity" />
         <activity android:name="com.yue.opengl.matrix.Matrix1Activity" />
+
+
+        <activity android:name="com.yue.openGLC.OpenGLESMainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.yue.openGLC.gles1.OpenGLES1Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.yue.openGLC.gles2.OpenGLES2Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
     </application>
 
 </manifest>
