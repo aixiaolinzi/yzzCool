@@ -31,13 +31,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:onClick="deep1"
+                android:onClick="guide1"
                 android:text="博客1，开始描绘一个平面三角形" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:onClick="deep2"
+                android:onClick="guide2"
                 android:text="博客2，绘制颜色渐变三角形" />
 
 

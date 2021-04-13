@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.yue.openGLC.gles1.OpenGLES1Activity;
+import com.yue.openGLC.guide1.OpenGLGuide1Activity;
 import com.yue.yueapp.R;
 
 
@@ -30,4 +31,12 @@ public class OpenGLESMainActivity extends AppCompatActivity {
         startActivity(new Intent(this, OpenGLES1Activity.class));
     }
 
+    public void guide1(View view) {
+
+        //NDK OpenGL ES 3.0 开发（一）：绘制一个三角形
+        startActivity(new Intent(this, OpenGLGuide1Activity.class));
+    }
+    public void guide2(View view) {
+
+    }
 }

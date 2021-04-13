@@ -58,6 +58,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
 
+        <activity
+            android:name="com.yue.openGLC.guide1.OpenGLGuide1Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>
