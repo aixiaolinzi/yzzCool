@@ -12,34 +12,25 @@ import android.view.View;
 
 import com.yue.yueapp.R;
 
+
+/**
+ *Time: 2021/4/13
+ *Author:yzzCool
+ *Description: 主要是为了对应 字节流动博客，NDK OpenGL ES 3.0 开发（一）：绘制一个三角形
+ */
 public class OpenGLES1Activity extends AppCompatActivity {
 
     // Used to load the 'native-lib' library on application startup.
-    static {
-        System.loadLibrary("native-lib");
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_open_s1);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        MyGLSurfaceView surfaceView=new MyGLSurfaceView(this);
+        setContentView(surfaceView);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String jni = stringFromJNI();
-                Snackbar.make(view, jni, Snackbar.LENGTH_LONG).show();
-            }
-        });
     }
 
 
-    /**
-     * A native method that is implemented by the 'native-lib' native library,
-     * which is packaged with this application.
-     */
-    public native String stringFromJNI();
+
 }

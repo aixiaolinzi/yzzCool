@@ -66,3 +66,34 @@ target_link_libraries( # Specifies the target library.
         # Links the target library to the log library
         # included in the NDK.
         ${log-lib} )
+
+#开始配置。。
+file(GLOB src-files
+        ${CMAKE_SOURCE_DIR}/*.cpp
+        ${CMAKE_SOURCE_DIR}/gles1/*.cpp
+        ${CMAKE_SOURCE_DIR}/util/*.cpp)
+
+add_library( # Sets the name of the library.
+        native-render
+
+        # Sets the library as a shared library.
+        SHARED
+
+        # Provides a relative path to your source file(s).
+        ${src-files}
+        )
+
+
+
+target_link_libraries( # Specifies the target library.
+        native-render
+
+        android # 错误：Error: undefined reference to 'AAssetManager_fromJava'
+        # Links the target library to the log library
+        # included in the NDK.
+        ${log-lib}
+        EGL
+        GLESv3
+        )
+
+#停止配置。。
