@@ -61,7 +61,8 @@ target_link_libraries( # Specifies the target library.
 
 target_link_libraries( # Specifies the target library.
         gltest-lib
-
+        android # 错误：Error: undefined reference to 'AAssetManager_fromJava'
+        GLESv3  # 把opengl库文件添加进来，GLESv3
         # Links the target library to the log library
         # included in the NDK.
         ${log-lib} )
