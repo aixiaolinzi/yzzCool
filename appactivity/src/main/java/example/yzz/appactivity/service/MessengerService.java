@@ -24,6 +24,7 @@ public class MessengerService extends Service {
             switch (msg.what) {
                 //不同的情况处理不同的逻辑
                 case 1:
+
                     break;
             }
         }

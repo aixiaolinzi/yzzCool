@@ -9,7 +9,6 @@ import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,7 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import example.yzz.appactivity.fragment.CrashFragment;
+
 import example.yzz.appactivity.service.LocalService;
 import example.yzz.appactivity.service.MessengerService;
 
@@ -61,19 +60,11 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
-//        DialogFragment dialogFragment = new DialogFragment();
-//        dialogFragment.show(getSupportFragmentManager(), "look ");
+        Intent intent = new Intent(this, LocalService.class);
+        bindService(intent, mConnection, BIND_AUTO_CREATE);
 
-        CrashFragment crashFragment = new CrashFragment("");
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.content, crashFragment);
-        fragmentTransaction.commit();
-
-//        Intent intent = new Intent(this, LocalService.class);
-//        bindService(intent, mConnection, BIND_AUTO_CREATE);
-
-        Intent intent = new Intent(this, MessengerService.class);
-        bindService(intent, messengerConnection, BIND_AUTO_CREATE);
+//        Intent intent = new Intent(this, MessengerService.class);
+//        bindService(intent, messengerConnection, BIND_AUTO_CREATE);
 
     }
 
