@@ -13,18 +13,16 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 import example.yzz.appactivity.service.LocalService;
-import example.yzz.appactivity.service.MessengerService;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
-    LocalService mService;
+    LocalService mLocalService;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -79,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                                        IBinder service) {
             // We've bound to LocalService, cast the IBinder and get LocalService instance
             LocalService.LocalBinder binder = (LocalService.LocalBinder) service;
-            mService = binder.getService();
+            mLocalService = binder.getService();
         }
 
         @Override
