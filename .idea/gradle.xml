@@ -10,9 +10,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/BinderCourse" />
             <option value="$PROJECT_DIR$/MediaRecorderDemo" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/appactivity" />
             <option value="$PROJECT_DIR$/appeventbus" />
             <option value="$PROJECT_DIR$/recyclerviewdemo" />
             <option value="$PROJECT_DIR$/retrofitdemo" />
