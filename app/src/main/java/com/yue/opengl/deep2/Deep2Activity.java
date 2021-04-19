@@ -24,7 +24,9 @@ public class Deep2Activity extends AppCompatActivity {
 
         glSurfaceView.setEGLContextClientVersion(2);
         //设置自己的Render.Render 内进行图形的绘制
-        glSurfaceView.setRenderer(new GLRenderer2(this));
+//        glSurfaceView.setRenderer(new GLRenderer2(this));
+        //带有不同颜色的正交矩阵
+        glSurfaceView.setRenderer(new GLRendererColor2(this));
 
         setContentView(glSurfaceView);
     }

@@ -43,9 +43,19 @@ public class GLRendererColor2 implements GLSurfaceView.Renderer {
     //一个点需要的byte偏移量。
     private static final int STRIDE = TOTAL_COMPONENT_COUNT * BYTES_PER_FLOAT;
 
+    /********color 2.1  投影矩阵 添加相应的变量 start********************/
     // 颜色，rgba  更换颜色
-    float TRIANGLE_COLOR[] = {0.5176471f, 0.77254903f, 0.9411765f, 1.0f};
+    //float TRIANGLE_COLOR[] = {0.5176471f, 0.77254903f, 0.9411765f, 1.0f};
 
+    private FloatBuffer mColorBuffer;//颜色缓冲
+    static final int COLOR_PER_VERTEX = 4;//向量维度
+    private final int vertexColorStride = COLOR_PER_VERTEX * 4; // 4*4=16
+    float colors[] = new float[]{
+            1f, 1f, 0.0f, 1.0f,//黄
+            0.05882353f, 0.09411765f, 0.9372549f, 1.0f,//蓝
+            0.19607843f, 1.0f, 0.02745098f, 1.0f//绿
+    };
+    /********color 2.1  投影矩阵 添加相应的变量 end********************/
 
 
     /********2.1  投影矩阵 添加相应的变量 start********************/
@@ -67,13 +77,21 @@ public class GLRendererColor2 implements GLSurfaceView.Renderer {
         vertexBuffer.put(TRIANGLE_COORDINATES);// 将坐标添加到FloatBuffer
         vertexBuffer.position(0);//设置缓冲区以读取第一个坐标
 
+        /********color 2.2  添加相应的缓冲buffer start********************/
+        ByteBuffer colorBuffer = ByteBuffer.allocateDirect(colors.length * 4);
+        colorBuffer.order(ByteOrder.nativeOrder());//使用本机硬件设备的字节顺序
+        mColorBuffer = colorBuffer.asFloatBuffer();// 从字节缓冲区创建浮点缓冲区
+        mColorBuffer.put(colors);// 将坐标添加到FloatBuffer
+        mColorBuffer.position(0);//设置缓冲区以读取第一个坐标
+        /********color 2.2  添加相应的缓冲buffer end********************/
+
         //0.简单的给窗口填充一种颜色
         GLES20.glClearColor(1.0f, 0f, 0f, 0f);//rgba
 
         //在创建的时候，去创建这些着色器
         //1.根据String进行编译。得到着色器id
-        int vertexShaderObjectId = LoadGLUtils.loadShaderAssets(mContext, GLES20.GL_VERTEX_SHADER, "deep2.vert");
-        int fragmentShaderObjectId = LoadGLUtils.loadShaderAssets(mContext, GLES20.GL_FRAGMENT_SHADER, "deep2.frag");
+        int vertexShaderObjectId = LoadGLUtils.loadShaderAssets(mContext, GLES20.GL_VERTEX_SHADER, "deepColor2.vert");
+        int fragmentShaderObjectId = LoadGLUtils.loadShaderAssets(mContext, GLES20.GL_FRAGMENT_SHADER, "deepColor2.frag");
 
         //2.继续处理。取得到program
         mProgramObjectId = GLES20.glCreateProgram();
@@ -139,20 +157,41 @@ public class GLRendererColor2 implements GLSurfaceView.Renderer {
         /********2.3  mProjectionMatrix矩阵值做相应的传递 start********************/
         //传递给着色器
         GLES20.glUniformMatrix4fv(uMatrix,1,false,mProjectionMatrix,0);
-        /********2.3  mProjectionMatrix矩阵值做相应的传递 start********************/
+        /********2.3  mProjectionMatrix矩阵值做相应的传递 end********************/
+
+        /********color 2.3  开始绘制相应的颜色 start********************/
 
 
-        //取出颜色
-        int uColor = GLES20.glGetUniformLocation(mProgramObjectId, "vColor");
+        //注意颜色句柄不是uniform了,获取片元着色器的vColor成员的句柄
+        int uColor = GLES20.glGetAttribLocation(mProgramObjectId, "aColor");
 
-        //开始绘制
-        //设置绘制三角形的颜色
-        GLES20.glUniform4fv(
+        //启用三角形顶点颜色的句柄
+        GLES20.glEnableVertexAttribArray(uColor);
+
+        //准备三角顶点颜色数据
+        GLES20.glVertexAttribPointer(
                 uColor,
-                1,
-                TRIANGLE_COLOR,
-                0
-        );
+                COORDINATES_PER_VERTEX,
+                GLES20.GL_FLOAT,
+                false,
+                vertexColorStride,
+                mColorBuffer);
+
+
+
+//        //取出颜色
+//        int uColor = GLES20.glGetUniformLocation(mProgramObjectId, "vColor");
+//
+//        //开始绘制
+        //设置绘制三角形的颜色
+//        GLES20.glUniform4fv(
+//                uColor,
+//                1,
+//                TRIANGLE_COLOR,
+//                0
+//        );
+
+        /********color 2.3  开始绘制相应的颜色 end********************/
 
         //绘制三角形.
         //draw arrays的几种方式
