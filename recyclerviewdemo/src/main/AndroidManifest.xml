@@ -11,30 +11,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".volleytest.VolleyActivity" />
-        <activity android:name=".okhttptest.HttpActivity" />
-        <activity
-            android:name=".webviewdemo.WebViewActivity"
-            android:label="@string/title_activity_web_view"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-        <activity android:name=".handleTimeOut.HandlerActivity" />
-        <activity
-            android:name=".socket.SocketTestActivity"
-            android:label="@string/title_activity_socket_test"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-        <activity android:name=".toasttest.ToastActivity">
+        <activity android:name=".MainRecyclerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".RecyclerViewActivity">
 
         </activity>
+        <activity android:name=".volleytest.VolleyActivity" />
+        <activity android:name=".okhttptest.HttpActivity" />
+        <activity
+            android:name=".webviewdemo.WebViewActivity"
+            android:label="@string/title_activity_web_view"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".socket.SocketTestActivity"
+            android:label="@string/title_activity_socket_test"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".shape.ShapeActivity" />
     </application>
 
 </manifest>

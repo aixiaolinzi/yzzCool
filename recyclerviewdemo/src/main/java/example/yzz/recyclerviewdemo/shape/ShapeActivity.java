@@ -1,4 +1,4 @@
-package example.yzz.recyclerviewdemo.toasttest;
+package example.yzz.recyclerviewdemo.shape;
 
 import android.content.DialogInterface;
 import android.graphics.Paint;
@@ -14,7 +14,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import example.yzz.recyclerviewdemo.R;
 
-public class ToastActivity extends AppCompatActivity {
+
+/**
+ * Time: 2021/4/19
+ * Author:yzzCool
+ * Description: Shape的简单使用。
+ */
+
+public class ShapeActivity extends AppCompatActivity {
 
     private TextView tv_text;
     private TextView tv_text1;

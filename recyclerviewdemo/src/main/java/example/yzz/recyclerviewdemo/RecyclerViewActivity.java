@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class RecyclerViewActivity extends AppCompatActivity {
     private RecyclerView recyclerView, recyclerView2;
     private List<String> dates;
 

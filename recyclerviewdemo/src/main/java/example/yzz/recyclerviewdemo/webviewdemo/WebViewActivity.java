@@ -1,55 +1,38 @@
 package example.yzz.recyclerviewdemo.webviewdemo;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.webkit.JavascriptInterface;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import example.yzz.recyclerviewdemo.R;
 
+
+/**
+ *Time: 2021/4/19
+ *Author:yzzCool
+ *Description:WebView 最简单的使用。加载了一个百度网页。
+ *
+ */
 public class WebViewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
+
+
         WebView mWebView = findViewById(R.id.wv_web);
-        WebSettings webSettings = mWebView.getSettings();
+        mWebView.loadUrl("http://www.baidu.com/");
+        //设置不让其跳转浏览器
+        mWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return false;
+            }
+        });
 
-        // 设置与Js交互的权限
-        webSettings.setJavaScriptEnabled(true);
-        // 设置允许JS弹窗
-        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
-
-
-        mWebView.addJavascriptInterface(new JavaScriptInterface(this), "ShowMessageFromWebView");
-        mWebView.loadUrl("http://musicmember.skyware.com.cn/");
-
-
-    }
-
-
-    public class JavaScriptInterface {
-
-        Context context;
-
-        JavaScriptInterface(Context context) {
-            this.context = context;
-        }
-
-        //在js中调用 androidjs.showInfoFromJs("I'M FROM JS!!!")就会出发此方法
-        @JavascriptInterface
-        public Object getUserInfo(String  s) {
-
-            return "{\n" +
-                    "    \"iconUrl\": \"BeJson\",\n" +
-                    "    \"nickName\": \"bejson.com\",\n" +
-                    "    \"page\": \"8ce3dfd0c261564905904811a3a52bbe\"\n" +
-                    "}";
-        }
     }
 
 

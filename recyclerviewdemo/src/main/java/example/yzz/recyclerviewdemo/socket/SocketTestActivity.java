@@ -27,6 +27,14 @@ import java.util.concurrent.Executors;
 
 import example.yzz.recyclerviewdemo.R;
 
+
+/**
+ *Time: 2021/4/19
+ *Author:yzzCool
+ *Description:感觉是相应的Socket之间的通信。
+ * 没有运行成功。
+ */
+
 public class SocketTestActivity extends AppCompatActivity {
     /**
      * 主 变量
@@ -75,23 +83,12 @@ public class SocketTestActivity extends AppCompatActivity {
 
     // 输入需要发送的消息 输入框
     private EditText mEdit;
-    private String TAG = "SocketTest";
+    private String TAG = "YzzLogger SocketTest";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_socket_test);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
 
         /**
@@ -141,6 +138,7 @@ public class SocketTestActivity extends AppCompatActivity {
                             System.out.println(socket.isConnected());
                             Log.e(TAG, "socket是否连接上" + socket.isConnected());
                         } catch (IOException e) {
+                            Log.e(TAG, "socket连接失败 IOException" + e.getMessage());
                             e.printStackTrace();
                         }
 

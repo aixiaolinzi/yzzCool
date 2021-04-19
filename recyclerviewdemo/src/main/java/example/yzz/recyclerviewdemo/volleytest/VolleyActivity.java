@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,27 +25,19 @@ import example.yzz.recyclerviewdemo.R;
 
 public class VolleyActivity extends AppCompatActivity {
 
-    private static String TAG = "Volley测试";
+    private static String TAG = "YzzLogger Volley测试";
     private ImageView imageView;
+    private TextView tv_Volley;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volley);
+
         imageView = findViewById(R.id.imageView);
+        tv_Volley = findViewById(R.id.tv_volley);
+
         final RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Constant.BASE_URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.e(TAG, response.toString());
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, error.toString());
-            }
-        });
-//        requestQueue.add(stringRequest);
 
         ImageRequest imageRequest = new ImageRequest("http://image.97ting.com/album/100/1000315-JPG-1000X1000-ALBUM.jpg", new Response.Listener<Bitmap>() {
             @Override
@@ -58,13 +51,13 @@ public class VolleyActivity extends AppCompatActivity {
 
             }
         });
-
-//        requestQueue.add(imageRequest);
+        requestQueue.add(imageRequest);
 
         XMLRequest xmlRequest = new XMLRequest(Request.Method.GET, "http://flash.weather.com.cn/wmaps/xml/china.xml", new Response.Listener<XmlPullParser>() {
             @Override
             public void onResponse(XmlPullParser response) {
                 try {
+                    StringBuilder stringBuilder = new StringBuilder();
                     int eventType = response.getEventType();
                     while (eventType != XmlPullParser.END_DOCUMENT) {
                         switch (eventType) {
@@ -73,10 +66,13 @@ public class VolleyActivity extends AppCompatActivity {
                                 if ("city".equals(nodeName)) {
                                     String pName = response.getAttributeValue(0);
                                     Log.e(TAG, "pName is " + pName);
+                                    stringBuilder.append("pName is").append(pName).append("\n");
                                 }
                                 break;
                         }
                         eventType = response.next();
+                        tv_Volley.setText(stringBuilder.toString());
+
                     }
                 } catch (XmlPullParserException e) {
                     e.printStackTrace();
@@ -91,26 +87,7 @@ public class VolleyActivity extends AppCompatActivity {
                 Log.e(TAG, "error is " + error.toString());
             }
         });
-//        requestQueue.add(xmlRequest);
-
-
-        GsonRequest gsonRequest = new GsonRequest(Request.Method.GET, "http://www.wanandroid.com/tools/mockapi/4130/look", BaseBean.class, new Response.Listener<BaseBean>() {
-
-            @Override
-            public void onResponse(BaseBean baseBean) {
-                if (baseBean != null) {
-                    String token = baseBean.getRes().getToken();
-                    Log.e(TAG, "得到的token是+" + token);
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-
-        requestQueue.add(gsonRequest);
+        requestQueue.add(xmlRequest);
 
     }
 }
