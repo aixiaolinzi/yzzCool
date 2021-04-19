@@ -14,15 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <!-- 主入口，整个Demo的主入口。-->
         <activity
             android:name=".AppMainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".module.search.SearchActivity"
@@ -36,14 +33,19 @@
             android:label="@string/title_activity_main_open_gl"
             android:theme="@style/AppTheme.NoActionBar">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name="com.yue.opengl.deep1.Deep1Activity" />
         <activity android:name="com.yue.opengl.deep2.Deep2Activity" />
         <activity android:name="com.yue.opengl.matrix.Matrix1Activity" />
 
         <!-- OpenGL相关的主页面 end-->
+
+
 
         <!-- OpenGL C++相关的主页面 start-->
         <activity android:name="com.yue.openGLC.OpenGLESMainActivity" >

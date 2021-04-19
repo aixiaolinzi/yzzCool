@@ -23,6 +23,8 @@ import java.util.function.Predicate;
 
 /**
  * Created by Administrator on 2017/6/28.
+ *
+ * 抛物线绘制一个♥。
  */
 
 public class PathUseFragment extends BaseFragment {
