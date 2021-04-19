@@ -3,6 +3,7 @@ package com.yue.opengl.deep2;
 import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+import android.opengl.Matrix;
 
 
 import com.yue.opengl.utils.LoadGLUtils;
@@ -14,7 +15,7 @@ import java.nio.FloatBuffer;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-public class GLRenderer1 implements GLSurfaceView.Renderer {
+public class GLRenderer2 implements GLSurfaceView.Renderer {
     public static final int BYTES_PER_FLOAT = 4;//每个浮点数:坐标个数* 4字节
     private final Context mContext;
     private FloatBuffer vertexBuffer;//顶点缓冲
@@ -40,7 +41,14 @@ public class GLRenderer1 implements GLSurfaceView.Renderer {
     // 颜色，rgba  更换颜色
     float TRIANGLE_COLOR[] = {0.5176471f, 0.77254903f, 0.9411765f, 1.0f};
 
-    public GLRenderer1(Context mContext) {
+
+
+    /********2.1  投影矩阵 添加相应的变量 start********************/
+    private float[] mProjectionMatrix = new float[16];
+    private int uMatrix;
+    /********2.1  投影矩阵 添加相应的变量 end********************/
+
+    public GLRenderer2(Context mContext) {
         this.mContext = mContext;
     }
 
@@ -59,8 +67,8 @@ public class GLRenderer1 implements GLSurfaceView.Renderer {
 
         //在创建的时候，去创建这些着色器
         //1.根据String进行编译。得到着色器id
-        int vertexShaderObjectId = LoadGLUtils.loadShaderAssets(mContext, GLES20.GL_VERTEX_SHADER, "deep1.vert");
-        int fragmentShaderObjectId = LoadGLUtils.loadShaderAssets(mContext, GLES20.GL_FRAGMENT_SHADER, "deep1.frag");
+        int vertexShaderObjectId = LoadGLUtils.loadShaderAssets(mContext, GLES20.GL_VERTEX_SHADER, "deep2.vert");
+        int fragmentShaderObjectId = LoadGLUtils.loadShaderAssets(mContext, GLES20.GL_FRAGMENT_SHADER, "deep2.frag");
 
         //2.继续处理。取得到program
         mProgramObjectId = GLES20.glCreateProgram();
@@ -77,6 +85,23 @@ public class GLRenderer1 implements GLSurfaceView.Renderer {
     public void onSurfaceChanged(GL10 gl, int width, int height) {
         //在窗口改变的时候调用
         GLES20.glViewport(0, 0, width, height);//GL视口
+
+
+        /******************2.2  设置相应的比例 start**********************************/
+        //主要还是长宽进行比例缩放
+        float aspectRatio = width > height ?
+                (float) width / (float) height :
+                (float) height / (float) width;
+
+        if (width > height) {
+            //横屏。需要设置的就是左右。
+            Matrix.orthoM(mProjectionMatrix, 0, -aspectRatio, aspectRatio, -1, 1f, -1.f, 1f);
+        } else {
+            //竖屏。需要设置的就是上下
+            Matrix.orthoM(mProjectionMatrix, 0, -1, 1f, -aspectRatio, aspectRatio, -1.f, 1f);
+        }
+        /******************2.2  设置相应的比例 end **********************************/
+
     }
 
     @Override
@@ -91,6 +116,12 @@ public class GLRenderer1 implements GLSurfaceView.Renderer {
         int uPosition = GLES20.glGetAttribLocation(mProgramObjectId, "vPosition");
         //2.开始启用我们的position
         GLES20.glEnableVertexAttribArray(uPosition);
+
+
+
+        uMatrix = GLES20.glGetUniformLocation(mProgramObjectId, "u_Matrix");
+
+
         //3.将坐标数据放入
         GLES20.glVertexAttribPointer(
                 uPosition,  //上面得到的id
@@ -98,6 +129,13 @@ public class GLRenderer1 implements GLSurfaceView.Renderer {
                 GLES20.GL_FLOAT, false,
                 STRIDE, //一个顶点需要多少个字节的偏移量
                 vertexBuffer);
+
+
+        /********2.3  mProjectionMatrix矩阵值做相应的传递 start********************/
+        //传递给着色器
+        GLES20.glUniformMatrix4fv(uMatrix,1,false,mProjectionMatrix,0);
+        /********2.3  mProjectionMatrix矩阵值做相应的传递 start********************/
+
 
         //取出颜色
         int uColor = GLES20.glGetUniformLocation(mProgramObjectId, "vColor");

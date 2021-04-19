@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
  *Time: 2020/10/10
  *Author:yzzCool
  *Description:博客1，实现简单的三角形绘制。
+ * https://www.jianshu.com/p/4a014afde409
  */
 public class Deep1Activity extends AppCompatActivity {
 
@@ -23,7 +24,7 @@ public class Deep1Activity extends AppCompatActivity {
 
         glSurfaceView.setEGLContextClientVersion(2);
         //设置自己的Render.Render 内进行图形的绘制
-        glSurfaceView.setRenderer(new GLRenderer());
+        glSurfaceView.setRenderer(new GLRenderer1());
 
         setContentView(glSurfaceView);
     }

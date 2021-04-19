@@ -6,6 +6,13 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+/**
+ *Time: 2021/4/19
+ *Author:yzzCool
+ *Description: Android OpenGL ES(二)-正交投影
+ * 原来的路径已经找不到。 https://cloud.tencent.com/developer/article/1198762
+ *
+ */
 public class Deep2Activity extends AppCompatActivity {
 
     @Override
@@ -17,7 +24,7 @@ public class Deep2Activity extends AppCompatActivity {
 
         glSurfaceView.setEGLContextClientVersion(2);
         //设置自己的Render.Render 内进行图形的绘制
-        glSurfaceView.setRenderer(new GLRenderer1(this));
+        glSurfaceView.setRenderer(new GLRenderer2(this));
 
         setContentView(glSurfaceView);
     }

@@ -10,7 +10,7 @@ import java.nio.FloatBuffer;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-public class GLRenderer implements GLSurfaceView.Renderer {
+public class GLRenderer1 implements GLSurfaceView.Renderer {
     public static final int BYTES_PER_FLOAT = 4;//每个浮点数:坐标个数* 4字节
     private FloatBuffer vertexBuffer;//顶点缓冲
     private final String vertexShaderCode =//顶点着色代码
