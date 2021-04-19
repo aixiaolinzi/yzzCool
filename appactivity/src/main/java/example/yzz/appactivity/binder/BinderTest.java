@@ -20,7 +20,7 @@ public class BinderTest {
         IInterface plus = new IPlus() {
             @Override
             public int add(int a, int b) {
-                return 0;
+                return a + b;
             }
 
             @Override
@@ -29,22 +29,13 @@ public class BinderTest {
             }
         };
         // 步骤3
-        binder.attachInterface(plus,"add two int");
+        binder.attachInterface(plus, "add two int");
         // 1. 将（add two int，plus）作为（key,value）对存入到Binder对象中的一个Map<String,IInterface>对象中
         // 2. 之后，Binder对象 可根据add two int通过queryLocalIInterface（）获得对应IInterface对象（即plus）的引用，可依靠该引用完成对请求方法的调用
         // 分析完毕，跳出
 
 
-
-
     }
-
-
-
-
-
-
-
 
 
 }
