@@ -53,31 +53,6 @@
     <string name="action_unfollow_media">取消关注</string>
     <string name="action_open_media_home">查看此头条号主页</string>
 
-    <!-- Title -->
-    <string name="title_video_content">视频播放</string>
-    <string name="title_settings">设置</string>
-    <string name="title_news_content">新闻内容</string>
-    <string name="title_joke_comment">段子评论</string>
-    <string name="title_search">搜索结果</string>
-    <string name="title_funny_content">搞笑内容</string>
-    <string name="title_photo_content">图片浏览</string>
-    <string name="title_item_drag">拖拽排序</string>
-    <string name="title_comment">评论</string>
-    <string name="title_about">关于</string>
-    <string name="title_media">头条号</string>
-    <string name="title_wenda">问答</string>
-    <string name="title_wenda_detail">回答</string>
-
-    <!-- Bottom Sheet List -->
-    <string name="copy_content">复制内容</string>
-    <string name="share_content">分享内容</string>
-
-    <!-- Item Drag -->
-    <string name="tip_drag">长按编辑,拖拽排序</string>
-    <string name="my_cahnnel">我的频道</string>
-    <string name="other_channel">隐藏频道</string>
-    <string name="edit">编辑</string>
-    <string name="finish">完成</string>
 
     <!-- View Action -->
     <string name="network_error">网络不给力</string>
@@ -104,20 +79,7 @@
     <string name="save">保存</string>
     <string name="subscribe">订阅</string>
 
-    <!-- About -->
-    <string name="changelog">更新日志</string>
-    <string name="changelog_url">https://github.com/iMeiji/Toutiao/releases</string>
-    <string name="about_developers_label">主要开发者</string>
-    <string name="about_developers">https://github.com/iMeiji</string>
-    <string name="share_app_text">来瞧瞧这个：适配了质感设计的 今日头条！</string>
-    <string name="source_code">源代码</string>
-    <string name="source_code_url">https://github.com/iMeiji/Toutiao</string>
-    <string name="about_libraries_label">开源许可</string>
-    <string name="about_libraries_summary">查看开源许可信息</string>
-    <string name="copyright">版权声明</string>
-    <string name="copyright_summary">仅作个人及非商业用途</string>
-    <string name="copyright_content">本App所使用的所有API均由 今日头条 提供, 本人采取非正常手段获取. 本程序仅供学习交流, 不可用于任何商业用途.</string>
-    <string name="version">版本</string>
+
 
 
     <!-- Add Activity -->
