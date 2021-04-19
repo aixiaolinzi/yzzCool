@@ -81,27 +81,12 @@
 
 
 
-
-    <!-- Add Activity -->
-    <string name="has_been_added">已近添加过了</string>
-    <string name="add_success">添加成功</string>
-    <string name="add_fail">添加失败</string>
-    <string name="formal_incorrect">格式不正确</string>
-    <string name="incorrect_link">链接不正确</string>
-    <string name="media_hint_desc">头条号订阅为空</string>
-    <string name="done">完成</string>
-    <string name="custom">自定义</string>
-
     <!--Main Activity-->
     <string name="navigation_drawer_open">打开侧栏</string>
     <string name="navigation_drawer_close">关闭侧栏</string>
 
 
     <!--Navigation Item-->
-    <string name="nav_account">个人</string>
-    <string name="nav_switch_night_mode">切换主题</string>
-    <string name="nav_setting">设置</string>
-    <string name="nav_share">分享</string>
     <string name="video_force_landscape">视频横屏</string>
     <string name="video_force_landscape_summary">开启后强制横屏播放视频(能自动旋转就别开)</string>
 
@@ -112,12 +97,7 @@
     <string name="button_cancel">取消</string>
 
     <!-- Permission -->
-    <string name="permission_write_rationale">使用此功能需要打开存储权限</string>
-    <string name="permission_write_denied">你拒绝了权限，该功能不可用</string>
-    <string name="permission_write_never_ask">用户设置不再询问权限申请</string>
     <string name="title_activity_search">SearchActivity</string>
-    <string name="title_activity_main3">Main3Activity</string>
-
 
 
 

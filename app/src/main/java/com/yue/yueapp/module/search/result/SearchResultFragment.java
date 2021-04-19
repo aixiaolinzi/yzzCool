@@ -5,7 +5,6 @@ import android.view.View;
 
 
 import com.yue.yueapp.Register;
-import com.yue.yueapp.adapter.DiffCallback;
 import com.yue.yueapp.bean.LoadingBean;
 import com.yue.yueapp.module.base.BaseListFragment;
 import com.yue.yueapp.utils.OnLoadMoreListener;
@@ -74,7 +73,6 @@ public class SearchResultFragment extends BaseListFragment<ISearchResult.Present
     public void onSetAdapter(List<?> list) {
         Items newItems = new Items(list);
         newItems.add(new LoadingBean());
-        DiffCallback.notifyDataSetChanged(oldItems, newItems, DiffCallback.MUlTI_NEWS, adapter);
         oldItems.clear();
         oldItems.addAll(newItems);
         canLoadMore = true;
