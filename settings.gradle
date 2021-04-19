@@ -1,1 +1,1 @@
-include ':app', ':uilibrary', ':appeventbus', ':appactivity', ':indexablerecyclerview', ':recyclerviewdemo', ':mediarecorderdemo', ':retrofitdemo'
+include ':app', ':uilibrary', ':appeventbus', ':appactivity', ':recyclerviewdemo', ':mediarecorderdemo', ':retrofitdemo'
