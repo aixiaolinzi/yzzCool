@@ -17,6 +17,12 @@ import com.yue.yueapp.R;
 
 import static android.opengl.GLSurfaceView.RENDERMODE_WHEN_DIRTY;
 
+
+/**
+ *Time: 2021/4/19
+ *Author:yzzCool
+ *Description: openGL 一篇C++的入门。
+ */
 public class OpenGLGuide1Activity extends AppCompatActivity {
 
     private final int CONTEXT_CLIENT_VERSION = 3;

@@ -19,15 +19,20 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
+import com.yue.openGLC.OpenGLESMainActivity;
 import com.yue.opengl.OpenGLMainActivity;
 import com.yue.yueapp.Fragment.Advanced1Fragment;
-import com.yue.yueapp.Fragment.AdvancedFragment;
 import com.yue.yueapp.Fragment.CustomViewFragment;
 import com.yue.yueapp.Fragment.PathUseFragment;
 import com.yue.yueapp.module.search.SearchActivity;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+/**
+ *Time: 2021/4/19
+ *Author:yzzCool
+ *Description: 这是APP的主入口。相当于是一个基本页面。
+ */
+public class AppMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FrameLayout frameLayout;
     private FragmentManager fragmentManager;
@@ -96,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //noinspection SimplifiableIfStatement
         if (item.getItemId() == R.id.action_search) {
-            startActivity(new Intent(MainActivity.this, SearchActivity.class));
+            startActivity(new Intent(AppMainActivity.this, SearchActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -112,11 +117,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {//扔物线的实例
-            AdvancedFragment advancedFragment = new AdvancedFragment();
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frame_main, advancedFragment);
-            fragmentTransaction.commit();
+//            AdvancedFragment advancedFragment = new AdvancedFragment();
+//            fragmentManager = getSupportFragmentManager();
+//            fragmentTransaction = fragmentManager.beginTransaction();
+//            fragmentTransaction.replace(R.id.frame_main, advancedFragment);
+//            fragmentTransaction.commit();
         } else if (id == R.id.nav_gallery) {//pathView的使用，画心
             PathUseFragment pathUseFragment = new PathUseFragment();
             fragmentTransaction = fragmentManager.beginTransaction();
@@ -128,6 +133,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             bundle.putString("kkkk", "hello");
             Intent intent = new Intent(this, OpenGLMainActivity.class);
             intent.putExtras(bundle);
+            startActivity(intent);
+
+        }else if (id == R.id.nav_open_gl) {
+
+            Intent intent = new Intent(this, OpenGLESMainActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_manage) {//自定义试图

@@ -52,6 +52,15 @@ public class LoggerUtils {
         lineNumber = sElements[1].getLineNumber();
     }
 
+    public static void e(String tag, String message) {
+        if (!isDebuggable())
+            return;
+
+        // Throwable instance must be created before any methods
+        getMethodNames(new Throwable().getStackTrace());
+        Log.e(TAG + tag, className + "--" + createLog(message));
+    }
+
     public static void e(String message) {
         if (!isDebuggable())
             return;

@@ -17,6 +17,7 @@ import com.yue.opengl.deep1.Deep1Activity;
 import com.yue.opengl.deep2.Deep2Activity;
 import com.yue.opengl.matrix.Matrix1Activity;
 import com.yue.yueapp.R;
+import com.yue.yueapp.utils.LoggerUtils;
 
 import java.lang.ref.WeakReference;
 
@@ -39,7 +40,7 @@ public class OpenGLMainActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            Log.e("TAG", msg.what + "得到的值");
+            LoggerUtils.e("TAG", msg.what + "得到的值");
         }
     }
 
@@ -56,7 +57,6 @@ public class OpenGLMainActivity extends AppCompatActivity {
 
 
         myHandler.sendEmptyMessageAtTime(2, 5000);
-
 
 
     }

@@ -8,3 +8,14 @@
 
 ### app
 
+#### jump
+准备jump使用的demo。
+
+#### opengl
+学习opengl的demo。主要是参考的网上的demo。
+
+#### openGLC
+学习opengl的demo。主要是C++的学习和使用。
+
+#### yueapp
+早期的完整demo。里面比较全和大。
