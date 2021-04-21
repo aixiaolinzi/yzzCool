@@ -18,7 +18,7 @@ public class Deep2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_deep2);
+
         //创建一个GLSurfaceView
         GLSurfaceView glSurfaceView = new GLSurfaceView(this);
 

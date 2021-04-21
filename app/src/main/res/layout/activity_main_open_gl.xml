@@ -52,6 +52,12 @@
                 android:onClick="deep2"
                 android:text="博客2，绘制颜色渐变三角形" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:onClick="deep3"
+                android:text="Android OpenGL ES(三)-平面图形和纹理" />
+
 
         </LinearLayout>
 

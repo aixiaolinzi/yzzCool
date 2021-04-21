@@ -15,6 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.yue.opengl.deep1.Deep1Activity;
 import com.yue.opengl.deep2.Deep2Activity;
+import com.yue.opengl.deep3.Deep3Activity;
 import com.yue.opengl.matrix.Matrix1Activity;
 import com.yue.yueapp.R;
 import com.yue.yueapp.utils.LoggerUtils;
@@ -78,5 +79,8 @@ public class OpenGLMainActivity extends AppCompatActivity {
         startActivity(new Intent(this, Deep2Activity.class));
     }
 
+    public void deep3(View view) {
+        startActivity(new Intent(this, Deep3Activity.class));
+    }
 
 }

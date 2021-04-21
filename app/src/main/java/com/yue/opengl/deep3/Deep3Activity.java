@@ -1,18 +1,18 @@
-package com.yue.opengl.deep1;
+package com.yue.opengl.deep3;
 
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
 /**
- *Time: 2020/10/10
+ *Time: 2021/4/21
  *Author:yzzCool
- *Description:博客1，实现简单的三角形绘制。
- * https://www.jianshu.com/p/4a014afde409
+ *Description: Android OpenGL ES(三)-平面图形
+ * https://www.jianshu.com/p/320980800358
+ *
  */
-public class Deep1Activity extends AppCompatActivity {
+public class Deep3Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +22,11 @@ public class Deep1Activity extends AppCompatActivity {
         GLSurfaceView glSurfaceView = new GLSurfaceView(this);
 
         glSurfaceView.setEGLContextClientVersion(2);
-        //设置自己的Render.Render 内进行图形的绘制
-        glSurfaceView.setRenderer(new GLRenderer1());
+        //正方形的绘制
+        glSurfaceView.setRenderer(new GLRendererSquare3(this));
+        //带有不同颜色的正交矩阵
+//        glSurfaceView.setRenderer(new GLRendererColor2(this));
 
         setContentView(glSurfaceView);
     }
-
-
 }
