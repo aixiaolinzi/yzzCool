@@ -33,11 +33,7 @@
             android:label="@string/title_activity_main_open_gl"
             android:theme="@style/AppTheme.NoActionBar">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name="com.yue.opengl.deep1.Deep1Activity" />
         <activity android:name="com.yue.opengl.deep2.Deep2Activity" />
@@ -61,13 +57,26 @@
         <activity
             android:name="com.yue.openGLC.gles2.OpenGLES2Activity"
             android:theme="@style/AppTheme.NoActionBar" />
-
-
         <activity
             android:name="com.yue.openGLC.guide1.OpenGLGuide1Activity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- OpenGL C++相关的主页面 end-->
+
+
+
+
+        <!-- Camera 基本流程 start-->
+        <activity android:name="com.yue.camera.CameraMainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity android:name="com.yue.camera.process1.CameraBase1Activity"/>
+        <!-- Camera 基本流程 end-->
     </application>
 
 </manifest>
