@@ -23,9 +23,9 @@ public class Deep3Activity extends AppCompatActivity {
 
         glSurfaceView.setEGLContextClientVersion(2);
         //正方形的绘制
-        glSurfaceView.setRenderer(new GLRendererSquare3(this));
+        //glSurfaceView.setRenderer(new GLRendererSquare3(this));
         //带有不同颜色的正交矩阵
-//        glSurfaceView.setRenderer(new GLRendererColor2(this));
+        glSurfaceView.setRenderer(new GLRendererTexture3(this));
 
         setContentView(glSurfaceView);
     }

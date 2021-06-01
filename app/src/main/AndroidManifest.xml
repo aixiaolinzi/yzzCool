@@ -51,6 +51,9 @@
         <!-- OpenGL C++相关的主页面 start-->
         <activity android:name="com.yue.openGLC.OpenGLESMainActivity" >
 
+
+
+
         </activity>
         <activity
             android:name="com.yue.openGLC.gles1.OpenGLES1Activity"
