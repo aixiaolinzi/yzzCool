@@ -6,4 +6,33 @@
     android:layout_height="match_parent"
     tools:context="com.yue.camera.CameraMainActivity">
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:onClick="base1"
+            android:text="Google Base preview" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:onClick="base2"
+            android:text="Google Base video" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:onClick="base3"
+            android:text="yzz 自己写的preview" />
+
+
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
