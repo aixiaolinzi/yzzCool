@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.yue.camera.google.preview.Camera2PreviewActivity;
+import com.yue.camera.process1.CameraBase1Activity;
 import com.yue.yueapp.R;
 
 public class CameraMainActivity extends AppCompatActivity {
@@ -26,6 +27,7 @@ public class CameraMainActivity extends AppCompatActivity {
     }
 
     public void base3(View view) {
+        startActivity(new Intent(this, CameraBase1Activity.class));
     }
 
 }

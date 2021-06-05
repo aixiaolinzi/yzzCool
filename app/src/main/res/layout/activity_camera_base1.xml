@@ -6,4 +6,8 @@
     android:layout_height="match_parent"
     tools:context="com.yue.camera.process1.CameraBase1Activity">
 
+    <TextureView
+        android:id="@+id/camera_base_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
