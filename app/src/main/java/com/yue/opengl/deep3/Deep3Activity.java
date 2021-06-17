@@ -27,6 +27,8 @@ public class Deep3Activity extends AppCompatActivity {
         //带有不同颜色的正交矩阵
         glSurfaceView.setRenderer(new GLRendererTexture3(this));
 
+        //glSurfaceView.setRenderer(new TextureFilterShapeRender(this));
+        //glSurfaceView.setRenderer(new Texture2DShapeRender(this));
         setContentView(glSurfaceView);
     }
 }

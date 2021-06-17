@@ -33,7 +33,11 @@
             android:name="com.yue.opengl.OpenGLMainActivity"
             android:label="@string/title_activity_main_open_gl"
             android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
         <activity android:name="com.yue.opengl.deep1.Deep1Activity" />
@@ -69,11 +73,7 @@
 
         <!-- Camera 基本流程 start-->
         <activity android:name="com.yue.camera.CameraMainActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity android:name="com.yue.camera.process1.CameraBase1Activity"/>
