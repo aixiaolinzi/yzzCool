@@ -8,7 +8,6 @@ import android.opengl.GLUtils;
 import android.opengl.Matrix;
 
 
-import com.yue.yueapp.Constant;
 import com.yue.yueapp.R;
 
 import java.nio.ByteBuffer;

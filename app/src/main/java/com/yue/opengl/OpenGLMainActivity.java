@@ -17,6 +17,7 @@ import com.yue.opengl.deep1.Deep1Activity;
 import com.yue.opengl.deep2.Deep2Activity;
 import com.yue.opengl.deep3.Deep3Activity;
 import com.yue.opengl.deep4.Deep4Activity;
+import com.yue.opengl.deep5.Deep5CameraActivity;
 import com.yue.opengl.matrix.Matrix1Activity;
 import com.yue.yueapp.R;
 import com.yue.yueapp.utils.LoggerUtils;
@@ -30,6 +31,8 @@ import java.lang.ref.WeakReference;
  *Description:  OpenGL的主布局
  */
 public class OpenGLMainActivity extends AppCompatActivity {
+
+
 
 
     private static class MyHandler extends Handler {
@@ -89,4 +92,7 @@ public class OpenGLMainActivity extends AppCompatActivity {
         startActivity(new Intent(this, Deep4Activity.class));
     }
 
+    public void deep5(View view) {
+        startActivity(new Intent(this, Deep5CameraActivity.class));
+    }
 }
