@@ -1,4 +1,4 @@
-package com.yue.opengl.deep3;
+package com.yue.opengl.deep4;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLUtils;
-import android.opengl.Matrix;
 
 import com.yue.opengl.utils.LoadGLUtils;
 import com.yue.yueapp.R;
@@ -18,14 +17,12 @@ import java.nio.FloatBuffer;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-
-/**
- * Time: 2021/4/21
- * Author:yzzCool
- * Description: 纹理的绘制
- * 注释：texture 3 是这次的修改
- */
-public class GLRendererTexture3 implements GLSurfaceView.Renderer {
+ /**
+  *Time: 2021/6/18
+  *Author:yzzCool
+  *Description:纹理的绘制 带有滤镜的纹理
+  */
+public class GLRendererTextureFilter4 implements GLSurfaceView.Renderer {
     public static final int BYTES_PER_FLOAT = 4;//每个浮点数:坐标个数* 4字节
     private final Context mContext;
     private FloatBuffer vertexBuffer;//顶点缓冲
@@ -54,7 +51,7 @@ public class GLRendererTexture3 implements GLSurfaceView.Renderer {
     /********2.1  投影矩阵 添加相应的变量 end********************/
 
 
-    public GLRendererTexture3(Context mContext) {
+    public GLRendererTextureFilter4(Context mContext) {
         this.mContext = mContext;
     }
 
@@ -75,7 +72,7 @@ public class GLRendererTexture3 implements GLSurfaceView.Renderer {
         //在创建的时候，去创建这些着色器
         //1.根据String进行编译。得到着色器id
         int vertexShaderObjectId = LoadGLUtils.loadShaderAssets(mContext, GLES20.GL_VERTEX_SHADER, "deepTexture3.vert");
-        int fragmentShaderObjectId = LoadGLUtils.loadShaderAssets(mContext, GLES20.GL_FRAGMENT_SHADER, "deepTexture3.frag");
+        int fragmentShaderObjectId = LoadGLUtils.loadShaderAssets(mContext, GLES20.GL_FRAGMENT_SHADER, "deepTexture4.frag");
 
         //2.继续处理。取得到program
         mProgramObjectId = GLES20.glCreateProgram();
@@ -147,6 +144,15 @@ public class GLRendererTexture3 implements GLSurfaceView.Renderer {
         GLES20.glUniform1i(uTexture, 0);
 
 
+        //0 创建数组
+        //黑白图片的公式：RGB 按照 0.2989 R，0.5870 G 和 0.1140 B 的比例构成像素灰度值。
+        float[] grayFilterColorData = {0.299f, 0.587f, 0.114f};
+
+        //1 .得到属性的location
+        int uChangeColor = GLES20.glGetUniformLocation(mProgramObjectId, "u_ChangeColor");
+
+        //2. 将数组传入
+        GLES20.glUniform3fv(uChangeColor, 1, grayFilterColorData, 0);
 
         //绘制三角形.
         GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, TEXTURE_COORDS.length / TOTAL_COMPONENT_COUNT);

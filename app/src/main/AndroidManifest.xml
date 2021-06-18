@@ -43,6 +43,7 @@
         <activity android:name="com.yue.opengl.deep1.Deep1Activity" />
         <activity android:name="com.yue.opengl.deep2.Deep2Activity" />
         <activity android:name="com.yue.opengl.deep3.Deep3Activity" />
+        <activity android:name="com.yue.opengl.deep4.Deep4Activity" />
         <activity android:name="com.yue.opengl.matrix.Matrix1Activity" />
 
         <!-- OpenGL相关的主页面 end-->
