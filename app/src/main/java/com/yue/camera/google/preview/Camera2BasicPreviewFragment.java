@@ -379,6 +379,7 @@ public class Camera2BasicPreviewFragment extends Fragment
                                        @NonNull CaptureRequest request,
                                        @NonNull TotalCaptureResult result) {
             process(result);
+            LoggerUtils.e("YzzLogger ");
         }
 
     };
@@ -731,6 +732,8 @@ public class Camera2BasicPreviewFragment extends Fragment
 
             // We configure the size of default buffer to be the size of camera preview we want.
             texture.setDefaultBufferSize(mPreviewSize.getWidth(), mPreviewSize.getHeight());
+
+            LoggerUtils.e(" mPreviewSize.getWidth() "+ mPreviewSize.getWidth() +" mPreviewSize.getHeight() "+  mPreviewSize.getHeight());
 
             // This is the output Surface we need to start preview.
             Surface surface = new Surface(texture);

@@ -13,11 +13,13 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.yue.camera.google.preview.Camera2PreviewActivity;
 import com.yue.opengl.deep1.Deep1Activity;
 import com.yue.opengl.deep2.Deep2Activity;
 import com.yue.opengl.deep3.Deep3Activity;
 import com.yue.opengl.deep4.Deep4Activity;
 import com.yue.opengl.deep5.Deep5CameraActivity;
+import com.yue.opengl.deepy5.DeepYzz5CameraActivity;
 import com.yue.opengl.matrix.Matrix1Activity;
 import com.yue.yueapp.R;
 import com.yue.yueapp.utils.LoggerUtils;
@@ -31,8 +33,6 @@ import java.lang.ref.WeakReference;
  *Description:  OpenGL的主布局
  */
 public class OpenGLMainActivity extends AppCompatActivity {
-
-
 
 
     private static class MyHandler extends Handler {
@@ -75,7 +75,8 @@ public class OpenGLMainActivity extends AppCompatActivity {
 
 
     public void deep1(View view) {
-        startActivity(new Intent(this, Deep1Activity.class));
+//        startActivity(new Intent(this, Deep1Activity.class));
+        startActivity(new Intent(this, Camera2PreviewActivity.class));
     }
 
 
@@ -95,4 +96,9 @@ public class OpenGLMainActivity extends AppCompatActivity {
     public void deep5(View view) {
         startActivity(new Intent(this, Deep5CameraActivity.class));
     }
+
+    public void deepy5(View view) {
+        startActivity(new Intent(this, DeepYzz5CameraActivity.class));
+    }
+
 }

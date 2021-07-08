@@ -71,6 +71,12 @@
                 android:onClick="deep5"
                 android:text="Android OpenGL ES(五)-结合相机进行预览/录制及添加滤镜" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:onClick="deepy5"
+                android:text="Yzz Camera2 openCamera" />
+
 
         </LinearLayout>
 
