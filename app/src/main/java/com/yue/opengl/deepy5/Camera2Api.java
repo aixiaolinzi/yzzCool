@@ -74,15 +74,18 @@ public class Camera2Api implements IYzzCamera {
     private AspectRatio mDesiredAspectRatio;
     private AtomicBoolean isPictureCaptureInProgress = new AtomicBoolean(false);
     private TakePhotoCallback photoCallBack;
-    private Handler handler;
+
+
+    private Rect sensorRect;
+    private FaceDetectCallback mFaceDetectCallback;
 
 
     public Camera2Api(Context context) {
         mContext = context;
         mDesiredHeight = 1920;
         mDesiredWidth = 1080;
-        mPreviewSize = new CameraSize(mDesiredWidth,mDesiredHeight);
-        mPicSize = new CameraSize(mDesiredWidth,mDesiredHeight);
+        mPreviewSize = new CameraSize(mDesiredWidth, mDesiredHeight);
+        mPicSize = new CameraSize(mDesiredWidth, mDesiredHeight);
 
         //创建默认的比例.因为后置摄像头的比例，默认的情况下，都是旋转了270
         mDesiredAspectRatio = AspectRatio.of(mDesiredWidth, mDesiredHeight).inverse();
@@ -109,8 +112,9 @@ public class Camera2Api implements IYzzCamera {
 
             String[] cameraIdList = manager.getCameraIdList();
             CameraCharacteristics cameraCharacteristics = manager.getCameraCharacteristics(cameraIdList[0]);
-            Rect rect = cameraCharacteristics.get(CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE);
-            LoggerUtils.e("OPEN rect " + rect);
+            sensorRect = cameraCharacteristics.get(CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE);
+            LoggerUtils.e("OPEN sensorRect " + sensorRect + "sensorRect.top " + sensorRect.top + " sensorRect.bottom " + sensorRect.bottom
+                    + " sensorRect.left " + sensorRect.left + " sensorRect.right " + sensorRect.right);
             manager.openCamera(cameraIdList[0], mStateCallback, new Handler(Looper.getMainLooper()));
             LoggerUtils.e("OPEN" + Thread.currentThread().getName());
         } catch (CameraAccessException e) {
@@ -122,7 +126,7 @@ public class Camera2Api implements IYzzCamera {
     }
 
 
-    CameraDevice.StateCallback mStateCallback=new CameraDevice.StateCallback() {
+    CameraDevice.StateCallback mStateCallback = new CameraDevice.StateCallback() {
         @Override
         public void onOpened(@NonNull CameraDevice camera) {
             mCameraDevice = camera;
@@ -134,21 +138,21 @@ public class Camera2Api implements IYzzCamera {
         @Override
         public void onDisconnected(@NonNull CameraDevice camera) {
 
-            LoggerUtils.e("OPEN  mStateCallback  onDisconnected  "  );
+            LoggerUtils.e("OPEN  mStateCallback  onDisconnected  ");
 
         }
 
         @Override
         public void onError(@NonNull CameraDevice camera, int error) {
 
-            LoggerUtils.e("OPEN  mStateCallback  onError  " + error );
+            LoggerUtils.e("OPEN  mStateCallback  onError  " + error);
 
         }
 
         @Override
         public void onClosed(@NonNull CameraDevice camera) {
             super.onClosed(camera);
-            LoggerUtils.e("OPEN  mStateCallback  onClosed  "  );
+            LoggerUtils.e("OPEN  mStateCallback  onClosed  ");
         }
 
     };
@@ -174,7 +178,7 @@ public class Camera2Api implements IYzzCamera {
                         public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
                             mCaptureSession = cameraCaptureSession;
                             try {
-                                mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE,CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_VIDEO);
+                                mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_VIDEO);
                                 mPreviewRequest = mPreviewRequestBuilder.build();
 
                                 mCaptureSession.setRepeatingRequest(mPreviewRequest, mCaptureCallback, new Handler(Looper.getMainLooper()));
@@ -195,21 +199,25 @@ public class Camera2Api implements IYzzCamera {
         }
     }
 
-    private CameraCaptureSession.CaptureCallback   mCaptureCallback =
+    private CameraCaptureSession.CaptureCallback mCaptureCallback =
             new CameraCaptureSession.CaptureCallback() {
                 private void process(CaptureResult result) {
                     Face[] faces = result.get(CaptureResult.STATISTICS_FACES);
+                    mFaceDetectCallback.onFaceDetect(faces);
 
                     try {
                         if (faces != null && faces.length > 0) {
                             Face face = faces[0];
-                           LoggerUtils.e(face.toString());
+
                         }
                     } catch (Exception e) {
 
                         e.printStackTrace();
                     }
-                    int left; int top;  int right;  int bottom;
+                    int left;
+                    int top;
+                    int right;
+                    int bottom;
                 }
 
                 @Override
@@ -225,7 +233,6 @@ public class Camera2Api implements IYzzCamera {
                     process(result); //每一帧都有回调。
                 }
             };
-
 
 
     @Override
@@ -263,11 +270,17 @@ public class Camera2Api implements IYzzCamera {
     }
 
     @Override
-    public void takePhoto(TakePhotoCallback callback) {
-        this.photoCallBack = callback;
-
-
+    public Rect getSensorRect() {
+        return sensorRect;
     }
 
+    @Override
+    public void takePhoto(TakePhotoCallback callback) {
+        this.photoCallBack = callback;
+    }
 
+    @Override
+    public void setFaceDetectCallback(FaceDetectCallback callback) {
+        this.mFaceDetectCallback = callback;
+    }
 }

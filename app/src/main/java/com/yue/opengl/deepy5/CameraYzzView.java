@@ -2,6 +2,7 @@ package com.yue.opengl.deepy5;
 
 import android.content.Context;
 import android.graphics.SurfaceTexture;
+import android.hardware.camera2.params.Face;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.util.Log;
@@ -31,6 +32,7 @@ public class CameraYzzView extends GLSurfaceView implements GLSurfaceView.Render
     private CameraYzzDrawer mCameraDrawer;
     private int width;
     private int height;
+    private Face[] facefaces;
 
     public CameraYzzView(Context context) {
         super(context);
@@ -51,6 +53,12 @@ public class CameraYzzView extends GLSurfaceView implements GLSurfaceView.Render
 
         mCameraApi = new Camera2Api(context);
         mCameraDrawer = new CameraYzzDrawer(context.getResources());
+        mCameraApi.setFaceDetectCallback(new IYzzCamera.FaceDetectCallback() {
+            @Override
+            public void onFaceDetect(Face[] faces) {
+                facefaces = faces;
+            }
+        });
     }
 
     @Override
@@ -68,6 +76,7 @@ public class CameraYzzView extends GLSurfaceView implements GLSurfaceView.Render
 
         mCameraDrawer.setPreviewSize(previewSizeWidth, previewSizeHeight);
 
+        mCameraDrawer.setSensorRect(mCameraApi.getSensorRect());
 
         //默认使用的GLThread.每次刷新的时候，都强制要求是刷新这个GLSurfaceView
         mCameraDrawer.getSurfaceTexture().setOnFrameAvailableListener(new SurfaceTexture.OnFrameAvailableListener() {
@@ -90,7 +99,9 @@ public class CameraYzzView extends GLSurfaceView implements GLSurfaceView.Render
 
     @Override
     public void onDrawFrame(GL10 gl) {
+        mCameraDrawer.setFaces(facefaces);
         mCameraDrawer.onDrawFrame(gl);
+
     }
 
     @Override

@@ -1,11 +1,14 @@
 package com.yue.opengl.deep5.filter;
 
 import android.content.res.Resources;
+import android.graphics.Rect;
+import android.hardware.camera2.params.Face;
 import android.opengl.GLES11Ext;
 import android.opengl.GLES20;
 import android.util.Log;
 
 import com.yue.opengl.deep5.utils.MatrixUtils;
+import com.yue.yueapp.utils.LoggerUtils;
 
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -30,6 +33,8 @@ public class OesFilter {
     private int mACoord;
 
     private int mUMatrix;
+    private Face[] facefaces;
+    private Rect sensorRect;
 
     //pos vertex
     protected FloatBuffer mVerBuffer;
@@ -88,12 +93,63 @@ public class OesFilter {
         onClear();
         //step1 use program
         onUseProgram();
+
+        onSetNewValue();
         //step2 active and bind custom data
         onSetExpandData();
         //step3 bind texture
         onBindTexture();
         //step4 normal draw
         onDraw();
+    }
+
+    private void onSetNewValue() {
+        if (facefaces != null && facefaces.length > 0) {
+            GLES20.glUniform1i(GLES20.glGetUniformLocation(mProgram, "show"), 1);
+            float limitX = 0.35f;
+            float limitY = 0.3f;
+            GLES20.glUniform1f(GLES20.glGetUniformLocation(mProgram, "limitX"), limitX);
+            GLES20.glUniform1f(GLES20.glGetUniformLocation(mProgram, "limitY"), limitY);
+
+            Rect rectFace = facefaces[0].getBounds();
+            float faceHeight = rectFace.right - rectFace.left;
+            float faceWidth = rectFace.bottom - rectFace.top;
+
+            float sensorWidth = sensorRect.bottom - sensorRect.top;
+            float sensorHeight = ((float) (sensorRect.right - sensorRect.left) * 9) / 16;
+
+            float scaleSensorWidth = faceWidth / sensorWidth;
+            float scaleSensorHeight = faceHeight / sensorHeight;
+
+//            float scaleWidth = limitY / scaleSensorWidth;
+//            float scaleHeight = limitX / scaleSensorHeight;
+            float scaleWidth = scaleSensorWidth / limitY;
+            float scaleHeight = scaleSensorHeight / limitX;
+
+
+            GLES20.glUniform1f(GLES20.glGetUniformLocation(mProgram, "scaleWidth"), scaleWidth);
+            GLES20.glUniform1f(GLES20.glGetUniformLocation(mProgram, "scaleHeight"), scaleHeight);
+
+//            float shiftX = 0;
+            float shiftY = (rectFace.top - sensorRect.top) / sensorWidth;
+
+
+            float sensorHeightSurplus = ((float) (sensorRect.right - sensorRect.left) * 3) / 16 / 2;
+            float shiftX = (rectFace.left - sensorHeightSurplus - sensorRect.left) / (sensorRect.right - sensorRect.left);
+
+            LoggerUtils.e(" scaleWidth " + scaleWidth + " scaleHeight " + scaleHeight
+                    + " \n rectFace.top " + rectFace.top + " sensorRect.bottom " + rectFace.bottom
+                    + "  rectFace.left " + rectFace.left + " sensorRect.right " + rectFace.right
+                    + "  shiftY " + shiftY + "  shiftX " + shiftX + "  sensorHeightSurplus " + sensorHeightSurplus
+            );
+
+
+            GLES20.glUniform1f(GLES20.glGetUniformLocation(mProgram, "shiftX"), shiftX);
+            GLES20.glUniform1f(GLES20.glGetUniformLocation(mProgram, "shiftY"), shiftY);
+
+        } else {
+            GLES20.glUniform1i(GLES20.glGetUniformLocation(mProgram, "show"), 0);
+        }
     }
 
 
@@ -283,5 +339,13 @@ public class OesFilter {
 
     public void setMatrix(float[] matrix) {
         this.matrix = matrix;
+    }
+
+    public void setFaces(Face[] facefaces) {
+        this.facefaces = facefaces;
+    }
+
+    public void setSensorRect(Rect sensorRect) {
+        this.sensorRect = sensorRect;
     }
 }

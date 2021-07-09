@@ -1,7 +1,9 @@
 package com.yue.opengl.deepy5;
 
 import android.content.res.Resources;
+import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
+import android.hardware.camera2.params.Face;
 import android.opengl.GLES11Ext;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
@@ -34,6 +36,7 @@ public class CameraYzzDrawer implements GLSurfaceView.Renderer {
 
     private int mPreviewWidth;
     private int mPreviewHeight;
+    private Rect sensorRect;
 
     //视图矩阵。控制旋转和变化
     private float[] mModelMatrix = new float[16];
@@ -116,5 +119,14 @@ public class CameraYzzDrawer implements GLSurfaceView.Renderer {
         this.mPreviewWidth = previewWidth;
         this.mPreviewHeight = previewHeight;
         calculateMatrix();
+    }
+
+    public void setSensorRect(Rect sensorRect) {
+        this.sensorRect = sensorRect;
+        mOesFilter.setSensorRect(sensorRect);
+    }
+
+    public void setFaces(Face[] facefaces) {
+        mOesFilter.setFaces(facefaces);
     }
 }
