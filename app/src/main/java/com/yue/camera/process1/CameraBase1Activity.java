@@ -35,9 +35,9 @@ import java.util.Arrays;
 
 
 /**
- *Time: 2021/6/1
- *Author:yzzCool
- *Description: camera preview，有预览
+ * Time: 2021/6/1
+ * Author:yzzCool
+ * Description: camera preview，有预览
  */
 public class CameraBase1Activity extends AppCompatActivity {
     private static final String FRAGMENT_DIALOG = "dialog";
@@ -49,7 +49,8 @@ public class CameraBase1Activity extends AppCompatActivity {
 
     private CaptureRequest.Builder mPreviewRequestBuilder;
     private CaptureRequest mPreviewRequest;
-    private CameraCaptureSession mCaptureSession;
+    private CameraCaptureSession mCameraCaptureSession;
+    private Surface surface;
 
 
     @Override
@@ -85,6 +86,9 @@ public class CameraBase1Activity extends AppCompatActivity {
     }
 
 
+    /**
+     * 1. openCamera  得到 CameraDevice
+     */
     private void openCamera() {
         LoggerUtils.e("openCamera openCamera");
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -93,7 +97,7 @@ public class CameraBase1Activity extends AppCompatActivity {
         }
         CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
         try {
-            mCameraId =manager.getCameraIdList()[0];
+            mCameraId = manager.getCameraIdList()[0];
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
@@ -106,10 +110,10 @@ public class CameraBase1Activity extends AppCompatActivity {
     }
 
 
-    CameraDevice.StateCallback mStateCallback=new CameraDevice.StateCallback() {
+    CameraDevice.StateCallback mStateCallback = new CameraDevice.StateCallback() {
         @Override
         public void onOpened(@NonNull CameraDevice camera) {
-             mCameraDevice = camera;
+            mCameraDevice = camera;
             //开启预览
             createCameraPreviewSession();
         }
@@ -126,41 +130,47 @@ public class CameraBase1Activity extends AppCompatActivity {
     };
 
     /**
-     * Creates a new {@link CameraCaptureSession} for camera preview.
+     * 2. mCameraDevice.createCaptureSession
+     *   得到 CameraCaptureSession
      */
     private void createCameraPreviewSession() {
         try {
             SurfaceTexture texture = mTextureView.getSurfaceTexture();
             assert texture != null;
-            Surface surface = new Surface(texture);
-            mPreviewRequestBuilder = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
-            mPreviewRequestBuilder.addTarget(surface);
-
+            surface = new Surface(texture);
             mCameraDevice.createCaptureSession(Arrays.asList(surface),
-                    new CameraCaptureSession.StateCallback() {
-
-                        @Override
-                        public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
-                            mCaptureSession = cameraCaptureSession;
-                            try {
-                                mPreviewRequest = mPreviewRequestBuilder.build();
-                                mCaptureSession.setRepeatingRequest(mPreviewRequest, null, null);
-                            } catch (CameraAccessException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        @Override
-                        public void onConfigureFailed(@NonNull CameraCaptureSession cameraCaptureSession) {
-
-                        }
-                    }, null
+                    cameraCaptureSessionStateCallback, null
             );
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
     }
 
+
+    /**
+     * 3. mCameraCaptureSession.setRepeatingRequest
+     *  开始预览
+     */
+    CameraCaptureSession.StateCallback cameraCaptureSessionStateCallback = new CameraCaptureSession.StateCallback() {
+
+        @Override
+        public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
+            mCameraCaptureSession = cameraCaptureSession;
+            mPreviewRequestBuilder.addTarget(surface);
+            try {
+                mPreviewRequestBuilder = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
+                mPreviewRequest = mPreviewRequestBuilder.build();
+                mCameraCaptureSession.setRepeatingRequest(mPreviewRequest, null, null);
+            } catch (CameraAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onConfigureFailed(@NonNull CameraCaptureSession cameraCaptureSession) {
+
+        }
+    };
 
     /**
      * Shows OK/Cancel confirmation dialog about camera permission.
