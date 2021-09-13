@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import example.yzz.openglwar.episode1.WarEpisode1Activity;
+import example.yzz.openglwar.episode2.WarEpisode2Activity;
 import example.yzz.recyclerviewdemo.R;
 
 public class WarEpisodeMainActivity extends AppCompatActivity {
@@ -22,6 +23,6 @@ public class WarEpisodeMainActivity extends AppCompatActivity {
     }
 
     public void onClick2(View view) {
-
+        startActivity(new Intent(this, WarEpisode2Activity.class));
     }
 }

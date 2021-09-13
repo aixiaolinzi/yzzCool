@@ -15,6 +15,10 @@
             android:name="example.yzz.openglwar.episode1.WarEpisode1Activity"
             android:exported="true" />
         <activity
+            android:name="example.yzz.openglwar.episode2.WarEpisode2Activity"
+            android:exported="true" />
+
+        <activity
             android:name="example.yzz.openglwar.WarEpisodeMainActivity"
             android:exported="true" >
             <intent-filter>
