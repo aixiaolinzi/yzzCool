@@ -16,6 +16,7 @@ public class GLRenderer1_2 implements GLSurfaceView.Renderer {
     private Context mContext;
 
     Triangle1_2 mTriangle12;
+    Triangle1_2_4 mTriangle124;
 
     public GLRenderer1_2(Context context) {
         this.mContext = context;
@@ -38,7 +39,8 @@ public class GLRenderer1_2 implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         GLES20.glClearColor(1.0f, 0.0f, 0.0f, 1.0f);//rgba
-        mTriangle12 = new Triangle1_2(mContext);
+        //mTriangle12 = new Triangle1_2(mContext);
+        mTriangle124 = new Triangle1_2_4(mContext);
     }
 
     @Override
@@ -50,7 +52,8 @@ public class GLRenderer1_2 implements GLSurfaceView.Renderer {
     public void onDrawFrame(GL10 gl) {
         //清除颜色缓存和深度缓存
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
-        mTriangle12.draw();
+        //mTriangle12.draw();
+        mTriangle124.draw();
     }
 
 
