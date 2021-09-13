@@ -1,4 +1,4 @@
-package example.yzz.openglwar.episode1.ui.warepisode2;
+package example.yzz.openglwar.episode1.ui.warepisode3;
 
 import android.content.Context;
 import android.opengl.GLES20;
@@ -14,7 +14,7 @@ import example.yzz.openglwar.utils.GLUtils;
  * Author:yzzCool
  * Description:
  */
-public class Triangle1_2 {
+public class Triangle1_3 {
     private Context mContext;
 
     private FloatBuffer vertexBuffer;//顶点缓冲
@@ -23,6 +23,7 @@ public class Triangle1_2 {
     private final int mProgram;
     private int mPositionHandle;//位置句柄
     private int mColorHandle;//颜色句柄
+    private int muMVPMatrixHandle;//颜色句柄
     private final int vertexCount = sCoo.length / COORDS_PER_VERTEX;//顶点个数
     private final int vertexStride = COORDS_PER_VERTEX * 4; // 3*4=12
 
@@ -37,7 +38,7 @@ public class Triangle1_2 {
     // 颜色，rgba
     float color[] = {0.63671875f, 0.76953125f, 0.22265625f, 1.0f};
 
-    public Triangle1_2(Context context) {
+    public Triangle1_3(Context context) {
         this.mContext =  context;
         //初始化顶点字节缓冲区
         ByteBuffer bb = ByteBuffer.allocateDirect(sCoo.length * 4);//每个浮点数:坐标个数* 4字节
@@ -47,10 +48,10 @@ public class Triangle1_2 {
         vertexBuffer.position(0);//设置缓冲区以读取第一个坐标
 
         int vertexShader = GLUtils.loadShaderAssets(this.mContext,
-                GLES20.GL_VERTEX_SHADER, "war1_2_3.vert");
+                GLES20.GL_VERTEX_SHADER, "war1_3.vert");
         //片元着色
         int fragmentShader = GLUtils.loadShaderAssets(this.mContext,
-                GLES20.GL_FRAGMENT_SHADER, "war1_2_3.frag");
+                GLES20.GL_FRAGMENT_SHADER, "war1_3.frag");
 
         mProgram = GLES20.glCreateProgram();//创建空的OpenGL ES 程序
         GLES20.glAttachShader(mProgram, vertexShader);//加入顶点着色器
@@ -58,9 +59,14 @@ public class Triangle1_2 {
         GLES20.glLinkProgram(mProgram);//创建可执行的OpenGL ES项目
     }
 
-    public void draw() {
+    public void draw(float[] mvpMatrix) {
         // 将程序添加到OpenGL ES环境中
         GLES20.glUseProgram(mProgram);
+
+
+        muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
+        GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, mvpMatrix, 0);
+
 
         //获取顶点着色器的vPosition成员的句柄
         mPositionHandle = GLES20.glGetAttribLocation(mProgram, "vPosition");
@@ -71,6 +77,8 @@ public class Triangle1_2 {
                 mPositionHandle, COORDS_PER_VERTEX,
                 GLES20.GL_FLOAT, false,
                 vertexStride, vertexBuffer);
+
+
 
         // 获取片元着色器的vColor成员的句柄
         mColorHandle = GLES20.glGetUniformLocation(mProgram, "vColor");
