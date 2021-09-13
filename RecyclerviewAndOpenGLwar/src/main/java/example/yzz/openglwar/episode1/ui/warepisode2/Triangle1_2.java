@@ -1,30 +1,24 @@
 package example.yzz.openglwar.episode1.ui.warepisode2;
 
+import android.content.Context;
 import android.opengl.GLES20;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
+import example.yzz.openglwar.utils.GLUtils;
+
 /**
  * Time:2021/9/13
  * Author:yzzCool
  * Description:
  */
-public class Triangle {
+public class Triangle1_2 {
+    private Context mContext;
 
     private FloatBuffer vertexBuffer;//顶点缓冲
-    private final String vertexShaderCode =//顶点着色代码
-            "attribute vec4 vPosition;" +
-                    "void main() {" +
-                    "  gl_Position = vPosition;" +
-                    "}";
-    private final String fragmentShaderCode =//片元着色代码
-            "precision mediump float;" +
-                    "uniform vec4 vColor;" +
-                    "void main() {" +
-                    "  gl_FragColor = vColor;" +
-                    "}";
+
 
     private final int mProgram;
     private int mPositionHandle;//位置句柄
@@ -43,7 +37,8 @@ public class Triangle {
     // 颜色，rgba
     float color[] = {0.63671875f, 0.76953125f, 0.22265625f, 1.0f};
 
-    public Triangle() {
+    public Triangle1_2(Context context) {
+        this.mContext =  context;
         //初始化顶点字节缓冲区
         ByteBuffer bb = ByteBuffer.allocateDirect(sCoo.length * 4);//每个浮点数:坐标个数* 4字节
         bb.order(ByteOrder.nativeOrder());//使用本机硬件设备的字节顺序
@@ -51,10 +46,11 @@ public class Triangle {
         vertexBuffer.put(sCoo);// 将坐标添加到FloatBuffer
         vertexBuffer.position(0);//设置缓冲区以读取第一个坐标
 
-        int vertexShader = GLRenderer.loadShader(GLES20.GL_VERTEX_SHADER,//顶点着色
-                vertexShaderCode);
-        int fragmentShader = GLRenderer.loadShader(GLES20.GL_FRAGMENT_SHADER,//片元着色
-                fragmentShaderCode);
+        int vertexShader = GLUtils.loadShaderAssets(this.mContext,
+                GLES20.GL_VERTEX_SHADER, "war1_2_3.vert");
+        //片元着色
+        int fragmentShader = GLUtils.loadShaderAssets(this.mContext,
+                GLES20.GL_FRAGMENT_SHADER, "war1_2_3.frag");
 
         mProgram = GLES20.glCreateProgram();//创建空的OpenGL ES 程序
         GLES20.glAttachShader(mProgram, vertexShader);//加入顶点着色器

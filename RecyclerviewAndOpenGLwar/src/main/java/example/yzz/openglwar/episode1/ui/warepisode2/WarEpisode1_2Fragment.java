@@ -8,8 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import example.yzz.recyclerviewdemo.R;
-
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link WarEpisode1_2Fragment#newInstance} factory method to
@@ -38,13 +36,17 @@ public class WarEpisode1_2Fragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment WarEpisode1_2Fragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static WarEpisode1_2Fragment newInstance(String param1, String param2) {
         WarEpisode1_2Fragment fragment = new WarEpisode1_2Fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+        return fragment;
+    }
+
+    public static WarEpisode1_2Fragment newInstance() {
+        WarEpisode1_2Fragment fragment = new WarEpisode1_2Fragment();
         return fragment;
     }
 
@@ -61,6 +63,8 @@ public class WarEpisode1_2Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_war_episode1_2, container, false);
+        GLView1_2 glView12 = new GLView1_2(getContext());
+        return glView12;
+        //return inflater.inflate(R.layout.fragment_war_episode1_2, container, false);
     }
 }

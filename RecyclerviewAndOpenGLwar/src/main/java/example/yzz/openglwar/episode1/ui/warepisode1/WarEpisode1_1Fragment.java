@@ -28,9 +28,9 @@ public class WarEpisode1_1Fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-       GLView glView =  new GLView(getContext());
-//        return inflater.inflate(R.layout.war_episode1_1_fragment, container, false);
+        GLView glView = new GLView(getContext());
         return glView;
+//        return inflater.inflate(R.layout.war_episode1_1_fragment, container, false);
     }
 
     @Override
