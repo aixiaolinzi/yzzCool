@@ -1,8 +1,7 @@
 package com.yue.yueapp;
 
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
+
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +11,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.Assert.*;
+
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
 
 /**
  * Instrumentation test, which will execute on an Android device.
@@ -24,7 +26,7 @@ public class ExampleInstrumentedTest {
     @Test
     public void useAppContext() throws Exception {
         // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
         assertEquals("com.yue.yueapp", appContext.getPackageName());
     }
