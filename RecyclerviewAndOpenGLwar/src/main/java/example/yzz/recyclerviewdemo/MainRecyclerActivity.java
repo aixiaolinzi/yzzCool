@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import example.yzz.openglwar.WarEpisodeMainActivity;
 import example.yzz.recyclerviewdemo.okhttptest.HttpActivity;
 import example.yzz.recyclerviewdemo.shape.ShapeActivity;
 import example.yzz.recyclerviewdemo.socket.SocketTestActivity;
@@ -48,5 +49,9 @@ public class MainRecyclerActivity extends AppCompatActivity {
     public void recycler_tv6(View view) {
         //跳转到ShapeActivity
         startActivity(new Intent(this, ShapeActivity.class));
+    }
+
+    public void recycler_tv7(View view) {
+        startActivity(new Intent(this, WarEpisodeMainActivity.class));
     }
 }

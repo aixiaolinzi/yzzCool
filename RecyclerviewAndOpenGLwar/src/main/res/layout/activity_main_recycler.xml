@@ -54,6 +54,16 @@
             android:text="跳转到ShapeActivity"
             android:onClick="recycler_tv6"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
+            android:text="跳转到 Android多媒体之GL-ES战记"
+            android:onClick="recycler_tv7"/>
+
+
+
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
