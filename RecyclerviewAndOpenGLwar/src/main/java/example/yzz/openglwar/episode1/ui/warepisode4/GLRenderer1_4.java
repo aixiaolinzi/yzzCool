@@ -25,22 +25,11 @@ public class GLRenderer1_4 implements GLSurfaceView.Renderer {
     private final float[] mViewMatrix = new float[16];
 
 
+    //变换矩阵 1_4 追加的
+    private float[] mOpMatrix = new float[16];
+
     public GLRenderer1_4(Context context) {
         this.mContext = context;
-    }
-
-    /**
-     * 加载作色器
-     * @param type  顶点着色 {@link GLES20.GL_VERTEX_SHADER}
-     *              片元着色 {@link GLES20.GL_FRAGMENT_SHADER}
-     * @param shaderCode 着色代码
-     * @return 作色器
-     */
-    public static int loadShader(int type, String shaderCode){
-        int shader = GLES20.glCreateShader(type);//创建着色器
-        GLES20.glShaderSource(shader, shaderCode);//添加着色器源代码
-        GLES20.glCompileShader(shader);//编译
-        return shader;
     }
 
     @Override
@@ -71,11 +60,29 @@ public class GLRenderer1_4 implements GLSurfaceView.Renderer {
         //清除颜色缓存和深度缓存
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
-        // 计算投影和视图转换
+
+
+        //mOpMatrix旋转变换
+        Matrix.setRotateM(mOpMatrix, 0, 30, 0, 0, -1);
+
+        //使用mOpMatrix对mMVPMatrix进行变换
+        Matrix.multiplyMM(
+                mMVPMatrix, 0,
+                mViewMatrix, 0,
+                mOpMatrix, 0);
+
         Matrix.multiplyMM(
                 mMVPMatrix, 0,
                 mProjectionMatrix, 0,
-                mViewMatrix, 0);
+                mMVPMatrix, 0);
+
+// 下面的隐藏，只是使用上面的。下面的是和GLRenderer1_3一样的。
+//        // 计算投影和视图转换
+//        Matrix.multiplyMM(
+//                mMVPMatrix, 0,
+//                mProjectionMatrix, 0,
+//                mViewMatrix, 0);
+
         mTriangle124.draw(mMVPMatrix);
 
     }
