@@ -11,7 +11,8 @@ import android.util.AttributeSet;
  */
 public class GLView1_4 extends GLSurfaceView {
 
-    private GLRenderer1_4 mRenderer;
+    //private GLRenderer1_4 mRenderer;
+    private GLRenderer1_4_2 mRenderer;
     private Context mContext;
 
     public GLView1_4(Context context) {
@@ -26,7 +27,7 @@ public class GLView1_4 extends GLSurfaceView {
 
     private void init() {
         setEGLContextClientVersion(2);//设置OpenGL ES 2.0 context
-        mRenderer = new GLRenderer1_4(mContext);
+        mRenderer = new GLRenderer1_4_2(mContext);
         setRenderer(mRenderer);//设置渲染器
     }
 
