@@ -12,16 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="example.yzz.openglwar.WarEpisodeMainActivity"
+            android:name="example.yzz.openglwar.episode1.WarEpisode1Activity"
             android:exported="true" />
-        <activity android:name=".MainRecyclerActivity">
+        <activity
+            android:name="example.yzz.openglwar.WarEpisodeMainActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".RecyclerViewActivity"></activity>
+        <activity android:name=".MainRecyclerActivity">
+
+        </activity>
+        <activity android:name=".RecyclerViewActivity" />
         <activity android:name=".volleytest.VolleyActivity" />
         <activity android:name=".okhttptest.HttpActivity" />
         <activity
