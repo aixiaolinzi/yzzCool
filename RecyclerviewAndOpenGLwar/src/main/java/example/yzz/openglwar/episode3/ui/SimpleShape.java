@@ -33,20 +33,6 @@ public class SimpleShape extends RenderAble {
     //略...
     private WarShape mShape;
 
-    private float[] mVertex = new float[]{
-            -0.5f, 0.0f, -0.5f,
-            -0.5f, 0.0f, 0.5f,
-            0.5f, 0.0f, 0.5f,
-            0.5f, 0.0f, -0.5f,
-    };
-
-    private float[] mColor = new float[]{
-            1.0f, 1.0f, 1.0f, 1.0f,
-            1.0f, 1.0f, 1.0f, 1.0f,
-            1.0f, 1.0f, 1.0f, 1.0f,
-            0.21960784f,0.56078434f,0.92156863f,1.0f,
-    };
-
     public SimpleShape(Context context, WarShape shape) {
         super(context);
         mShape = shape;
@@ -102,17 +88,13 @@ public class SimpleShape extends RenderAble {
                 false,
                 vertexColorStride,
                 mColorBuffer);
-        /**
-         * 1.绘制四点
-         */
-        //int count = mVertex.length / Cons.DIMENSION_3;
-        //GLES20.glDrawArrays(GLES20.GL_POINTS, 0, count);
+
 
         /**
-         * 2. 绘制连线
+         * 绘制连线
          */
         GLES20.glLineWidth(10);//设置线的宽度
-        int count = mVertex.length / Cons.DIMENSION_3;
+        int count = mShape.getVertex().length / Cons.DIMENSION_3;
         //GLES20.glDrawArrays(GLES20.GL_POINTS, 0, count);
         //GLES20.glDrawArrays(GLES20.GL_LINES, 0, count);
         //GLES20.glDrawArrays(GLES20.GL_LINE_STRIP, 0, count);

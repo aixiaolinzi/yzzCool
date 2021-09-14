@@ -8,7 +8,10 @@ import android.opengl.Matrix;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import example.yzz.openglwar.episode3.abs.Cons;
 import example.yzz.openglwar.episode3.abs.RenderAble;
+import example.yzz.openglwar.episode3.abs.WarShape;
+import example.yzz.openglwar.episode3.ui.SimpleShape;
 
 /**
  * Time:2021/9/13
@@ -27,6 +30,7 @@ public class WorldRenderer3_11 implements GLSurfaceView.Renderer {
     private float[] mOpMatrix = new float[16];
     private Context mContext;
     private RenderAble mWorldShape;
+    private RenderAble mCoo;
 
     public WorldRenderer3_11(Context context) {
         mContext = context;
@@ -38,6 +42,8 @@ public class WorldRenderer3_11 implements GLSurfaceView.Renderer {
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);//rgba
         mWorldShape = new WorldShape3_11(mContext);
+        WarShape shape = new WarShape(Cons.VERTEX_COO, Cons.COLOR_COO, GLES20.GL_LINES);
+        mCoo = new SimpleShape(mContext, shape);
     }
 
     @Override
@@ -74,6 +80,7 @@ public class WorldRenderer3_11 implements GLSurfaceView.Renderer {
                 mProjectionMatrix, 0,
                 mMVPMatrix, 0);
         mWorldShape.draw(mMVPMatrix);
+        mCoo.draw(mMVPMatrix);
         //打开深度检测
         GLES20.glEnable(GLES20.GL_DEPTH_TEST);
         currDeg++;
