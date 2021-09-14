@@ -24,19 +24,41 @@ public class WorldShape extends RenderAble {
     private final int vertexColorStride = Cons.DIMENSION_4 * 4; // 4*4=16
     private FloatBuffer mVertexBuffer;//顶点缓冲
     private final int vertexStride = Cons.DIMENSION_3 * 4; // 3*4=12
+    /**
+     * 1.  点形状绘制
+     */
+//    private float[] mVertex = new float[]{
+//            0.0f, 0.0f, 0.0f
+//    };
+//
+//    private float[] mColor = new float[]{
+//            1.0f, 1.0f, 1.0f, 1.0f,
+//    };
+
+    /**
+     * 2. 第三关卡：绘制四点
+     */
     private float[] mVertex = new float[]{
-            0.0f, 0.0f, 0.0f
+            -0.5f, 0.0f, -0.5f,
+            -0.5f, 0.0f, 0.5f,
+            0.5f, 0.0f, 0.5f,
+            0.5f, 0.0f, -0.5f,
     };
 
     private float[] mColor = new float[]{
             1.0f, 1.0f, 1.0f, 1.0f,
+            1.0f, 1.0f, 1.0f, 1.0f,
+            1.0f, 1.0f, 1.0f, 1.0f,
+            1.0f, 1.0f, 1.0f, 1.0f,
     };
+
 
     public WorldShape(Context context) {
         super(context);
         mColorBuffer = WarGLUtils.getFloatBuffer(mColor);
         mVertexBuffer = WarGLUtils.getFloatBuffer(mVertex);
         initProgram();
+
     }
 
     private void initProgram() {
