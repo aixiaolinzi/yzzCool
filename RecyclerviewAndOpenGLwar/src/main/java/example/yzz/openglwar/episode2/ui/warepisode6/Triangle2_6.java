@@ -6,15 +6,16 @@ import android.opengl.GLES20;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
+import java.nio.ShortBuffer;
 
 import example.yzz.openglwar.utils.GLUtils;
 
 /**
  * Time:2021/9/13
  * Author:yzzCool
- * Description:
+ * Description: 在Triangle2_5_3基础上，绘制六边形。
  */
-public class Triangle1_2 {
+public class Triangle2_6 {
     private Context mContext;
 
     private FloatBuffer vertexBuffer;//顶点缓冲
@@ -23,21 +24,35 @@ public class Triangle1_2 {
     private final int mProgram;
     private int mPositionHandle;//位置句柄
     private int mColorHandle;//颜色句柄
+    private int muMVPMatrixHandle;//颜色句柄
     private final int vertexCount = sCoo.length / COORDS_PER_VERTEX;//顶点个数
     private final int vertexStride = COORDS_PER_VERTEX * 4; // 3*4=12
 
     // 数组中每个顶点的坐标数
     static final int COORDS_PER_VERTEX = 3;
+
     static float sCoo[] = {   //以逆时针顺序
-            0.0f, 0.0f, 0.0f, // 顶部
-            -1.0f, -1.0f, 0.0f, // 左下
-            1.0f, -1.0f, 0.0f  // 右下
+            -0.5f, 0.5f, 0.0f, // p0
+            -1.0f, 0.0f, 0.0f, // p1
+            -0.5f, -0.5f, 0.0f, // p2
+            0.5f, -0.5f, 0.0f, //p3
+            1.0f, 0.0f, 0.0f, //p4
+            0.5f, 0.5f, 0.0f, //p5
     };
+
+    //索引数组
+    private short[] idx = {
+            0, 1, 5,
+            1, 5, 2,
+            2, 5, 4,
+            2, 3, 4
+    };
+
 
     // 颜色，rgba
     float color[] = {0.63671875f, 0.76953125f, 0.22265625f, 1.0f};
 
-    public Triangle1_2(Context context) {
+    public Triangle2_6(Context context) {
         this.mContext =  context;
         //初始化顶点字节缓冲区
         ByteBuffer bb = ByteBuffer.allocateDirect(sCoo.length * 4);//每个浮点数:坐标个数* 4字节
@@ -47,10 +62,10 @@ public class Triangle1_2 {
         vertexBuffer.position(0);//设置缓冲区以读取第一个坐标
 
         int vertexShader = GLUtils.loadShaderAssets(this.mContext,
-                GLES20.GL_VERTEX_SHADER, "war1_2_3.vert");
+                GLES20.GL_VERTEX_SHADER, "war1_3.vert");
         //片元着色
         int fragmentShader = GLUtils.loadShaderAssets(this.mContext,
-                GLES20.GL_FRAGMENT_SHADER, "war1_2_3.frag");
+                GLES20.GL_FRAGMENT_SHADER, "war1_3.frag");
 
         mProgram = GLES20.glCreateProgram();//创建空的OpenGL ES 程序
         GLES20.glAttachShader(mProgram, vertexShader);//加入顶点着色器
@@ -58,9 +73,14 @@ public class Triangle1_2 {
         GLES20.glLinkProgram(mProgram);//创建可执行的OpenGL ES项目
     }
 
-    public void draw() {
+    public void draw(float[] mvpMatrix) {
         // 将程序添加到OpenGL ES环境中
         GLES20.glUseProgram(mProgram);
+
+
+        muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
+        GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, mvpMatrix, 0);
+
 
         //获取顶点着色器的vPosition成员的句柄
         mPositionHandle = GLES20.glGetAttribLocation(mProgram, "vPosition");
@@ -77,8 +97,14 @@ public class Triangle1_2 {
         //为三角形设置颜色
         GLES20.glUniform4fv(mColorHandle, 1, color, 0);
 
-        //绘制三角形
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexCount);
+
+        //索引缓冲
+        ShortBuffer idxBuffer = GLUtils.getShortBuffer(idx);
+
+        //绘制
+        GLES20.glDrawElements(GLES20.GL_TRIANGLES, idx.length,
+                GLES20.GL_UNSIGNED_SHORT, idxBuffer);
+
         //禁用顶点数组
         GLES20.glDisableVertexAttribArray(mPositionHandle);
     }

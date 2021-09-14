@@ -9,16 +9,16 @@ import android.util.AttributeSet;
  * Author:yzzCool
  * Description:
  */
-public class GLView1_2 extends GLSurfaceView {
+public class GLView2_6 extends GLSurfaceView {
 
-    private GLRenderer1_2 mRenderer;
+    private GLRenderer2_6 mRenderer;
     private Context mContext;
 
-    public GLView1_2(Context context) {
+    public GLView2_6(Context context) {
         this(context,null);
     }
 
-    public GLView1_2(Context context, AttributeSet attrs) {
+    public GLView2_6(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
         init();
@@ -26,7 +26,7 @@ public class GLView1_2 extends GLSurfaceView {
 
     private void init() {
         setEGLContextClientVersion(2);//设置OpenGL ES 2.0 context
-        mRenderer = new GLRenderer1_2(mContext);
+        mRenderer = new GLRenderer2_6(mContext);
         setRenderer(mRenderer);//设置渲染器
     }
 

@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-import example.yzz.openglwar.episode2.ui.warepisode6.GLView1_2;
-
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link WarEpisode2_5Fragment#newInstance} factory method to
