@@ -1,12 +1,14 @@
 package example.yzz.openglwar.episode3.ui.warepisode10;
 
 import android.content.Context;
+import android.graphics.drawable.shapes.Shape;
 import android.opengl.GLES20;
 
 import java.nio.FloatBuffer;
 
 import example.yzz.openglwar.episode3.abs.Cons;
 import example.yzz.openglwar.episode3.abs.RenderAble;
+import example.yzz.openglwar.episode3.abs.WarShape;
 import example.yzz.openglwar.utils.WarGLUtils;
 
 
@@ -15,7 +17,7 @@ import example.yzz.openglwar.utils.WarGLUtils;
  * Author:yzzCool
  * Description: 在 WorldShape3_9   4个点基础上， 追加颜色的变换。
  */
-public class WorldShape3_10 extends RenderAble {
+public class SimpleShape extends RenderAble {
     private int mProgram;//OpenGL ES 程序
     private int mPositionHandle;//位置句柄
     private int mColorHandle;//颜色句柄
@@ -24,6 +26,9 @@ public class WorldShape3_10 extends RenderAble {
     private final int vertexColorStride = Cons.DIMENSION_4 * 4; // 4*4=16
     private FloatBuffer mVertexBuffer;//顶点缓冲
     private final int vertexStride = Cons.DIMENSION_3 * 4; // 3*4=12
+
+    //略...
+    private WarShape mShape;
 
     private float[] mVertex = new float[]{
             -0.5f, 0.0f, -0.5f,
@@ -39,13 +44,15 @@ public class WorldShape3_10 extends RenderAble {
             0.21960784f,0.56078434f,0.92156863f,1.0f,
     };
 
-    public WorldShape3_10(Context context) {
+    public SimpleShape(Context context, WarShape shape) {
         super(context);
-        mColorBuffer = WarGLUtils.getFloatBuffer(mColor);
-        mVertexBuffer = WarGLUtils.getFloatBuffer(mVertex);
+        mShape = shape;
+        mColorBuffer = WarGLUtils.getFloatBuffer(mShape.getColor());
+        mVertexBuffer = WarGLUtils.getFloatBuffer(mShape.getVertex());
         initProgram();
-
     }
+
+
 
     private void initProgram() {
         //顶点着色
