@@ -50,7 +50,8 @@ public class WorldRenderer3_11_2 implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);//rgba
-        mWorldShape = new WorldShape3_11_2(mContext);
+        //mWorldShape = new WorldShape3_11_2(mContext);
+        mWorldShape = new WorldShape3_11_3(mContext);
     }
 
     @Override

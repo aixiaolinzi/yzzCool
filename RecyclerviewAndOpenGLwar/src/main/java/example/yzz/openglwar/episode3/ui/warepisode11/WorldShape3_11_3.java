@@ -16,18 +16,10 @@ import example.yzz.openglwar.episode3.ui.SimpleShape;
 /**
  * Time:2021/9/13
  * Author:yzzCool
- * Description: 在 WorldShape3_11  基础上，   添加 OP<RenderAble>。、
- * 加入 SimpleShape 完成相应的封装。
- * <p>
- * 第二关卡：简单封装
- * <p>
- * 如果图形创建在WorldRenderer中，感觉很不舒服，毕竟会有很多形状，
- * <p>
- * WorldRenderer的本意只是为了渲染以及视角的控制，并不希望图形掺杂其中
- * WorldShape可以专门绘制形状，由它统一向WorldRenderer输出形状
- * 既然WorldShape总管图形，那么操作图形，在所难免,建一个OP接口，目前只放两个方法
+ * Description: 在 WorldShape3_11_2  基础上，   追加不同的对象。
+ * 绘制不同的图案
  */
-public class WorldShape3_11_2 extends RenderAble implements OP<RenderAble> {
+public class WorldShape3_11_3 extends RenderAble implements OP<RenderAble> {
 
 
     List<RenderAble> mRendererAbles;
@@ -45,15 +37,19 @@ public class WorldShape3_11_2 extends RenderAble implements OP<RenderAble> {
     };
 
 
-    public WorldShape3_11_2(Context context) {
+    public WorldShape3_11_3(Context context) {
         super(context);
         mRendererAbles = new ArrayList<>();
 
         WarShape coo = new WarShape(Cons.VERTEX_COO, Cons.COLOR_COO, GLES20.GL_LINES);
         WarShape ground = new WarShape(mVertex, mColor, GLES20.GL_LINE_LOOP);
+        WarShape top = ground.moveAndCreate(0, 0.5f, 0);
+        WarShape bottom = ground.moveAndCreate(0, -0.5f, 0);
         add(
                 new SimpleShape(mContext, coo),
-                new SimpleShape(mContext, ground)
+                new SimpleShape(mContext, ground),
+                new SimpleShape(mContext, top),
+                new SimpleShape(mContext, bottom)
         );
 
     }
