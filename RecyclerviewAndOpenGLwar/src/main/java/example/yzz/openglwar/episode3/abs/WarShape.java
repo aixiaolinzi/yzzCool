@@ -49,6 +49,9 @@ public class WarShape implements Cloneable {
         this.mDrawType = mDrawType;
     }
 
+    public int getCount() {
+        return mVertex.length / Cons.DIMENSION_3;
+    }
 
     /**
      * 深拷贝

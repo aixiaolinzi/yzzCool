@@ -16,8 +16,11 @@ import example.yzz.openglwar.episode3.ui.SimpleShape;
 /**
  * Time:2021/9/13
  * Author:yzzCool
- * Description: 在 WorldShape3_11_2  基础上，   追加不同的对象。
+ * Description:
+ * 1. 在 WorldShape3_11_2  基础上，   追加不同的对象。
  * 绘制不同的图案
+ *
+ * 2.  追加4根竖直的线
  */
 public class WorldShape3_11_3 extends RenderAble implements OP<RenderAble> {
 
@@ -36,17 +39,47 @@ public class WorldShape3_11_3 extends RenderAble implements OP<RenderAble> {
             0.21960784f, 0.56078434f, 0.92156863f, 1.0f,
     };
 
+    /**
+     * 2.  追加4根竖直的线
+     */
+    private float[] mVertex2 = new float[]{
+            0.5f, 0.5f, 0.5f,
+            0.5f, -0.5f, 0.5f,
+
+            -0.5f, 0.5f, 0.5f,
+            -0.5f, -0.5f, 0.5f,
+
+            -0.5f, 0.5f, -0.5f,
+            -0.5f, -0.5f, -0.5f,
+
+            0.5f, 0.5f, -0.5f,
+            0.5f, -0.5f, -0.5f,
+    };
+    private float[] mColor2 = new float[]{
+            1.0f, 0.0f, 0.0f, 1.0f,
+            1.0f, 0.0f, 0.0f, 1.0f,
+            1.0f, 1.0f, 1.0f, 1.0f,
+            1.0f, 1.0f, 1.0f, 1.0f,
+            1.0f, 1.0f, 1.0f, 1.0f,
+            1.0f, 1.0f, 1.0f, 1.0f,
+            1.0f, 1.0f, 1.0f, 1.0f,
+            1.0f, 1.0f, 1.0f, 1.0f,
+    };
+
 
     public WorldShape3_11_3(Context context) {
         super(context);
         mRendererAbles = new ArrayList<>();
 
         WarShape coo = new WarShape(Cons.VERTEX_COO, Cons.COLOR_COO, GLES20.GL_LINES);
+        WarShape line = new WarShape(mVertex2, mColor2, GLES20.GL_LINES);
+
         WarShape ground = new WarShape(mVertex, mColor, GLES20.GL_LINE_LOOP);
         WarShape top = ground.moveAndCreate(0, 0.5f, 0);
         WarShape bottom = ground.moveAndCreate(0, -0.5f, 0);
         add(
                 new SimpleShape(mContext, coo),
+                new SimpleShape(mContext, line),
                 new SimpleShape(mContext, ground),
                 new SimpleShape(mContext, top),
                 new SimpleShape(mContext, bottom)

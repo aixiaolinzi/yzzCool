@@ -94,11 +94,15 @@ public class SimpleShape extends RenderAble {
          * 绘制连线
          */
         GLES20.glLineWidth(10);//设置线的宽度
-        int count = mShape.getVertex().length / Cons.DIMENSION_3;
-        //GLES20.glDrawArrays(GLES20.GL_POINTS, 0, count);
-        //GLES20.glDrawArrays(GLES20.GL_LINES, 0, count);
-        //GLES20.glDrawArrays(GLES20.GL_LINE_STRIP, 0, count);
-        GLES20.glDrawArrays(GLES20.GL_LINE_LOOP, 0, count);
+
+//        int count = mShape.getVertex().length / Cons.DIMENSION_3;
+//        //GLES20.glDrawArrays(GLES20.GL_POINTS, 0, count);
+//        //GLES20.glDrawArrays(GLES20.GL_LINES, 0, count);
+//        //GLES20.glDrawArrays(GLES20.GL_LINE_STRIP, 0, count);
+//        GLES20.glDrawArrays(GLES20.GL_LINE_LOOP, 0, count);
+
+        // WorldShape3_11_3 开始，glDrawArrays 里的类型和数量 由shaper控制。
+        GLES20.glDrawArrays(mShape.getDrawType(), 0, mShape.getCount());
 
     }
 }
