@@ -12,6 +12,7 @@ import android.util.AttributeSet;
 public class WorldView3_11 extends GLSurfaceView {
 
     private WorldRenderer3_11 mRenderer;
+    private WorldRenderer3_11_2 worldRenderer3_11_2;
 
     public WorldView3_11(Context context) {
         this(context, null);
@@ -24,8 +25,9 @@ public class WorldView3_11 extends GLSurfaceView {
 
     private void init() {
         setEGLContextClientVersion(2);//设置OpenGL ES 2.0 context
-        mRenderer = new WorldRenderer3_11(getContext());
-        setRenderer(mRenderer);//设置渲染器
+//        mRenderer = new WorldRenderer3_11(getContext());
+        worldRenderer3_11_2 = new WorldRenderer3_11_2(getContext());
+        setRenderer(worldRenderer3_11_2);//设置渲染器
         setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
     }
 

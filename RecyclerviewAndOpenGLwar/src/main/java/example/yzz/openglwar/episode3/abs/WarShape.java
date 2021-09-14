@@ -3,7 +3,9 @@ package example.yzz.openglwar.episode3.abs;
 /**
  * Time:2021/9/13
  * Author:yzzCool
- * Description: Shape ==> WarShape 修改一下名字。
+ * Description:
+ * 3_10 开始追加。
+ * Shape ==> WarShape 修改一下名字。
  *
  */
 public class WarShape {

@@ -2,11 +2,12 @@ package example.yzz.openglwar.episode3.abs;
 
 import android.content.Context;
 
+
 /**
- * 作者：张风捷特烈<br/>
- * 时间：2019/1/13/013:8:37<br/>
- * 邮箱：1981462002@qq.com<br/>
- * 说明：
+ *Time: 2021/9/14
+ *Author:yzzCool
+ *Description: Android多媒体之GLES2战记第三集--圣火之光
+ * 开始就有这个抽象类，由抽象类来控制了。
  */
 public abstract class RenderAble {
     protected Context mContext;
