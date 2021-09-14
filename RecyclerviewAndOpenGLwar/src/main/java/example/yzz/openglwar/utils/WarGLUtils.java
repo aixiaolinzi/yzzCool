@@ -1,7 +1,10 @@
 package example.yzz.openglwar.utils;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
+import android.opengl.GLUtils;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
@@ -13,12 +16,15 @@ import java.nio.ShortBuffer;
 
 
 /**
- *Time: 2021/9/13
- *Author:yzzCool
- *Description: 副本二---龙之怒色 2.第二关卡：资源文件的读取
- * 添加的资源。
+ * Time: 2021/9/13
+ * Author:yzzCool
+ * Description: 1、 副本二---龙之怒色 2.第二关卡：资源文件的读取
+ * 2. 添加的资源。
+ * 3. 2_8  纹理追加下面两个方法。
+ * loadTexture(Context ctx,int resId)
+ * public static int loadTexture(Context ctx,Bitmap bitmap)
  */
-public class GLUtils {
+public class WarGLUtils {
 
     //从脚本中加载shader内容的方法
     public static int loadShaderAssets(Context ctx, int type, String name) {
@@ -81,6 +87,7 @@ public class GLUtils {
 
     /**
      * float数组缓冲数据
+     *
      * @param vertexs 顶点
      * @return 获取浮点形缓冲数据
      */
@@ -101,6 +108,7 @@ public class GLUtils {
 
     /**
      * short数组缓冲数据
+     *
      * @param vertexs short 数组
      * @return 获取short缓冲数据
      */
@@ -114,6 +122,43 @@ public class GLUtils {
         return buffer;
     }
 
+    /**************************** 2_8纹理使用 **********************************************/
+
+    /**
+     * 资源id 加载纹理
+     *
+     * @param ctx   上下文
+     * @param resId 资源id
+     * @return 纹理id
+     */
+    public static int loadTexture(Context ctx, int resId) {
+        Bitmap bitmap = BitmapFactory.decodeResource(ctx.getResources(), resId);
+        return loadTexture(ctx, bitmap);
+    }
+
+    /**
+     * bitmap 加载纹理
+     *
+     * @param ctx    上下文
+     * @param bitmap bitmap
+     * @return 纹理id
+     */
+    public static int loadTexture(Context ctx, Bitmap bitmap) {
+        //生成纹理ID
+        int[] textures = new int[1];
+        //(产生的纹理id的数量,纹理id的数组,偏移量)
+        GLES20.glGenTextures(1, textures, 0);
+        int textureId = textures[0];
+        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureId);
+        GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_NEAREST);
+        GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);
+        GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_CLAMP_TO_EDGE);
+        GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_CLAMP_TO_EDGE);
+        //实际加载纹理(纹理类型,纹理的层次,纹理图像,纹理边框尺寸)
+        GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
+        bitmap.recycle();          //纹理加载成功后释放图片
+        return textureId;
+    }
 
 
 }

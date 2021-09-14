@@ -8,6 +8,9 @@ import android.opengl.Matrix;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import example.yzz.openglwar.utils.WarGLUtils;
+import example.yzz.recyclerviewdemo.R;
+
 /**
  * Time:2021/9/13
  * Author:yzzCool
@@ -15,8 +18,9 @@ import javax.microedition.khronos.opengles.GL10;
  */
 public class GLRenderer2_8 implements GLSurfaceView.Renderer {
     private Context mContext;
+    private int textureId;
 
-    Triangle2_8 mTriangle124;
+    TextureRectangle mTriangle124;
     //Model View Projection Matrix--模型视图投影矩阵
     private final float[] mMVPMatrix = new float[16];
     //投影矩阵 mProjectionMatrix
@@ -35,7 +39,7 @@ public class GLRenderer2_8 implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         GLES20.glClearColor(1.0f, 0.0f, 0.0f, 1.0f);//rgba
-        mTriangle124 = new Triangle2_8(mContext);
+        mTriangle124 = new TextureRectangle(mContext);
     }
 
     @Override
@@ -60,30 +64,16 @@ public class GLRenderer2_8 implements GLSurfaceView.Renderer {
         //清除颜色缓存和深度缓存
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
+        textureId = WarGLUtils.loadTexture(mContext, R.mipmap.ic_launcher);//初始化纹理
 
-
-        //mOpMatrix旋转变换
-        Matrix.setRotateM(mOpMatrix, 0, 30, 0, 0, -1);
-
-        //使用mOpMatrix对mMVPMatrix进行变换
-        Matrix.multiplyMM(
-                mMVPMatrix, 0,
-                mViewMatrix, 0,
-                mOpMatrix, 0);
-
+        // 下面的隐藏，只是使用上面的。下面的是和GLRenderer1_3一样的。
+        // 计算投影和视图转换
         Matrix.multiplyMM(
                 mMVPMatrix, 0,
                 mProjectionMatrix, 0,
-                mMVPMatrix, 0);
+                mViewMatrix, 0);
 
-// 下面的隐藏，只是使用上面的。下面的是和GLRenderer1_3一样的。
-//        // 计算投影和视图转换
-//        Matrix.multiplyMM(
-//                mMVPMatrix, 0,
-//                mProjectionMatrix, 0,
-//                mViewMatrix, 0);
-
-        mTriangle124.draw(mMVPMatrix);
+        mTriangle124.draw(mMVPMatrix,textureId);//绘制时使用纹理
 
     }
 

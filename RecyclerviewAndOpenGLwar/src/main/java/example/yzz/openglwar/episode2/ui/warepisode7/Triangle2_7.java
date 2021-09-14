@@ -8,7 +8,7 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 
-import example.yzz.openglwar.utils.GLUtils;
+import example.yzz.openglwar.utils.WarGLUtils;
 
 /**
  * Time:2021/9/13
@@ -197,10 +197,10 @@ public class Triangle2_7 {
 
 
 
-        int vertexShader = GLUtils.loadShaderAssets(this.mContext,
+        int vertexShader = WarGLUtils.loadShaderAssets(this.mContext,
                 GLES20.GL_VERTEX_SHADER, "war2_6_2.vert");
         //片元着色
-        int fragmentShader = GLUtils.loadShaderAssets(this.mContext,
+        int fragmentShader = WarGLUtils.loadShaderAssets(this.mContext,
                 GLES20.GL_FRAGMENT_SHADER, "war2_6_2.frag");
 
         mProgram = GLES20.glCreateProgram();//创建空的OpenGL ES 程序
@@ -245,7 +245,7 @@ public class Triangle2_7 {
 
 
         //索引缓冲
-        ShortBuffer idxBuffer = GLUtils.getShortBuffer(idx);
+        ShortBuffer idxBuffer = WarGLUtils.getShortBuffer(idx);
 
         //绘制
         GLES20.glDrawElements(GLES20.GL_TRIANGLES, idx.length,
