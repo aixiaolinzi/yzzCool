@@ -13,7 +13,8 @@ import example.yzz.openglwar.episode1.ui.warepisode4.Triangle1_4;
 /**
  * Time:2021/9/13
  * Author:yzzCool
- * Description: 和 GLRenderer1_3的代码是一样的。
+ * Description: 1. 在 GLRenderer1_4_2 代码的基础上修改。
+ * 2. 围绕y轴旋转 这一块的代码隐层了上面的代码。
  */
 public class GLRenderer2_6 implements GLSurfaceView.Renderer {
     private Context mContext;
@@ -66,13 +67,19 @@ public class GLRenderer2_6 implements GLSurfaceView.Renderer {
         //清除颜色缓存和深度缓存
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
-
+        // 1. 旋转和缩小
         //mOpMatrix旋转变换
-        Matrix.setRotateM(mOpMatrix, 0, currDeg, 0, 0, -1);
-
-
+        //Matrix.setRotateM(mOpMatrix, 0, currDeg, 0, 0, -1);
         //设置沿Z轴位移
-        Matrix.translateM(mOpMatrix, 0, 0, 0, currDeg / 90.f);
+        //Matrix.translateM(mOpMatrix, 0, 0, 0, currDeg / 90.f);
+
+        //2. 围绕y轴旋转
+        //Matrix.setRotateM(mOpMatrix, 0, currDeg, 0, 1, 0);
+
+        //3. 下面y轴旋转旋转和上面的y轴旋转有区别
+        Matrix.setRotateM(mOpMatrix, 0, currDeg, 0, 1, 0);
+        Matrix.translateM(mOpMatrix, 0, currDeg/360.f, 0,0);
+
 
         //使用mOpMatrix对mMVPMatrix进行变换
         Matrix.multiplyMM(
