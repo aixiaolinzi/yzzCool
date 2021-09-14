@@ -1,4 +1,4 @@
-package example.yzz.openglwar.episode3.ui.warepisode9;
+package example.yzz.openglwar.episode3.ui.warepisode10;
 
 import android.content.Context;
 import android.opengl.GLES20;
@@ -15,7 +15,7 @@ import example.yzz.openglwar.utils.WarGLUtils;
  * Author:yzzCool
  * Description: 在Triangle2_5_3基础上，绘制六边形。
  */
-public class WorldShape extends RenderAble {
+public class WorldShape3_10 extends RenderAble {
     private int mProgram;//OpenGL ES 程序
     private int mPositionHandle;//位置句柄
     private int mColorHandle;//颜色句柄
@@ -53,7 +53,7 @@ public class WorldShape extends RenderAble {
     };
 
 
-    public WorldShape(Context context) {
+    public WorldShape3_10(Context context) {
         super(context);
         mColorBuffer = WarGLUtils.getFloatBuffer(mColor);
         mVertexBuffer = WarGLUtils.getFloatBuffer(mVertex);

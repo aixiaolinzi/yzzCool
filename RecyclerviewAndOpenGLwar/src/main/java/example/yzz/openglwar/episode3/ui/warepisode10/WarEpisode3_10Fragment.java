@@ -9,18 +9,18 @@ import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link WarEpisode2_6Fragment#newInstance} factory method to
+ * Use the {@link WarEpisode3_10Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class WarEpisode2_6Fragment extends Fragment {
+public class WarEpisode3_10Fragment extends Fragment {
 
-    public WarEpisode2_6Fragment() {
+    public WarEpisode3_10Fragment() {
         // Required empty public constructor
     }
 
 
-    public static WarEpisode2_6Fragment newInstance() {
-        WarEpisode2_6Fragment fragment = new WarEpisode2_6Fragment();
+    public static WarEpisode3_10Fragment newInstance() {
+        WarEpisode3_10Fragment fragment = new WarEpisode3_10Fragment();
         return fragment;
     }
 
@@ -33,8 +33,8 @@ public class WarEpisode2_6Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        GLView2_6 glView26 = new GLView2_6(getContext());
-        return glView26;
+        WorldView3_10 worldView3_10 = new WorldView3_10(getContext());
+        return worldView3_10;
         //return inflater.inflate(R.layout.fragment_war_episode1_2, container, false);
     }
 }

@@ -33,7 +33,7 @@ public class WarEpisode3_9Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        WorldView glView12 = new WorldView(getContext());
+        WorldView3_9 glView12 = new WorldView3_9(getContext());
         return glView12;
         //return inflater.inflate(R.layout.fragment_war_episode1_2, container, false);
     }

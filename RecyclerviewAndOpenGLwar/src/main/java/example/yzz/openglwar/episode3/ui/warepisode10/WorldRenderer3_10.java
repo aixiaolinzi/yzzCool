@@ -1,4 +1,4 @@
-package example.yzz.openglwar.episode3.ui.warepisode9;
+package example.yzz.openglwar.episode3.ui.warepisode10;
 
 import android.content.Context;
 import android.opengl.GLES20;
@@ -15,7 +15,7 @@ import example.yzz.openglwar.episode3.abs.RenderAble;
  * Author:yzzCool
  * Description: 和 GLRenderer1_3的代码是一样的。
  */
-public class WorldRenderer implements GLSurfaceView.Renderer {
+public class WorldRenderer3_10 implements GLSurfaceView.Renderer {
     private static final String TAG = "GLRenderer";
     //Model View Projection Matrix--模型视图投影矩阵
     private static float[] mMVPMatrix = new float[16];
@@ -28,7 +28,7 @@ public class WorldRenderer implements GLSurfaceView.Renderer {
     private Context mContext;
     private RenderAble mWorldShape;
 
-    public WorldRenderer(Context context) {
+    public WorldRenderer3_10(Context context) {
         mContext = context;
     }
 
@@ -37,7 +37,7 @@ public class WorldRenderer implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);//rgba
-        mWorldShape = new WorldShape(mContext);
+        mWorldShape = new WorldShape3_10(mContext);
     }
 
     @Override
