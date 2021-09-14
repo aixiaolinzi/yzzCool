@@ -13,7 +13,7 @@ import example.yzz.openglwar.utils.WarGLUtils;
 /**
  * Time:2021/9/13
  * Author:yzzCool
- * Description: 在Triangle2_5_3基础上，绘制六边形。
+ * Description: 在 WorldShape3_9   4个点基础上， 追加颜色的变换。
  */
 public class WorldShape3_10 extends RenderAble {
     private int mProgram;//OpenGL ES 程序
@@ -24,20 +24,7 @@ public class WorldShape3_10 extends RenderAble {
     private final int vertexColorStride = Cons.DIMENSION_4 * 4; // 4*4=16
     private FloatBuffer mVertexBuffer;//顶点缓冲
     private final int vertexStride = Cons.DIMENSION_3 * 4; // 3*4=12
-    /**
-     * 1.  点形状绘制
-     */
-//    private float[] mVertex = new float[]{
-//            0.0f, 0.0f, 0.0f
-//    };
-//
-//    private float[] mColor = new float[]{
-//            1.0f, 1.0f, 1.0f, 1.0f,
-//    };
 
-    /**
-     * 2. 第三关卡：绘制四点
-     */
     private float[] mVertex = new float[]{
             -0.5f, 0.0f, -0.5f,
             -0.5f, 0.0f, 0.5f,
@@ -49,9 +36,8 @@ public class WorldShape3_10 extends RenderAble {
             1.0f, 1.0f, 1.0f, 1.0f,
             1.0f, 1.0f, 1.0f, 1.0f,
             1.0f, 1.0f, 1.0f, 1.0f,
-            1.0f, 1.0f, 1.0f, 1.0f,
+            0.21960784f,0.56078434f,0.92156863f,1.0f,
     };
-
 
     public WorldShape3_10(Context context) {
         super(context);

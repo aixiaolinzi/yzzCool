@@ -13,7 +13,8 @@ import example.yzz.openglwar.utils.WarGLUtils;
 /**
  * Time:2021/9/13
  * Author:yzzCool
- * Description: 在Triangle2_5_3基础上，绘制六边形。
+ * Description: 1.  点形状绘制
+ * 2. 第三关卡：绘制四点
  */
 public class WorldShape3_9 extends RenderAble {
     private int mProgram;//OpenGL ES 程序
