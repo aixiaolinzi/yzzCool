@@ -12,7 +12,8 @@ import example.yzz.openglwar.utils.GLUtils;
 /**
  * Time:2021/9/13
  * Author:yzzCool
- * Description:
+ * Description: Triangle1_3的基础上修改了sCoo四边形顶点 和
+ *  GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, vertexCount);绘制三角形的方式。
  */
 public class Triangle2_5 {
     private Context mContext;
@@ -30,9 +31,10 @@ public class Triangle2_5 {
     // 数组中每个顶点的坐标数
     static final int COORDS_PER_VERTEX = 3;
     static float sCoo[] = {   //以逆时针顺序
-            0.0f, 0.0f, 0.0f, // 顶部
-            -1.0f, -1.0f, 0.0f, // 左下
-            1.0f, -1.0f, 0.0f  // 右下
+            -0.5f, 0.5f, 0.0f, // 1.
+            -0.5f, -0.5f, 0.0f, // 2.
+            0.5f, 0.5f, 0.0f, //4.
+            0.5f, -0.5f, 0.0f, // 3.
     };
 
     // 颜色，rgba
@@ -86,7 +88,7 @@ public class Triangle2_5 {
         GLES20.glUniform4fv(mColorHandle, 1, color, 0);
 
         //绘制三角形
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexCount);
+        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, vertexCount);
         //禁用顶点数组
         GLES20.glDisableVertexAttribArray(mPositionHandle);
     }

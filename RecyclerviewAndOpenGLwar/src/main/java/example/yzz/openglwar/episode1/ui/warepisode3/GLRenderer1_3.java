@@ -24,23 +24,8 @@ public class GLRenderer1_3 implements GLSurfaceView.Renderer {
     //视图矩阵 mViewMatrix
     private final float[] mViewMatrix = new float[16];
 
-
     public GLRenderer1_3(Context context) {
         this.mContext = context;
-    }
-
-    /**
-     * 加载作色器
-     * @param type  顶点着色 {@link GLES20.GL_VERTEX_SHADER}
-     *              片元着色 {@link GLES20.GL_FRAGMENT_SHADER}
-     * @param shaderCode 着色代码
-     * @return 作色器
-     */
-    public static int loadShader(int type, String shaderCode){
-        int shader = GLES20.glCreateShader(type);//创建着色器
-        GLES20.glShaderSource(shader, shaderCode);//添加着色器源代码
-        GLES20.glCompileShader(shader);//编译
-        return shader;
     }
 
     @Override
