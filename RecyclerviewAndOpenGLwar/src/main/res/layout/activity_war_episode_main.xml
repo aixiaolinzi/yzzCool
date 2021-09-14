@@ -27,6 +27,13 @@
             android:gravity="center_vertical"
             android:text="Android多媒体之GL-ES战记第二集--勇者集结"/>
 
+        <TextView
+            android:onClick="onClick3"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#a50"
+            android:gravity="center_vertical"
+            android:text="Android多媒体之GLES2战记第三集--圣火之光"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -17,6 +17,9 @@
         <activity
             android:name="example.yzz.openglwar.episode2.WarEpisode2Activity"
             android:exported="true" />
+        <activity
+            android:name="example.yzz.openglwar.episode3.WarEpisode3Activity"
+            android:exported="true" />
 
         <activity
             android:name="example.yzz.openglwar.WarEpisodeMainActivity"
