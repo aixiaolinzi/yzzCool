@@ -13,10 +13,10 @@ import javax.microedition.khronos.opengles.GL10;
  * Author:yzzCool
  * Description:
  */
-public class GLRenderer1_4 implements GLSurfaceView.Renderer {
+public class GLRenderer2_8 implements GLSurfaceView.Renderer {
     private Context mContext;
 
-    Triangle1_4 mTriangle124;
+    Triangle2_8 mTriangle124;
     //Model View Projection Matrix--模型视图投影矩阵
     private final float[] mMVPMatrix = new float[16];
     //投影矩阵 mProjectionMatrix
@@ -28,14 +28,14 @@ public class GLRenderer1_4 implements GLSurfaceView.Renderer {
     //变换矩阵 1_4 追加的
     private float[] mOpMatrix = new float[16];
 
-    public GLRenderer1_4(Context context) {
+    public GLRenderer2_8(Context context) {
         this.mContext = context;
     }
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         GLES20.glClearColor(1.0f, 0.0f, 0.0f, 1.0f);//rgba
-        mTriangle124 = new Triangle1_4(mContext);
+        mTriangle124 = new Triangle2_8(mContext);
     }
 
     @Override

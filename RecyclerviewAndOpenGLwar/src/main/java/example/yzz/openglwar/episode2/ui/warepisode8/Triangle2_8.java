@@ -14,7 +14,7 @@ import example.yzz.openglwar.utils.GLUtils;
  * Author:yzzCool
  * Description:
  */
-public class Triangle1_4 {
+public class Triangle2_8 {
     private Context mContext;
 
     private FloatBuffer vertexBuffer;//顶点缓冲
@@ -38,7 +38,7 @@ public class Triangle1_4 {
     // 颜色，rgba
     float color[] = {0.63671875f, 0.76953125f, 0.22265625f, 1.0f};
 
-    public Triangle1_4(Context context) {
+    public Triangle2_8(Context context) {
         this.mContext =  context;
         //初始化顶点字节缓冲区
         ByteBuffer bb = ByteBuffer.allocateDirect(sCoo.length * 4);//每个浮点数:坐标个数* 4字节
