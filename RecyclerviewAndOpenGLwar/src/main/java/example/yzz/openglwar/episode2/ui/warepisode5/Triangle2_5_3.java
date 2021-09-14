@@ -6,16 +6,16 @@ import android.opengl.GLES20;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
+import java.nio.ShortBuffer;
 
 import example.yzz.openglwar.utils.GLUtils;
 
 /**
  * Time:2021/9/13
  * Author:yzzCool
- * Description: Triangle1_3的基础上修改了sCoo四边形顶点 和
- *  GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, vertexCount);绘制三角形的方式。
+ * Description: 在Triangle2_5的基础上， GLES20.glDrawElements绘制五边形。
  */
-public class Triangle2_5 {
+public class Triangle2_5_3 {
     private Context mContext;
 
     private FloatBuffer vertexBuffer;//顶点缓冲
@@ -30,30 +30,26 @@ public class Triangle2_5 {
 
     // 数组中每个顶点的坐标数
     static final int COORDS_PER_VERTEX = 3;
+
     static float sCoo[] = {   //以逆时针顺序
-            -0.5f, 0.5f, 0.0f, // 1.
-            -0.5f, -0.5f, 0.0f, // 2.
-            0.5f, 0.5f, 0.0f, //4.
-            0.5f, -0.5f, 0.0f, // 3.
+            -0.5f, 0.5f, 0.0f, // p0
+            -0.5f, -0.5f, 0.0f, // p1
+            0.5f, -0.5f, 0.0f, // p2
+            0.5f, 0.5f, 0.0f, //p3
+            0.0f, 0.8f, 0.0f, //p4
     };
 
-
-//    /**
-//     * 下面就是画五边形
-//     */
-//    static float sCoo[] = {   //以逆时针顺序
-//            -0.5f, 0.5f, 0.0f, // p1
-//            0.0f, 0.8f, 0.0f, //p5
-//            -0.5f, -0.5f, 0.0f, // p2
-//            0.5f, 0.5f, 0.0f, //p4
-//            0.5f, -0.5f, 0.0f, // p3
-//    };
-
+    //索引数组
+    private short[] idx = {
+            0, 4, 3,
+            1, 3, 0,
+            1, 2, 3
+    };
 
     // 颜色，rgba
     float color[] = {0.63671875f, 0.76953125f, 0.22265625f, 1.0f};
 
-    public Triangle2_5(Context context) {
+    public Triangle2_5_3(Context context) {
         this.mContext =  context;
         //初始化顶点字节缓冲区
         ByteBuffer bb = ByteBuffer.allocateDirect(sCoo.length * 4);//每个浮点数:坐标个数* 4字节
@@ -93,15 +89,19 @@ public class Triangle2_5 {
                 GLES20.GL_FLOAT, false,
                 vertexStride, vertexBuffer);
 
-
-
         // 获取片元着色器的vColor成员的句柄
         mColorHandle = GLES20.glGetUniformLocation(mProgram, "vColor");
         //为三角形设置颜色
         GLES20.glUniform4fv(mColorHandle, 1, color, 0);
 
-        //绘制三角形
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, vertexCount);
+
+        //索引缓冲
+        ShortBuffer idxBuffer = GLUtils.getShortBuffer(idx);
+
+        //绘制
+        GLES20.glDrawElements(GLES20.GL_TRIANGLES, idx.length,
+                GLES20.GL_UNSIGNED_SHORT, idxBuffer);
+
         //禁用顶点数组
         GLES20.glDisableVertexAttribArray(mPositionHandle);
     }

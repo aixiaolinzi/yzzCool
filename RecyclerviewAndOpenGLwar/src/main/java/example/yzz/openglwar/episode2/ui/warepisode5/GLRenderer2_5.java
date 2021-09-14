@@ -17,6 +17,8 @@ public class GLRenderer2_5 implements GLSurfaceView.Renderer {
     private Context mContext;
 
     Triangle2_5 mTriangle124;
+    Triangle2_5_3 mTriangle253;
+    Triangle2_5_4 mTriangle254;
     //Model View Projection Matrix--模型视图投影矩阵
     private final float[] mMVPMatrix = new float[16];
     //投影矩阵 mProjectionMatrix
@@ -31,7 +33,9 @@ public class GLRenderer2_5 implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         GLES20.glClearColor(1.0f, 0.0f, 0.0f, 1.0f);//rgba
-        mTriangle124 = new Triangle2_5(mContext);
+        //mTriangle124 = new Triangle2_5(mContext);
+        //mTriangle253 = new Triangle2_5_3(mContext);
+        mTriangle254 = new Triangle2_5_4(mContext);
     }
 
     @Override
@@ -64,8 +68,9 @@ public class GLRenderer2_5 implements GLSurfaceView.Renderer {
                 mProjectionMatrix, 0,
                 mViewMatrix, 0);
 
-        mTriangle124.draw(mMVPMatrix);
-
+        //mTriangle124.draw(mMVPMatrix);
+        //mTriangle253.draw(mMVPMatrix);
+        mTriangle254.draw(mMVPMatrix);
     }
 
 
