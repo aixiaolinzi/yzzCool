@@ -53,7 +53,7 @@ public class CollectGridDiversityFragment extends Fragment {
     recyclerView.setAdapter(new GridDiversityAdapter(this));
 
     prepareTransitions();
-    //postponeEnterTransition();
+    postponeEnterTransition();
 
     return recyclerView;
   }

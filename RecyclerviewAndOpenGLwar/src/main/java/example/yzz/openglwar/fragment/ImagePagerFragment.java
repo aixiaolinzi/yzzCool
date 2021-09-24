@@ -60,9 +60,11 @@ public class ImagePagerFragment extends Fragment {
     prepareSharedElementTransition();
 
     // Avoid a postponeEnterTransition on orientation change, and postpone only of first creation.
-//    if (savedInstanceState == null) {
-//      postponeEnterTransition();
-//    }
+    if (savedInstanceState == null) {
+      postponeEnterTransition();
+    }
+
+    startPostponedEnterTransition();
 
     return viewPager;
   }
