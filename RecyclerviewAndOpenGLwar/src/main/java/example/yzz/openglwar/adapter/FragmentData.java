@@ -17,6 +17,7 @@
 package example.yzz.openglwar.adapter;
 
 import androidx.annotation.DrawableRes;
+import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 
 import example.yzz.openglwar.episode1.ui.warepisode1.WarEpisode1_1Fragment;
@@ -39,16 +40,6 @@ import example.yzz.recyclerviewdemo.R;
  */
 abstract class FragmentData {
 
-    // Image assets (free for commercial use, no attribution required, from pixabay.com)
-    @DrawableRes
-    static final int[] IMAGE_DRAWABLES = {
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher
-    };
 
     static final Fragment[] FRAGMENT_WAR = {
             WarEpisode1_1Fragment.newInstance(),
@@ -65,40 +56,64 @@ abstract class FragmentData {
             WarEpisode3_12Fragment.newInstance()
     };
 
-    static final int[] TEXT_DRAWABLES = {
+    // Image assets (free for commercial use, no attribution required, from pixabay.com)
+    @DrawableRes
+    static final int[] FRAGMENT_DRAWABLES = {
+            R.drawable.fragment1_1,
+            R.drawable.fragment1_2,
+            R.drawable.fragment1_3,
+            R.drawable.fragment1_4,
+            R.drawable.fragment1_5,
+            R.drawable.fragment1_6,
+            R.drawable.fragment1_7,
+            R.drawable.fragment1_8,
+            R.drawable.fragment1_9,
+            R.drawable.fragment1_10,
+            R.drawable.fragment1_11,
+            R.drawable.fragment1_12,
+    };
+
+    @StringRes
+    static final int[] FRAGMENT_TEXT_DRAWABLES = {
+            R.string.fragment_description1,
+            R.string.fragment_description2,
+            R.string.fragment_description3,
+            R.string.fragment_description4,
+            R.string.fragment_description5,
+            R.string.fragment_description6,
+            R.string.fragment_description7,
+            R.string.fragment_description8,
+            R.string.fragment_description9,
+            R.string.fragment_description10,
+            R.string.fragment_description11,
+            R.string.fragment_description12,
+            R.string.fragment_description1,
+            R.string.fragment_description1,
+            R.string.fragment_description1,
+            R.string.fragment_description1,
+            R.string.fragment_description1
+    };
+
+
+    // Image assets (free for commercial use, no attribution required, from pixabay.com)
+    @DrawableRes
+    static final int[] COLLECTION_DRAWABLES = {
+            R.drawable.collect_grid_1,
+            R.drawable.collect_grid_2,
+            R.drawable.collect_grid_3,
+            R.drawable.collect_grid_4,
+            R.drawable.collect_grid_4,
+            R.drawable.collect_grid_4
+    };
+
+    @StringRes
+    static final int[] COLLECTION_TEXT_DRAWABLES = {
             R.string.war_description1,
             R.string.war_description2,
             R.string.war_description3,
             R.string.war_description4,
             R.string.war_description5,
-            R.string.war_description6,
-            R.drawable.beetle_562035,
-            R.drawable.bug_189903,
-            R.drawable.butterfly_417971,
-            R.drawable.dragonfly_122787,
-            R.drawable.dragonfly_274059,
-            R.drawable.dragonfly_689626,
-            R.drawable.grasshopper_279532,
-            R.drawable.hover_fly_61682,
-            R.drawable.hoverfly_546692,
-            R.drawable.insect_278083,
-            R.drawable.morpho_43483,
-            R.drawable.dragonfly_274059,
-            R.drawable.dragonfly_689626,
-            R.drawable.grasshopper_279532,
-            R.drawable.hover_fly_61682,
-            R.drawable.hoverfly_546692,
-            R.drawable.insect_278083,
-            R.drawable.morpho_43483,
-            R.drawable.nature_95365,
-            R.drawable.dragonfly_274059,
-            R.drawable.dragonfly_689626,
-            R.drawable.grasshopper_279532,
-            R.drawable.hover_fly_61682,
-            R.drawable.hoverfly_546692,
-            R.drawable.insect_278083,
-            R.drawable.morpho_43483,
-            R.drawable.nature_95365
+            R.string.war_description6
     };
 
 }

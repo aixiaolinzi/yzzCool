@@ -15,11 +15,25 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="image_description">Image</string>
-    <string name="war_description1">Android多媒体之GL-ES2战记第一集--勇者集结</string>
-    <string name="war_description2">Android多媒体之GL-ES2战记第二集--谜团立方</string>
-    <string name="war_description3">Android多媒体之GL-ES2战记第三集--圣火之光</string>
-    <string name="war_description4">Android多媒体之GL-ES2战记第四集--移形换影</string>
-    <string name="war_description5">Android多媒体之GL-ES2战记第五集--宇宙之光</string>
-    <string name="war_description6">Android多媒体之GL-ES2战记第六集--九层之台</string>
+    <string name="war_description1">GL-ES2战记第一集--勇者集结</string>
+    <string name="war_description2">GL-ES2战记第二集--谜团立方</string>
+    <string name="war_description3">GL-ES2战记第三集--圣火之光</string>
+    <string name="war_description4">GL-ES2战记第四集--移形换影</string>
+    <string name="war_description5">GL-ES2战记第五集--宇宙之光</string>
+    <string name="war_description6">GL-ES2战记第六集--九层之台</string>
+
+
+    <string name="fragment_description1">第一集 \n 副本一: 黑龙洞口</string>
+    <string name="fragment_description2">第一集 \n 副本二---龙之怒色</string>
+    <string name="fragment_description3">第一集 \n 副本三---龙之赤瞳</string>
+    <string name="fragment_description4">第一集 \n 副本四--龙之振翼</string>
+    <string name="fragment_description5">第二集 \n 第五副本：龙之图阵</string>
+    <string name="fragment_description6">第二集 \n 第六副本：龙之空间</string>
+    <string name="fragment_description7">第二集 \n 第七副本：龙之逆鳞</string>
+    <string name="fragment_description8">第二集 \n 第八副本：龙之盛装 LEVEL1</string>
+    <string name="fragment_description9">第三集 \n 副本九:黑暗之渊</string>
+    <string name="fragment_description10">第三集 \n 副本十:萦龙之丝</string>
+    <string name="fragment_description11">第三集 \n 副本十:萦龙之丝</string>
+    <string name="fragment_description12">第三集 \n 副本十一:The World</string>
 
 </resources>

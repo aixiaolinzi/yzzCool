@@ -16,15 +16,11 @@
 
 package example.yzz.openglwar.adapter;
 
-import static example.yzz.openglwar.adapter.FragmentData.COLLECTION_TEXT_DRAWABLES;
-import static example.yzz.openglwar.adapter.FragmentData.COLLECTION_DRAWABLES;
+import static example.yzz.openglwar.adapter.FragmentData.FRAGMENT_DRAWABLES;
+import static example.yzz.openglwar.adapter.FragmentData.FRAGMENT_TEXT_DRAWABLES;
+import static example.yzz.openglwar.adapter.FragmentData.FRAGMENT_WAR;
 
 import android.graphics.drawable.Drawable;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 import android.transition.TransitionSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +28,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
@@ -43,14 +43,13 @@ import com.bumptech.glide.request.target.Target;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import example.yzz.openglwar.WarEpisodeMainActivity;
-import example.yzz.openglwar.fragment.CollectGridDiversityFragment;
 import example.yzz.openglwar.fragment.ImagePagerFragment;
 import example.yzz.recyclerviewdemo.R;
 
 /**
  * A fragment for displaying a grid of images.
  */
-public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ImageViewHolder> {
+public class GridDiversityAdapter extends RecyclerView.Adapter<GridDiversityAdapter.ImageViewHolder> {
 
   /**
    * A listener that is attached to all ViewHolders to handle image loading events and clicks.
@@ -68,7 +67,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ImageViewHolde
   /**
    * Constructs a new grid adapter for the given {@link Fragment}.
    */
-  public GridAdapter(Fragment fragment) {
+  public GridDiversityAdapter(Fragment fragment) {
     this.requestManager = Glide.with(fragment);
     this.viewHolderListener = new ViewHolderListenerImpl(fragment);
   }
@@ -77,7 +76,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ImageViewHolde
   @Override
   public ImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     View view = LayoutInflater.from(parent.getContext())
-        .inflate(R.layout.war_grid_card, parent, false);
+        .inflate(R.layout.war_grid_diversity_card, parent, false);
     return new ImageViewHolder(view, requestManager, viewHolderListener);
   }
 
@@ -88,7 +87,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ImageViewHolde
 
   @Override
   public int getItemCount() {
-    return COLLECTION_DRAWABLES.length;
+    return FRAGMENT_WAR.length;
   }
 
 
@@ -139,7 +138,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ImageViewHolde
           .beginTransaction()
           .setReorderingAllowed(true) // Optimize for shared element transition
           .addSharedElement(transitioningView, transitioningView.getTransitionName())
-          .replace(R.id.fragment_container, new CollectGridDiversityFragment(), CollectGridDiversityFragment.class.getSimpleName())
+          .replace(R.id.fragment_container, new ImagePagerFragment(), ImagePagerFragment.class.getSimpleName())
           .addToBackStack(null)
           .commit();
     }
@@ -176,14 +175,15 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ImageViewHolde
       int adapterPosition = getAdapterPosition();
       setImage(adapterPosition);
       // Set the string value of the image resource as the unique transition name for the view.
-      image.setTransitionName(String.valueOf(COLLECTION_DRAWABLES[adapterPosition]));
-      tvTitle.setText(COLLECTION_TEXT_DRAWABLES[adapterPosition]);
+      image.setTransitionName(String.valueOf(FRAGMENT_DRAWABLES[adapterPosition]));
+      tvTitle.setText(FRAGMENT_TEXT_DRAWABLES[adapterPosition]);
     }
 
     void setImage(final int adapterPosition) {
       // Load the image with Glide to prevent OOM error when the image drawables are very large.
       requestManager
-          .load(COLLECTION_DRAWABLES[adapterPosition])
+          .load(FRAGMENT_DRAWABLES[adapterPosition])
+          .centerCrop()
           .listener(new RequestListener<Drawable>() {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model,

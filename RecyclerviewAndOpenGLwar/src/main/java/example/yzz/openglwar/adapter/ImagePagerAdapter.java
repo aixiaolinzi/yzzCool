@@ -18,7 +18,7 @@ package example.yzz.openglwar.adapter;
 
 
 import static example.yzz.openglwar.adapter.FragmentData.FRAGMENT_WAR;
-import static example.yzz.openglwar.adapter.FragmentData.IMAGE_DRAWABLES;
+import static example.yzz.openglwar.adapter.FragmentData.FRAGMENT_DRAWABLES;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -35,13 +35,13 @@ public class ImagePagerAdapter extends FragmentStatePagerAdapter {
 
   @Override
   public int getCount() {
-    return IMAGE_DRAWABLES.length;
+    return FRAGMENT_WAR.length;
   }
 
   @NonNull
   @Override
   public Fragment getItem(int position) {
-    Fragment fragment = FRAGMENT_WAR[position];
-    return fragment;
+
+    return FRAGMENT_WAR[position];
   }
 }

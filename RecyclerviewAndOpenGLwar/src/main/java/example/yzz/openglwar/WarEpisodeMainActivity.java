@@ -4,14 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
-import example.yzz.openglwar.episode1.WarEpisode1Activity;
-import example.yzz.openglwar.episode2.WarEpisode2Activity;
-import example.yzz.openglwar.episode3.WarEpisode3Activity;
-import example.yzz.openglwar.fragment.GridFragment;
+import example.yzz.openglwar.fragment.CollectGridFragment;
 import example.yzz.recyclerviewdemo.R;
 
 public class WarEpisodeMainActivity extends AppCompatActivity {
@@ -23,6 +18,8 @@ public class WarEpisodeMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_war_episode_main);
+        setTitle("张风捷特烈 Android多媒体之GLES2战记");
+
         if (savedInstanceState != null) {
             currentPosition = savedInstanceState.getInt(KEY_CURRENT_POSITION, 0);
             // Return here to prevent adding additional GridFragments when changing orientation.
@@ -32,8 +29,8 @@ public class WarEpisodeMainActivity extends AppCompatActivity {
         fragmentManager
                 .beginTransaction()
                 .add(R.id.fragment_container,
-                        new GridFragment(),
-                        GridFragment.class.getSimpleName()
+                        new CollectGridFragment(),
+                        CollectGridFragment.class.getSimpleName()
                 )
                 .commit();
     }

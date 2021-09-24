@@ -17,28 +17,31 @@
 package example.yzz.openglwar.fragment;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.core.app.SharedElementCallback;
-import androidx.recyclerview.widget.RecyclerView;
 import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnLayoutChangeListener;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.SharedElementCallback;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 import java.util.Map;
 
 import example.yzz.openglwar.WarEpisodeMainActivity;
-import example.yzz.openglwar.adapter.GridAdapter;
+import example.yzz.openglwar.adapter.GridDiversityAdapter;
 import example.yzz.recyclerviewdemo.R;
 
 /**
  * A fragment for displaying a grid of images.
+ *  是主要6集的分集。
+ *  
  */
-public class GridFragment extends Fragment {
+public class CollectGridDiversityFragment extends Fragment {
 
   private RecyclerView recyclerView;
 
@@ -47,7 +50,7 @@ public class GridFragment extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
     recyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_grid, container, false);
-    recyclerView.setAdapter(new GridAdapter(this));
+    recyclerView.setAdapter(new GridDiversityAdapter(this));
 
     prepareTransitions();
     //postponeEnterTransition();
