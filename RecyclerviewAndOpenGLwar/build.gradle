@@ -53,4 +53,7 @@ dependencies {
     testImplementation 'junit:junit:'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //add glide 20210923
+    implementation "com.github.bumptech.glide:glide:4.9.0"
 }

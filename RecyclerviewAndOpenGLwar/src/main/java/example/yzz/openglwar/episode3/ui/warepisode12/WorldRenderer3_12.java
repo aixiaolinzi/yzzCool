@@ -61,7 +61,7 @@ public class WorldRenderer3_12 implements GLSurfaceView.Renderer {
                 3, 9);
         // 设置相机位置(视图矩阵)
         Matrix.setLookAtM(mViewMatrix, 0,
-                2f, 2f, -6.0f,
+                1.5f, 0f, -6.0f,
                 0f, 0f, 0f,
                 0f, 1.0f, 0.0f);
     }
@@ -77,7 +77,7 @@ public class WorldRenderer3_12 implements GLSurfaceView.Renderer {
         //清除颜色缓存和深度缓存
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
         //初始化变换矩阵
-        Matrix.setRotateM(mOpMatrix, 0, currDeg + 130, 0, 1, 0);
+        Matrix.setRotateM(mOpMatrix, 0, currDeg , 0, 1, 0);
         Matrix.multiplyMM(mMVPMatrix, 0,
                 mViewMatrix, 0,
                 mOpMatrix, 0);
@@ -87,7 +87,7 @@ public class WorldRenderer3_12 implements GLSurfaceView.Renderer {
         mWorldShape.draw(mMVPMatrix);
         //打开深度检测
         GLES20.glEnable(GLES20.GL_DEPTH_TEST);
-        currDeg++;
+
     }
 
 }

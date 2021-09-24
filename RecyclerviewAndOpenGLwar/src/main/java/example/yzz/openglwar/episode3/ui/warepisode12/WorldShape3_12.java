@@ -80,7 +80,7 @@ public class WorldShape3_12 extends RenderAble implements OP<RenderAble> {
         add(
                 new SimpleShape(mContext, coo),
                 new SimpleShape(mContext, line),
-                new SimpleShape(mContext, ground),
+
                 new SimpleShape(mContext, top),
                 new SimpleShape(mContext, bottom)
         );
