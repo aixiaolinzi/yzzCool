@@ -60,9 +60,9 @@ public class ImagePagerFragment extends Fragment {
     prepareSharedElementTransition();
 
     // Avoid a postponeEnterTransition on orientation change, and postpone only of first creation.
-    if (savedInstanceState == null) {
-      postponeEnterTransition();
-    }
+//    if (savedInstanceState == null) {
+//      postponeEnterTransition();
+//    }
 
     return viewPager;
   }
@@ -93,7 +93,7 @@ public class ImagePagerFragment extends Fragment {
             }
 
             // Map the first shared element name to the child ImageView.
-            sharedElements.put(names.get(0), view.findViewById(R.id.image));
+            //sharedElements.put(names.get(0), view.findViewById(R.id.image));
           }
         });
   }

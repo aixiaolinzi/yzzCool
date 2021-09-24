@@ -50,7 +50,7 @@ public class GridFragment extends Fragment {
     recyclerView.setAdapter(new GridAdapter(this));
 
     prepareTransitions();
-    postponeEnterTransition();
+    //postponeEnterTransition();
 
     return recyclerView;
   }

@@ -16,8 +16,8 @@
 
 package example.yzz.openglwar.adapter;
 
-import static example.yzz.openglwar.adapter.ImageData.IMAGE_DRAWABLES;
-import static example.yzz.openglwar.adapter.ImageData.TEXT_DRAWABLES;
+import static example.yzz.openglwar.adapter.FragmentData.IMAGE_DRAWABLES;
+import static example.yzz.openglwar.adapter.FragmentData.TEXT_DRAWABLES;
 
 import android.graphics.drawable.Drawable;
 
@@ -138,8 +138,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ImageViewHolde
           .beginTransaction()
           .setReorderingAllowed(true) // Optimize for shared element transition
           .addSharedElement(transitioningView, transitioningView.getTransitionName())
-          .replace(R.id.fragment_container, new ImagePagerFragment(), ImagePagerFragment.class
-              .getSimpleName())
+          .replace(R.id.fragment_container, new ImagePagerFragment(), ImagePagerFragment.class.getSimpleName())
           .addToBackStack(null)
           .commit();
     }
