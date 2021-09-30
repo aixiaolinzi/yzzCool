@@ -11,6 +11,8 @@ import example.yzz.openglwar.episode3.abs.OP;
 import example.yzz.openglwar.episode3.abs.RenderAble;
 import example.yzz.openglwar.episode3.abs.WarShape;
 import example.yzz.openglwar.episode3.ui.SimpleShape;
+import example.yzz.openglwar.episode4.utils.SimpleFaceShape;
+import example.yzz.openglwar.episode4.utils.WarFaceShape;
 
 
 /**
@@ -67,6 +69,30 @@ public class WorldShape4_1 extends RenderAble implements OP<RenderAble> {
     };
 
 
+    //顶点坐标
+    private float mVertexFace[] = {   //以逆时针顺序
+            -0.5f, 0.5f, 0.5f, // p0
+            -0.5f, -0.5f, 0.5f, // p1
+            0.5f, -0.5f, 0.5f, // p2
+            0.5f, 0.5f, 0.5f, //p3
+    };
+
+    //索引数组
+    private short[] idxFace = {
+            0, 1, 3,
+            1, 2, 3
+    };
+
+    //顶点颜色
+    float colorsFace[] = new float[]{
+            1f, 1f, 0.0f, 1f,//黄
+            0.05882353f, 0.09411765f, 0.9372549f,1f,//蓝
+            0.19607843f, 1.0f, 0.02745098f, 1f,//绿
+            1.0f, 0.0f, 1.0f,1f,//紫色
+    };
+
+
+
     public WorldShape4_1(Context context) {
         super(context);
         mRendererAbles = new ArrayList<>();
@@ -77,12 +103,16 @@ public class WorldShape4_1 extends RenderAble implements OP<RenderAble> {
         WarShape ground = new WarShape(mVertex, mColor, GLES20.GL_LINE_LOOP);
         WarShape top = ground.moveAndCreate(0, 0.5f, 0);
         WarShape bottom = ground.moveAndCreate(0, -0.5f, 0);
+
+        WarFaceShape face = new WarFaceShape(mVertexFace, idxFace, colorsFace, GLES20.GL_LINES);
+
         add(
                 new SimpleShape(mContext, coo),
                 new SimpleShape(mContext, line),
 
                 new SimpleShape(mContext, top),
-                new SimpleShape(mContext, bottom)
+                new SimpleShape(mContext, bottom),
+                new SimpleFaceShape(mContext, face)
         );
 
     }
