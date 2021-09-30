@@ -32,6 +32,7 @@ import example.yzz.openglwar.episode3.ui.warepisode10.WarEpisode3_10Fragment;
 import example.yzz.openglwar.episode3.ui.warepisode11.WarEpisode3_11Fragment;
 import example.yzz.openglwar.episode3.ui.warepisode12.WarEpisode3_12Fragment;
 import example.yzz.openglwar.episode3.ui.warepisode9.WarEpisode3_9Fragment;
+import example.yzz.openglwar.episode4.ui.warepisode1.WarEpisode4_1Fragment;
 import example.yzz.recyclerviewdemo.R;
 
 
@@ -53,7 +54,8 @@ abstract class FragmentData {
             WarEpisode3_9Fragment.newInstance(),
             WarEpisode3_10Fragment.newInstance(),
             WarEpisode3_11Fragment.newInstance(),
-            WarEpisode3_12Fragment.newInstance()
+            WarEpisode3_12Fragment.newInstance(),
+            WarEpisode4_1Fragment.newInstance()
     };
 
     // Image assets (free for commercial use, no attribution required, from pixabay.com)
@@ -70,6 +72,7 @@ abstract class FragmentData {
             R.drawable.fragment1_9,
             R.drawable.fragment1_10,
             R.drawable.fragment1_11,
+            R.drawable.fragment1_12,
             R.drawable.fragment1_12,
     };
 

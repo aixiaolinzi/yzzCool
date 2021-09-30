@@ -1,4 +1,4 @@
-package example.yzz.openglwar.episode3.ui.warepisode12;
+package example.yzz.openglwar.episode4.ui.warepisode1;
 
 import android.content.Context;
 import android.opengl.GLES20;
@@ -25,7 +25,7 @@ import example.yzz.openglwar.episode3.abs.RenderAble;
  * 既然WorldShape总管图形，那么操作图形，在所难免,建一个OP接口，目前只放两个方法
  *
  */
-public class WorldRenderer3_12 implements GLSurfaceView.Renderer {
+public class WorldRenderer4_1 implements GLSurfaceView.Renderer {
     private static final String TAG = "GLRenderer";
     //Model View Projection Matrix--模型视图投影矩阵
     private static float[] mMVPMatrix = new float[16];
@@ -38,7 +38,7 @@ public class WorldRenderer3_12 implements GLSurfaceView.Renderer {
     private Context mContext;
     private RenderAble mWorldShape;
 
-    public WorldRenderer3_12(Context context) {
+    public WorldRenderer4_1(Context context) {
         mContext = context;
     }
 
@@ -48,7 +48,7 @@ public class WorldRenderer3_12 implements GLSurfaceView.Renderer {
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);//rgba
         //mWorldShape = new WorldShape3_11_2(mContext);
-        mWorldShape = new WorldShape3_12(mContext);
+        mWorldShape = new WorldShape4_1(mContext);
     }
 
     @Override
@@ -56,15 +56,18 @@ public class WorldRenderer3_12 implements GLSurfaceView.Renderer {
         GLES20.glViewport(0, 0, width, height);//GL视口
         float ratio = (float) width / height;
         //透视投影矩阵--截锥
-        Matrix.frustumM(mProjectionMatrix, 0,
+        MatrixStack.frustum(
                 -ratio, ratio, -1, 1,
                 3, 9);
 
         // 设置相机位置(视图矩阵)
-        Matrix.setLookAtM(mViewMatrix, 0,
-                0f, 0f, -6.0f,
+        MatrixStack.lookAt(0, 0, -6,
                 0f, 0f, 0f,
                 0f, 1.0f, 0.0f);
+
+        MatrixStack.reset();
+
+
     }
 
     /**
@@ -78,14 +81,8 @@ public class WorldRenderer3_12 implements GLSurfaceView.Renderer {
         //清除颜色缓存和深度缓存
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
         //初始化变换矩阵
-        Matrix.setRotateM(mOpMatrix, 0, currDeg , 0, 1, 0);
-        Matrix.multiplyMM(mMVPMatrix, 0,
-                mViewMatrix, 0,
-                mOpMatrix, 0);
-        Matrix.multiplyMM(mMVPMatrix, 0,
-                mProjectionMatrix, 0,
-                mMVPMatrix, 0);
-        mWorldShape.draw(mMVPMatrix);
+        MatrixStack.rotate(currDeg, 0, 1, 0);
+        mWorldShape.draw(MatrixStack.peek());
         //打开深度检测
         GLES20.glEnable(GLES20.GL_DEPTH_TEST);
 
